@@ -84,3 +84,247 @@ a:hover {
     padding: 20px;
   }
 }
+
+---------------------------- #product-overview {
+  background: linear-gradient(to top, rgba(1, 113, 227, 0.38) 10%, transparent),
+    url("images/nfteria-background.jpg") center/cover no-repeat border-box,
+    #f4f4f4;
+  /* background-image: url("freedom.jpg");
+    background-size: cover;
+    background-position: left 10% bottom 20%; */
+  /* background-repeat: no-repeat;
+    background-origin: border-box;
+    background-clip: border-box; */
+  /* background-image: linear-gradient(180deg, red 70%, blue 60%, rgba(0,0,0,0.5)); */
+  /* background-image: radial-gradient(ellipse farthest-corner at 20% 50%, red, blue 70%, green); */
+  width: 100vw;
+  height: 33vh;
+  /* border: 5px dashed red; */
+  position: relative;
+}
+
+#product-overview h1 {
+  color: #ffffff;
+  font-family: "Anton", sans-serif;
+  position: absolute;
+  bottom: 5%;
+  left: 3%;
+  font-size: 1.6rem;
+}
+
+@media (min-width: 40rem) and (min-height: 40rem) {
+  #product-overview {
+    height: 40vh;
+    background-position: 50% 25%;
+  }
+
+  #product-overview h1 {
+    font-size: 3rem;
+  }
+}
+
+.section-title {
+  color: rgba(1, 113, 227, 0.94);
+  text-align: center;
+}
+
+.plan {
+  background: rgba(1, 113, 227, 0.12);
+  text-align: center;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  width: 100%;
+}
+
+.plan--highlighted {
+  background: rgba(1, 113, 227, 0.7);
+  color: white;
+}
+
+.plan__annotation {
+  background: white;
+  color: rgba(255, 90, 0, 0.84);
+  padding: 0.5rem;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.plan__title {
+  color: rgba(36, 47, 62, 1);
+}
+
+.plan__price {
+  color: rgba(1, 113, 227, 0.84);
+}
+
+.plan--highlighted .plan__title {
+  color: white;
+}
+
+.plan--highlighted .plan__price {
+  color: rgba(28, 28, 255, 0.75);
+}
+
+.plan__features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.plan__feature {
+  margin: 0.5rem 0;
+}
+
+@media (min-width: 40rem) {
+  .plan__list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .plan {
+    width: 30%;
+    min-width: 13rem;
+    max-width: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 35rem;
+  }
+
+  .plan--highlighted {
+    box-shadow: 2px 2px 2px 2px rgba(1, 113, 227, 0.2);
+    height: 35rem;
+    z-index: 50;
+  }
+}
+
+#key-features {
+  background: #f4f4f4;
+  margin-top: 5rem;
+  padding: 1rem;
+}
+
+#key-features .section-title {
+  color: rgba(1, 113, 227, 0.94);
+  margin: 2rem;
+}
+
+.key-feature__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.key-feature__image {
+  background: rgba(1, 113, 227, 0.14);
+  width: 128px;
+  height: 128px;
+  border: 2px solid rgba(1, 113, 227, 0.84);
+  border-radius: 50%;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+.key-feature__description {
+  text-align: center;
+  font-weight: bold;
+  color: rgba(1, 113, 227, 0.94);
+  font-size: 1.2rem;
+}
+
+@media (min-width: 40rem) {
+  .key-feature {
+    width: 30%;
+    max-width: 25rem;
+  }
+
+  .key-feature__list {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* h1 {
+    font-family: sans-serif;
+} */
+
+.modal {
+  position: fixed;
+  opacity: 0;
+  transform: translateY(-3rem);
+  transition: opacity 200ms ease-out,
+    transform 500ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  z-index: 200;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  background: white;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px rgba(1, 113, 227, 0.12);
+}
+
+.modal__title {
+  text-align: center;
+  margin: 0 0 1rem 0;
+}
+
+.modal__actions {
+  text-align: center;
+}
+
+.modal__action {
+  border: 1px solid (0, 217, 89, 1);
+  background: (0, 217, 89, 1);
+  text-decoration: none;
+  color: rgba(1, 113, 227, 0.94);
+  font: inherit;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.modal__action:hover,
+.modal__action:active {
+  background: #2ddf5c;
+  border-color: #2ddf5c;
+}
+
+.modal__action--negative {
+  background: rgba(250, 35, 61, 0.9);
+  border-color: rgba(250, 35, 61, 0.9);
+}
+
+.modal__action--negative:hover,
+.modal__action--negative:active {
+  background: rgba(250, 35, 61, 0.69);
+  border-color: rgba(250, 35, 61, 0.69);
+}
+
+.footer {
+  background-color: #f8f9fa; /* Light gray background */
+  padding: 1.5rem 1rem; /* Padding for spacing */
+  text-align: center; /* Centered text */
+  border-top: 1px solid #dee2e6; /* Subtle top border */
+}
+
+.footer-content {
+  max-width: 800px; /* Constrain width for better layout */
+  margin: 0 auto; /* Center the content */
+}
+
+.footer p {
+  margin: 0.5rem 0; /* Margin for spacing between paragraphs */
+  color: #495057; /* Darker text color */
+}
+
+.footer a {
+  color: #007bff; /* Link color */
+  text-decoration: none; /* Remove underline */
+}
+
+.footer a:hover {
+  text-decoration: underline; /* Underline on hover for better UX */
+}

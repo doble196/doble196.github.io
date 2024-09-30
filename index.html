@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rensley Ramos - Portfolio</title>
     <link
       rel="stylesheet"
@@ -74,6 +75,8 @@
           <div class="skill">
             <h3>Frameworks & Libraries</h3>
             <ul>
+              <li>Foundry</li>
+              <li>LangChain</li>
               <li>React</li>
               <li>Next.js</li>
               <li>Flask</li>
@@ -84,16 +87,17 @@
             <h3>Blockchain Technologies</h3>
             <ul>
               <li>Smart Contracts</li>
-              <li>Ethereum</li>
-              <li>DeFi</li>
+              <li>Smart Wallets</li>
               <li>NFTs</li>
+              <li>DeFi</li>
               <li>dApps</li>
             </ul>
           </div>
           <div class="skill">
             <h3>Databases</h3>
             <ul>
-              <li>SQL</li>
+              <li>EVM</li>
+              <li>PostgresQL</li>
               <li>Firestore</li>
               <li>MongoDB</li>
             </ul>
@@ -101,23 +105,25 @@
           <div class="skill">
             <h3>Cloud Services</h3>
             <ul>
-              <li>AWS Lambda</li>
-              <li>AWS Cloud</li>
+              <li>IPFS</li>
+              <li>AWS</li>
+              <li>GCP</li>
             </ul>
           </div>
           <div class="skill">
             <h3>Tools & Technologies</h3>
             <ul>
+              <li>LangChain</li>
               <li>TensorFlow</li>
               <li>SKLearn</li>
-              <li>LangChain</li>
+              <li>GitHub</li>
               <li>Webpack</li>
             </ul>
           </div>
           <div class="skill">
             <h3>Frontend Technologies</h3>
             <ul>
-              <li>HTML & CSS</li>
+              <li>HTML</li>
               <li>SCSS</li>
               <li>Bootstrap</li>
             </ul>
@@ -125,9 +131,9 @@
           <div class="skill">
             <h3>Architecture & Methodologies</h3>
             <ul>
-              <li>Microservices</li>
-              <li>Micro-frontend Architecture</li>
-              <li>Version Control (Git)</li>
+              <li>Scalable</li>
+              <li>Automation</li>
+              <li>Loosely-coupled apps</li>
             </ul>
           </div>
         </div>
@@ -139,7 +145,8 @@
         <div class="project-list">
           <div class="project">
             <h3>
-              <a href="http://www.githat.io" target="_blank">GitHat.io</a>
+              <a href="http://www.githat.io" target="_blank">GitHat</a>
+              ( Umbrella )
             </h3>
             <p>
               Developed a micro front-end architecture for a decentralized
@@ -149,14 +156,20 @@
             </p>
           </div>
           <div class="project">
-            <h3>NFTeria</h3>
+            <h3>
+              <a href="http://www.nfteria.github.io" target="_blank">NFTeria</a>
+              (Web3)
+            </h3>
             <p>
               Worked on developing NFTs and dApps geared toward financial
               payments, leveraging smart contracts and blockchain protocols.
             </p>
           </div>
           <div class="project">
-            <h3>SebasTn (AI Company)</h3>
+            <h3>
+              <a href="http://www.sebastn.com" target="_blank">SebasTN</a>
+              (AI)
+            </h3>
             <p>
               Developed AI applications, including building portfolio apps,
               creating forecasting models using TensorFlow and SKLearn, and
@@ -164,11 +177,16 @@
             </p>
           </div>
           <div class="project">
-            <h3>Colmado</h3>
+            <h3>
+              <a href="https://github.com/Colmado-Inc" target="_blank"
+                >Colmado</a
+              >
+              (e-comm)
+            </h3>
             <p>
-              Created a marketplace for businesses and their customers, focusing
-              on scalability and user-friendly interfaces using modern web
-              technologies.
+              Ideation stage, a marketplace for businesses and their customers,
+              focusing on scalability and user-friendly interfaces using modern
+              web technologies.
             </p>
           </div>
         </div>
@@ -255,11 +273,20 @@
     </div>
 
     <footer class="footer Box-footer">
-      <p>
-        Contact Information:
-        <a href="mailto:rensley@nfteria.cc">rensley@nfteria.cc.com</a> | New
-        York, NY USA
-      </p>
+      <div class="footer-content">
+        <p>
+          &copy; <span id="current-year"></span> Rensley Ramos. All rights
+          reserved.
+        </p>
+        <p id="current-date"></p>
+        <p>
+          Contact:
+          <a href="mailto:rensley@nfteria.cc">rensley@nfteria.cc</a> | New York,
+          NY, USA
+        </p>
+      </div>
     </footer>
+
+    <script src="shared.js"></script>
   </body>
 </html>
