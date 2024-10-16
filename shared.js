@@ -12,3 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
     dateSpan.textContent = new Date().toLocaleDateString(undefined, options);
   }
 });
+
+<script
+  src="https://platform.linkedin.com/badges/js/profile.js"
+  async
+  defer
+  type="text/javascript"
+></script>;
