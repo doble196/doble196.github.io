@@ -527,43 +527,43 @@ img {
 
 .heatmap-cell[data-level="1"]  {
   background: rgba(74, 222, 128, 0.28);
-  box-shadow: 0 0 2px rgba(74, 222, 128, 0.08);
+  box-shadow: 0 0 4px rgba(74, 222, 128, 0.25);
 }
 .heatmap-cell[data-level="2"]  {
   background: rgba(74, 222, 128, 0.37);
-  box-shadow: 0 0 2px rgba(74, 222, 128, 0.1);
+  box-shadow: 0 0 5px rgba(74, 222, 128, 0.3);
 }
 .heatmap-cell[data-level="3"]  {
   background: rgba(74, 222, 128, 0.46);
-  box-shadow: 0 0 3px rgba(74, 222, 128, 0.12);
+  box-shadow: 0 0 5px rgba(74, 222, 128, 0.35);
 }
 .heatmap-cell[data-level="4"]  {
   background: rgba(74, 222, 128, 0.55);
-  box-shadow: 0 0 3px rgba(74, 222, 128, 0.15);
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.4);
 }
 .heatmap-cell[data-level="5"]  {
   background: rgba(74, 222, 128, 0.64);
-  box-shadow: 0 0 3px rgba(74, 222, 128, 0.18);
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.45);
 }
 .heatmap-cell[data-level="6"]  {
   background: rgba(74, 222, 128, 0.73);
-  box-shadow: 0 0 4px rgba(74, 222, 128, 0.22);
+  box-shadow: 0 0 7px rgba(74, 222, 128, 0.5);
 }
 .heatmap-cell[data-level="7"]  {
   background: rgba(74, 222, 128, 0.82);
-  box-shadow: 0 0 4px rgba(74, 222, 128, 0.28);
+  box-shadow: 0 0 7px rgba(74, 222, 128, 0.55);
 }
 .heatmap-cell[data-level="8"]  {
   background: rgba(74, 222, 128, 0.91);
-  box-shadow: 0 0 5px rgba(74, 222, 128, 0.35);
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
 }
 .heatmap-cell[data-level="9"]  {
   background: #4ade80;
-  box-shadow: 0 0 5px rgba(74, 222, 128, 0.42);
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.7);
 }
 .heatmap-cell[data-level="10"] {
   background: #39ff73;
-  box-shadow: 0 0 6px rgba(57, 255, 115, 0.5);
+  box-shadow: 0 0 10px rgba(57, 255, 115, 0.8);
 }
 
 .heatmap-cell[data-date] {
