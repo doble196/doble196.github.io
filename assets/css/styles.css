@@ -389,15 +389,15 @@ img {
   overflow: hidden;
   white-space: nowrap;
   border-right: 2px solid var(--accent-primary);
-  animation: typing 2.5s steps(24) 0.8s forwards,
+  animation: typing 2.5s steps(22) 0.8s forwards,
     blink 0.7s step-end infinite;
   width: 0;
-  max-width: 24ch;
+  max-width: 22ch;
 }
 
 @keyframes typing {
   to {
-    width: 24ch;
+    width: 22ch;
   }
 }
 
@@ -457,11 +457,11 @@ img {
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 1.25rem;
+  padding: 1.5rem;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  width: fit-content;
-  max-width: 100%;
+  width: 100%;
+  max-width: 900px;
 }
 
 .heatmap-wrapper::-webkit-scrollbar { height: 6px; }
@@ -473,8 +473,8 @@ img {
 
 .heatmap-months {
   position: relative;
-  height: 18px;
-  margin-bottom: 4px;
+  height: 20px;
+  margin-bottom: 8px;
 }
 
 .heatmap-months span {
@@ -488,19 +488,19 @@ img {
 
 .heatmap-body {
   display: flex;
-  gap: 4px;
+  gap: 6px;
 }
 
 .heatmap-days {
   display: flex;
   flex-direction: column;
   gap: 3px;
-  width: 30px;
+  width: 32px;
   flex-shrink: 0;
 }
 
 .heatmap-days span {
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   color: var(--text-tertiary);
   font-family: "JetBrains Mono", monospace;
   height: 12px;
@@ -574,9 +574,9 @@ img {
 .heatmap-legend {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
   justify-content: flex-end;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .heatmap-legend__label {
@@ -1109,12 +1109,13 @@ img {
     padding: 3.5rem 0;
   }
 
-  .heatmap-wrapper { padding: 0.75rem; }
+  .heatmap-wrapper { padding: 1rem; }
+  .heatmap-months { height: 18px; margin-bottom: 6px; }
   .heatmap-cell { width: 10px; height: 10px; }
   .heatmap-week { gap: 2px; }
   .heatmap-grid { gap: 2px; }
-  .heatmap-body { gap: 2px; }
-  .heatmap-days { gap: 2px; width: 26px; }
+  .heatmap-body { gap: 4px; }
+  .heatmap-days { gap: 2px; width: 28px; }
   .heatmap-days span { height: 10px; line-height: 10px; font-size: 0.55rem; }
 }
 
