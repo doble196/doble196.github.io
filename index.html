@@ -3,239 +3,1039 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rensley Ramos - Portfolio</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@primer/css@4.16.3/dist/primer.css"
+    <title>Rensley Ramos — Full-Stack Blockchain Developer</title>
+    <meta
+      name="description"
+      content="Full-Stack Blockchain Developer, Smart Contract Security Auditor, and AI Engineer based in NYC. Building DeFi protocols, AI agents, and SaaS platforms."
     />
+    <meta property="og:title" content="Rensley Ramos — Full-Stack Blockchain Developer" />
+    <meta
+      property="og:description"
+      content="The Vyper pilled dev. Building DeFi protocols, AI agents, and SaaS platforms in NYC."
+    />
+    <meta property="og:type" content="website" />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
-    <header class="Box-header">
-      <!-- Profile Picture -->
-      <img
-        src="assets/images/profile-pic.png"
-        alt="Profile Picture"
-        class="profile-pic"
-      />
-
-      <h1 class="f4">Rensley Ramos</h1>
-      <p class="color-fg-muted">
-        Full-Stack Blockchain Developer | AI Enthusiast | Technology Innovator
-      </p>
-    </header>
-
-    <div class="container">
-      <!-- About Me Section -->
-      <div class="section">
-        <h2>About Me</h2>
-        <p>
-          My passion for blockchain started early, leading me to enroll in the
-          Columbia FinTech Bootcamp. There, I gained hands-on experience with
-          Python programming, building portfolio apps, creating forecasting
-          models using tools like TensorFlow and SKLearn, and exploring
-          algorithmic trading. I also mastered AWS Lambda for scalable,
-          serverless solutions, and delved into smart contracts, blockchain
-          design, NFTs, and dApps focused on financial payments.
-        </p>
-        <p>
-          Post-bootcamp, I expanded my skill set by mastering JavaScript, React,
-          Next.js, and building micro front-ends. I developed
-          <a href="http://www.githat.io" target="_blank">githat.io</a> using
-          microservices architecture, allowing developers to work independently
-          and securely. This approach ensures different parts of the app are
-          loosely coupled, enabling seamless collaboration without interference.
-        </p>
-        <p>
-          I'm continuously refining my skills by building scalable, future-proof
-          apps and managing LangChain and RAG models to develop highly secure
-          and ethical systems. For instance, I can create secure, private
-          systems for sensitive sectors like healthcare, ensuring they meet
-          industry standards for privacy and security.
-        </p>
-        <p>
-          Looking ahead, I’m excited about building a Layer 2 solution in Rust.
-          I aim to lead in the blockchain space, bringing a unique blend of
-          technical skills, passion, and innovation.
-        </p>
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="nav" id="nav">
+      <div class="nav__inner container">
+        <a href="#hero" class="nav__brand mono">RR</a>
+        <button type="button" class="nav__toggle" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav__links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#orgs">Organizations</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#security">Security</a></li>
+          <li><a href="#contact" class="nav__cta">Contact</a></li>
+        </ul>
       </div>
+    </nav>
 
-      <!-- Skills Section -->
-      <div class="section">
-        <h2>Skills</h2>
-        <div class="skill-list">
-          <div class="skill">
-            <h3>Programming Languages</h3>
-            <ul>
-              <li>Python</li>
-              <li>JavaScript</li>
-              <li>Solidity</li>
-            </ul>
-          </div>
-          <div class="skill">
-            <h3>Frameworks & Libraries</h3>
-            <ul>
-              <li>Foundry</li>
-              <li>LangChain</li>
-              <li>React</li>
-              <li>Next.js</li>
-              <li>Flask</li>
-              <li>Express</li>
-            </ul>
-          </div>
-          <div class="skill">
-            <h3>Blockchain Technologies</h3>
-            <ul>
-              <li>Smart Contracts</li>
-              <li>Smart Wallets</li>
-              <li>NFTs</li>
-              <li>DeFi</li>
-              <li>dApps</li>
-            </ul>
-          </div>
-          <div class="skill">
-            <h3>Databases</h3>
-            <ul>
-              <li>EVM</li>
-              <li>PostgresQL</li>
-              <li>Firestore</li>
-              <li>MongoDB</li>
-            </ul>
-          </div>
-          <div class="skill">
-            <h3>Cloud Services</h3>
-            <ul>
-              <li>IPFS</li>
-              <li>AWS</li>
-              <li>GCP</li>
-            </ul>
-          </div>
-          <div class="skill">
-            <h3>Tools & Technologies</h3>
-            <ul>
-              <li>LangChain</li>
-              <li>TensorFlow</li>
-              <li>SKLearn</li>
-              <li>GitHub</li>
-              <li>Webpack</li>
-            </ul>
-          </div>
-          <div class="skill">
-            <h3>Frontend Technologies</h3>
-            <ul>
-              <li>HTML</li>
-              <li>SCSS</li>
-              <li>Bootstrap</li>
-            </ul>
-          </div>
-          <div class="skill">
-            <h3>Architecture & Methodologies</h3>
-            <ul>
-              <li>Scalable</li>
-              <li>Automation</li>
-              <li>Loosely-coupled apps</li>
-            </ul>
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+      <div class="hero__content container">
+        <div class="hero__text">
+          <p class="hero__greeting mono">Hello, I'm</p>
+          <h1 class="hero__name">Rensley Ramos</h1>
+          <p class="hero__title">Full-Stack Blockchain Developer &amp; Security Auditor</p>
+          <p class="hero__tagline mono">// the Vyper pilled dev</p>
+          <p class="hero__location">New York City</p>
+          <div class="hero__actions">
+            <a href="#projects" class="btn btn--primary">View My Work</a>
+            <a href="#contact" class="btn btn--outline">Get In Touch</a>
           </div>
         </div>
+        <div class="hero__image">
+          <img src="assets/images/profile-pic.png" alt="Rensley Ramos" />
+        </div>
       </div>
+    </section>
 
-      <!-- Projects Section -->
-      <div class="section">
-        <h2>Projects</h2>
-        <div class="project-list">
-          <div class="project">
-            <h3>
-              <a href="http://www.githat.io" target="_blank">GitHat</a>
-              ( Umbrella )
-            </h3>
+    <main>
+      <!-- ========== ABOUT ========== -->
+      <section class="section" id="about">
+        <div class="container reveal">
+          <h2 class="section__title">About Me</h2>
+          <p class="section__subtitle">Blockchain developer, security auditor, and builder of things.</p>
+          <div class="about__content">
             <p>
-              Developed a micro front-end architecture for a decentralized
-              application using Next.js and React. Implemented microservices to
-              isolate functionalities, allowing teams to work independently
-              without code interference.
+              I'm a <strong>Full-Stack Blockchain Developer</strong> and <strong>Smart Contract Security Auditor</strong> based in New York City. My journey started at the <strong>Columbia FinTech Bootcamp</strong>, where I built a foundation in Python, forecasting models, algorithmic trading, and smart contracts. Since then, I've built organizations, shipped products, and gone deep into DeFi, AI, and security.
             </p>
-          </div>
-          <div class="project">
-            <h3>
-              <a href="http://www.nfteria.github.io" target="_blank">NFTeria</a>
-              (Web3)
-            </h3>
             <p>
-              Worked on developing NFTs and dApps geared toward financial
-              payments, leveraging smart contracts and blockchain protocols.
+              I founded <strong>GitHat</strong> — an auth and hosting platform replacing Clerk + Vercel with micro front-ends and LLM-powered agents. I built <strong>NFTeria</strong>, a full DeFi + AI ecosystem with smart contract factories, Vyper contracts, ElizaOS agents, and ML-powered forecasting bots. I created <strong>ClickReserve</strong> for service-industry scheduling and <strong>SebasTN</strong> for AI applications.
             </p>
-          </div>
-          <div class="project">
-            <h3>
-              <a href="http://www.sebastn.com" target="_blank">SebasTN</a>
-              (AI)
-            </h3>
             <p>
-              Developed AI applications, including building portfolio apps,
-              creating forecasting models using TensorFlow and SKLearn, and
-              exploring algorithmic trading.
-            </p>
-          </div>
-          <div class="project">
-            <h3>
-              <a href="https://github.com/Colmado-Inc" target="_blank"
-                >Colmado</a
-              >
-              (e-comm)
-            </h3>
-            <p>
-              Ideation stage, a marketplace for businesses and their customers,
-              focusing on scalability and user-friendly interfaces using modern
-              web technologies.
+              I write smart contracts in <strong>Solidity</strong>, <strong>Vyper</strong>, and <strong>Clarity</strong> (Stacks), audit them with Foundry fuzzing and manual review, and build autonomous <strong>ML trading systems</strong> for GMX and ALPACA. I work with <strong>LangChain</strong>, <strong>ElizaOS</strong>, and <strong>RAG models</strong> to create AI agents that are both secure and useful. Looking ahead, I'm building toward <strong>Layer 2 solutions in Rust</strong>.
             </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Education Section -->
-      <div class="section">
-        <h2>Education</h2>
-        <h3>Columbia FinTech Executive</h3>
-        <p>
-          Completed a six-month intensive program focused on blockchain
-          technologies and financial applications. Gained hands-on experience
-          with Python programming, portfolio app development, forecasting
-          models, and smart contract mastery.
-        </p>
-      </div>
+      <!-- ========== GITHUB ACTIVITY ========== -->
+      <section class="section" id="activity">
+        <div class="container reveal">
+          <h2 class="section__title">GitHub Activity</h2>
+          <p class="section__subtitle">
+            <strong class="heatmap-total" id="heatmap-total"></strong> <span id="heatmap-year-label">contributions in 2026</span>
+            <a href="https://github.com/doble196" target="_blank" rel="noopener" class="heatmap-link">@doble196</a>
+          </p>
+          <div class="heatmap-years" id="heatmap-years">
+            <button type="button" class="filter-btn filter-btn--active" data-year="2026">2026</button>
+            <button type="button" class="filter-btn" data-year="2025">2025</button>
+            <button type="button" class="filter-btn" data-year="2024">2024</button>
+            <button type="button" class="filter-btn" data-year="2023">2023</button>
+            <button type="button" class="filter-btn" data-year="2022">2022</button>
+            <button type="button" class="filter-btn" data-year="2021">2021</button>
+          </div>
+          <div class="heatmap-wrapper">
+            <div class="heatmap-months" id="heatmap-months"></div>
+            <div class="heatmap-body">
+              <div class="heatmap-days">
+                <span>Sun</span>
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+              </div>
+              <div class="heatmap-grid" id="heatmap-grid"></div>
+            </div>
+            <div class="heatmap-legend">
+              <span class="heatmap-legend__label">Less</span>
+              <span class="heatmap-cell" data-level="0"></span>
+              <span class="heatmap-cell" data-level="1"></span>
+              <span class="heatmap-cell" data-level="2"></span>
+              <span class="heatmap-cell" data-level="3"></span>
+              <span class="heatmap-cell" data-level="4"></span>
+              <span class="heatmap-cell" data-level="5"></span>
+              <span class="heatmap-cell" data-level="6"></span>
+              <span class="heatmap-cell" data-level="7"></span>
+              <span class="heatmap-cell" data-level="8"></span>
+              <span class="heatmap-cell" data-level="9"></span>
+              <span class="heatmap-cell" data-level="10"></span>
+              <span class="heatmap-legend__label">More</span>
+            </div>
+          </div>
+          <p class="heatmap-lastyear" id="heatmap-lastyear"></p>
         </div>
-    </div>
+      </section>
 
-    <footer class="footer Box-footer">
-      <div class="footer-content">
-        <div
-          class="badge-base LI-profile-badge"
-          data-locale="en_US"
-          data-size="medium"
-          data-theme="dark"
-          data-type="HORIZONTAL"
-          data-vanity="rensley-2-nfty"
-          data-version="v1"
-        >
-          <a
-            class="badge-base__link LI-simple-link"
-            href="https://www.linkedin.com/in/rensley-2-nfty?trk=profile-badge"
-            >Rensley R.</a
-          >
+      <!-- ========== SKILLS ========== -->
+      <section class="section" id="skills">
+        <div class="container reveal">
+          <h2 class="section__title">Skills</h2>
+          <p class="section__subtitle">Technologies and tools I work with daily.</p>
+          <div class="skills-grid">
+            <div class="skill-group">
+              <h3 class="skill-group__title">Languages</h3>
+              <div class="skill-group__tags">
+                <span class="tag">Python</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Solidity</span>
+                <span class="tag">Vyper</span>
+                <span class="tag">Clarity</span>
+                <span class="tag">Rust</span>
+                <span class="tag">SQL</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h3 class="skill-group__title">Smart Contracts &amp; DeFi</h3>
+              <div class="skill-group__tags">
+                <span class="tag tag--purple">Foundry</span>
+                <span class="tag tag--purple">OpenZeppelin</span>
+                <span class="tag tag--purple">ERC-20/721/1155</span>
+                <span class="tag tag--purple">DAOs</span>
+                <span class="tag tag--purple">Account Abstraction</span>
+                <span class="tag tag--purple">CCIP Cross-chain</span>
+                <span class="tag tag--purple">Stablecoins</span>
+                <span class="tag tag--purple">Merkle Airdrops</span>
+                <span class="tag tag--purple">zkSync</span>
+                <span class="tag tag--purple">Titanoboa</span>
+                <span class="tag tag--purple">Moccasin</span>
+                <span class="tag tag--purple">Forge</span>
+                <span class="tag tag--purple">Stacks / Clarinet</span>
+                <span class="tag tag--purple">DeFi Protocols</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h3 class="skill-group__title">AI &amp; Machine Learning</h3>
+              <div class="skill-group__tags">
+                <span class="tag tag--blue">LangChain</span>
+                <span class="tag tag--blue">RAG</span>
+                <span class="tag tag--blue">ElizaOS</span>
+                <span class="tag tag--blue">Flowise</span>
+                <span class="tag tag--blue">TensorFlow</span>
+                <span class="tag tag--blue">Scikit-Learn</span>
+                <span class="tag tag--blue">Deep Learning</span>
+                <span class="tag tag--blue">AI Agents</span>
+                <span class="tag tag--blue">LLMs</span>
+                <span class="tag tag--blue">MCP</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h3 class="skill-group__title">Frontend</h3>
+              <div class="skill-group__tags">
+                <span class="tag">React</span>
+                <span class="tag">Next.js</span>
+                <span class="tag">Vue</span>
+                <span class="tag">HTML / CSS / SCSS</span>
+                <span class="tag">Tailwind CSS</span>
+                <span class="tag">DaisyUI</span>
+                <span class="tag">Bootstrap</span>
+                <span class="tag">Micro Front-Ends</span>
+                <span class="tag">Gatsby</span>
+                <span class="tag">Shopify Themes</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h3 class="skill-group__title">Backend &amp; Databases</h3>
+              <div class="skill-group__tags">
+                <span class="tag">Node.js</span>
+                <span class="tag">Express</span>
+                <span class="tag">Flask</span>
+                <span class="tag">AWS Lambda</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">DynamoDB</span>
+                <span class="tag">MongoDB</span>
+                <span class="tag">Firestore</span>
+                <span class="tag">Stripe</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h3 class="skill-group__title">Cloud &amp; DevOps</h3>
+              <div class="skill-group__tags">
+                <span class="tag">AWS</span>
+                <span class="tag">GCP</span>
+                <span class="tag">S3</span>
+                <span class="tag">CloudFront</span>
+                <span class="tag">Serverless</span>
+                <span class="tag">IPFS</span>
+                <span class="tag">Docker</span>
+                <span class="tag">CI/CD</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h3 class="skill-group__title">Architecture</h3>
+              <div class="skill-group__tags">
+                <span class="tag">Microservices</span>
+                <span class="tag">Micro Front-Ends</span>
+                <span class="tag">SaaS</span>
+                <span class="tag">Auth / OAuth</span>
+                <span class="tag">JWT</span>
+                <span class="tag">Cross-chain Protocols</span>
+                <span class="tag">MetaMask Snaps</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <p>
-          &copy; <span id="current-year"></span> Rensley Ramos. All rights
-          reserved.
-        </p>
-        <p id="current-date"></p>
-        <p>
-          Contact:
-          <a href="mailto:rensley@nfteria.cc">rensley@nfteria.cc</a> | New York,
-          NY, USA
-        </p>
+      <!-- ========== ORGANIZATIONS ========== -->
+      <section class="section" id="orgs">
+        <div class="container reveal">
+          <h2 class="section__title">Organizations</h2>
+          <p class="section__subtitle">Companies and platforms I've founded and built.</p>
+          <div class="orgs-grid">
+            <div class="org-card">
+              <div class="org-card__header">
+                <h3 class="org-card__name">GitHat</h3>
+                <span class="org-card__type mono">SaaS Platform</span>
+              </div>
+              <p class="org-card__desc">
+                Auth + hosting platform replacing Clerk + Vercel. Micro front-ends (React/Vue), micro backends (Lambda/DynamoDB), LLM agents (ChatHat, CodeHat), PDF processing, create-githat-app CLI, and blockchain integration.
+              </p>
+              <div class="org-card__tech">
+                <span class="tag tag--sm">React</span>
+                <span class="tag tag--sm">Vue</span>
+                <span class="tag tag--sm">Next.js</span>
+                <span class="tag tag--sm">Lambda</span>
+                <span class="tag tag--sm">DynamoDB</span>
+                <span class="tag tag--sm">LangChain</span>
+              </div>
+              <p class="org-card__meta">25+ repositories</p>
+              <div class="org-card__links">
+                <a href="https://githat.io" target="_blank" rel="noopener">Live Site</a>
+                <a href="https://github.com/GitHat-IO" target="_blank" rel="noopener">GitHub Org</a>
+              </div>
+            </div>
+
+            <div class="org-card org-card--purple">
+              <div class="org-card__header">
+                <h3 class="org-card__name">NFTeria</h3>
+                <span class="org-card__type mono">DeFi + AI Ecosystem</span>
+              </div>
+              <p class="org-card__desc">
+                Full DeFi + AI DApp ecosystem. Next.js frontend, Express/PostgreSQL backend, smart contract factory, ML forecasting bot, Flowise chatbot, Vyper &amp; Clarity contracts, ElizaOS agents, Simli AI avatar, Stacks chain integration, and MetaMask Snaps.
+              </p>
+              <div class="org-card__tech">
+                <span class="tag tag--sm tag--purple">Next.js</span>
+                <span class="tag tag--sm tag--purple">Express</span>
+                <span class="tag tag--sm tag--purple">PostgreSQL</span>
+                <span class="tag tag--sm tag--purple">Vyper</span>
+                <span class="tag tag--sm tag--purple">Clarity</span>
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">ElizaOS</span>
+              </div>
+              <p class="org-card__meta">20+ repositories</p>
+              <div class="org-card__links">
+                <a href="https://github.com/NFTeria" target="_blank" rel="noopener">GitHub Org</a>
+              </div>
+            </div>
+
+            <div class="org-card org-card--blue">
+              <div class="org-card__header">
+                <h3 class="org-card__name">SebasTN</h3>
+                <span class="org-card__type mono">AI Company</span>
+              </div>
+              <p class="org-card__desc">
+                AI company building sebastnOS operating system, Eliza autonomous agents, micro frontend deployed on AWS, AI applications, forecasting models, and algorithmic trading systems.
+              </p>
+              <div class="org-card__tech">
+                <span class="tag tag--sm tag--blue">Python</span>
+                <span class="tag tag--sm tag--blue">TensorFlow</span>
+                <span class="tag tag--sm tag--blue">ElizaOS</span>
+                <span class="tag tag--sm tag--blue">AWS</span>
+              </div>
+              <p class="org-card__meta">Hosted at sebastn.com</p>
+              <div class="org-card__links">
+                <a href="https://sebastn.com" target="_blank" rel="noopener">Live Site</a>
+                <a href="https://github.com/SebasTN-Rhys" target="_blank" rel="noopener">GitHub Org</a>
+              </div>
+            </div>
+
+            <div class="org-card">
+              <div class="org-card__header">
+                <h3 class="org-card__name">ClickReserve</h3>
+                <span class="org-card__type mono">Scheduling Platform</span>
+              </div>
+              <p class="org-card__desc">
+                Reservation and scheduling platform for service-based industries. Design system, branding, and UX-first approach for barber shops, salons, car washes, and more.
+              </p>
+              <div class="org-card__tech">
+                <span class="tag tag--sm">Full-Stack Web</span>
+                <span class="tag tag--sm">UX Design</span>
+              </div>
+              <div class="org-card__links">
+                <a href="https://github.com/ClickReserve" target="_blank" rel="noopener">GitHub Org</a>
+              </div>
+            </div>
+
+            <div class="org-card org-card--blue">
+              <div class="org-card__header">
+                <h3 class="org-card__name">QuantLinc</h3>
+                <span class="org-card__type mono">Quantitative Finance</span>
+              </div>
+              <p class="org-card__desc">
+                Quantitative trading research and tooling. ML-powered signal generation, algorithmic trading strategies, and financial analysis.
+              </p>
+              <div class="org-card__tech">
+                <span class="tag tag--sm tag--blue">Python</span>
+                <span class="tag tag--sm tag--blue">ML</span>
+                <span class="tag tag--sm tag--blue">Trading</span>
+              </div>
+              <div class="org-card__links">
+                <a href="https://github.com/QuantLinc" target="_blank" rel="noopener">GitHub Org</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== PROJECTS ========== -->
+      <section class="section" id="projects">
+        <div class="container reveal">
+          <h2 class="section__title">Projects</h2>
+          <p class="section__subtitle">A selection of what I've built across DeFi, AI, smart contracts, and full-stack.</p>
+
+          <div class="filter-bar">
+            <button type="button" class="filter-btn filter-btn--active" data-filter="all">All</button>
+            <button type="button" class="filter-btn" data-filter="defi">DeFi &amp; Trading</button>
+            <button type="button" class="filter-btn" data-filter="contracts">Smart Contracts</button>
+            <button type="button" class="filter-btn" data-filter="ai">AI &amp; Agents</button>
+            <button type="button" class="filter-btn" data-filter="fullstack">Full-Stack</button>
+            <button type="button" class="filter-btn" data-filter="security">Security</button>
+            <button type="button" class="filter-btn" data-filter="ml">ML &amp; Data</button>
+          </div>
+
+          <div class="projects-grid">
+            <!-- DeFi & Trading -->
+            <div class="project-card" data-category="defi">
+              <div class="project-card__header">
+                <h4 class="project-card__name">GMX AI Trade System</h4>
+                <span class="project-card__badge">DeFi</span>
+              </div>
+              <p class="project-card__desc">Autonomous ML-powered trading bot for GMX perpetual DEX with self-training capabilities and real-time signal generation.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Python</span>
+                <span class="tag tag--sm">ML</span>
+                <span class="tag tag--sm">GMX</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="defi">
+              <div class="project-card__header">
+                <h4 class="project-card__name">QuantL</h4>
+                <span class="project-card__badge">DeFi</span>
+              </div>
+              <p class="project-card__desc">ML trading bot for GMX + ALPACA perpetual DEX with self-training capabilities and autonomous execution.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Python</span>
+                <span class="tag tag--sm">GMX</span>
+                <span class="tag tag--sm">ALPACA</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="defi">
+              <div class="project-card__header">
+                <h4 class="project-card__name">CRYVESTO 2.0</h4>
+                <span class="project-card__badge">Trading</span>
+              </div>
+              <p class="project-card__desc">Algorithmic trading application with automated strategy execution and portfolio management.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Python</span>
+                <span class="tag tag--sm">Algorithms</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="defi">
+              <div class="project-card__header">
+                <h4 class="project-card__name">BitBotApp</h4>
+                <span class="project-card__badge">Trading</span>
+              </div>
+              <p class="project-card__desc">Trading signals subscription service with real-time alerts and signal delivery.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Python</span>
+                <span class="tag tag--sm">Signals</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="defi contracts">
+              <div class="project-card__header">
+                <h4 class="project-card__name">DeFi Stablecoin</h4>
+                <span class="project-card__badge">Foundry</span>
+              </div>
+              <p class="project-card__desc">Foundry-based algorithmic stablecoin with collateralization mechanics and price oracle integration.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">Foundry</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="defi contracts">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Cross-chain Rebase Token</h4>
+                <span class="project-card__badge">CCIP</span>
+              </div>
+              <p class="project-card__desc">Cross-chain token with rebase mechanics using Chainlink CCIP for interoperability.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">CCIP</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="defi">
+              <div class="project-card__header">
+                <h4 class="project-card__name">CRYVISOR</h4>
+                <span class="project-card__badge">DeFi</span>
+              </div>
+              <p class="project-card__desc">Crypto diversification application for portfolio analysis and optimization.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Python</span>
+                <span class="tag tag--sm">Finance</span>
+              </div>
+              <a href="https://github.com/doble196/CRYVISOR" class="project-card__link" target="_blank" rel="noopener">GitHub</a>
+            </div>
+
+            <div class="project-card" data-category="defi ml">
+              <div class="project-card__header">
+                <h4 class="project-card__name">ETF Analyzer</h4>
+                <span class="project-card__badge">Finance</span>
+              </div>
+              <p class="project-card__desc">Financial database analysis with SQL for ETF performance tracking and visualization.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Python</span>
+                <span class="tag tag--sm">SQL</span>
+              </div>
+              <a href="https://github.com/doble196/ETF_ANALYZER" class="project-card__link" target="_blank" rel="noopener">GitHub</a>
+            </div>
+
+            <!-- Smart Contracts -->
+            <div class="project-card" data-category="contracts">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Foundry Fund Me</h4>
+                <span class="project-card__badge">Foundry</span>
+              </div>
+              <p class="project-card__desc">Crowdfunding smart contract with Chainlink price feeds and comprehensive Foundry test suite.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">Foundry</span>
+                <span class="tag tag--sm tag--purple">Chainlink</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="contracts">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Smart Contract Lottery</h4>
+                <span class="project-card__badge">Foundry</span>
+              </div>
+              <p class="project-card__desc">VRF-based provably fair lottery with Chainlink VRF and Automation integration.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">Chainlink VRF</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="contracts">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Foundry zkSync</h4>
+                <span class="project-card__badge">L2</span>
+              </div>
+              <p class="project-card__desc">Layer 2 development on zkSync with Foundry tooling for scalable smart contracts.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">zkSync</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="contracts">
+              <div class="project-card__header">
+                <h4 class="project-card__name">DAO Governance</h4>
+                <span class="project-card__badge">Foundry</span>
+              </div>
+              <p class="project-card__desc">On-chain governance system with proposal creation, voting, and execution mechanics.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">Governance</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="contracts">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Account Abstraction</h4>
+                <span class="project-card__badge">ERC-4337</span>
+              </div>
+              <p class="project-card__desc">ERC-4337 account abstraction implementation for smart wallet functionality.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">ERC-4337</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="contracts">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Upgradeable Contracts</h4>
+                <span class="project-card__badge">Foundry</span>
+              </div>
+              <p class="project-card__desc">Proxy pattern implementations for upgradeable smart contracts.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">Proxy</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="contracts">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Merkle Airdrop</h4>
+                <span class="project-card__badge">Foundry</span>
+              </div>
+              <p class="project-card__desc">Signature-based airdrop using Merkle tree proofs for efficient token distribution.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">Merkle</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="contracts">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Coin Crowdsale</h4>
+                <span class="project-card__badge">ERC-20</span>
+              </div>
+              <p class="project-card__desc">Token crowdsale contract with minting capabilities and sale mechanics.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">ERC-20</span>
+              </div>
+              <a href="https://github.com/doble196/Coin_Crowdsale" class="project-card__link" target="_blank" rel="noopener">GitHub</a>
+            </div>
+
+            <!-- AI & Agents -->
+            <div class="project-card" data-category="ai">
+              <div class="project-card__header">
+                <h4 class="project-card__name">ElizaOS Agents</h4>
+                <span class="project-card__badge">AI</span>
+              </div>
+              <p class="project-card__desc">Autonomous AI agents built on ElizaOS framework for multi-purpose automation and interaction.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">ElizaOS</span>
+                <span class="tag tag--sm tag--blue">TypeScript</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="ai">
+              <div class="project-card__header">
+                <h4 class="project-card__name">ChatHat</h4>
+                <span class="project-card__badge">LLM</span>
+              </div>
+              <p class="project-card__desc">LLM-powered chatbot for the GitHat platform with context-aware conversations.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">LangChain</span>
+                <span class="tag tag--sm tag--blue">LLMs</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="ai">
+              <div class="project-card__header">
+                <h4 class="project-card__name">CodeHat</h4>
+                <span class="project-card__badge">LLM</span>
+              </div>
+              <p class="project-card__desc">Code generation LLM for the GitHat ecosystem with intelligent code assistance.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">LLMs</span>
+                <span class="tag tag--sm tag--blue">Code Gen</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="ai">
+              <div class="project-card__header">
+                <h4 class="project-card__name">sebastnOS</h4>
+                <span class="project-card__badge">OS</span>
+              </div>
+              <p class="project-card__desc">AI operating system for SebasTN, orchestrating agents, models, and applications.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">Python</span>
+                <span class="tag tag--sm tag--blue">AI</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="ai">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Flowise Chatbot</h4>
+                <span class="project-card__badge">No-Code AI</span>
+              </div>
+              <p class="project-card__desc">Visual LLM workflow chatbot built with Flowise for no-code AI pipeline creation.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">Flowise</span>
+                <span class="tag tag--sm tag--blue">LLMs</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="ai">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Simli AI Avatar</h4>
+                <span class="project-card__badge">AI</span>
+              </div>
+              <p class="project-card__desc">ElevenLabs AI agent with Simli-visualized avatar for interactive voice and visual AI experiences.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">ElevenLabs</span>
+                <span class="tag tag--sm tag--blue">Simli</span>
+              </div>
+              <a href="https://github.com/NFTeria/create-simli-app-elevenlabs" class="project-card__link" target="_blank" rel="noopener">GitHub</a>
+            </div>
+
+            <div class="project-card" data-category="ai">
+              <div class="project-card__header">
+                <h4 class="project-card__name">PDF LLM</h4>
+                <span class="project-card__badge">RAG</span>
+              </div>
+              <p class="project-card__desc">Document processing with LLMs and RAG for intelligent PDF analysis and storage.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">LangChain</span>
+                <span class="tag tag--sm tag--blue">RAG</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="ai">
+              <div class="project-card__header">
+                <h4 class="project-card__name">LLM Agents</h4>
+                <span class="project-card__badge">Agents</span>
+              </div>
+              <p class="project-card__desc">Custom LLM agent framework for the GitHat platform with tool use and autonomous task completion.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">LangChain</span>
+                <span class="tag tag--sm tag--blue">Agents</span>
+              </div>
+            </div>
+
+            <!-- Full-Stack -->
+            <div class="project-card" data-category="fullstack">
+              <div class="project-card__header">
+                <h4 class="project-card__name">NFTeria DApp Suite</h4>
+                <span class="project-card__badge">Web3</span>
+              </div>
+              <p class="project-card__desc">Full-stack blockchain DApp with Next.js frontend, Express/PostgreSQL backend, and smart contract integration for DeFi payments.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Next.js</span>
+                <span class="tag tag--sm">Express</span>
+                <span class="tag tag--sm">PostgreSQL</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="fullstack">
+              <div class="project-card__header">
+                <h4 class="project-card__name">ClickReserve</h4>
+                <span class="project-card__badge">SaaS</span>
+              </div>
+              <p class="project-card__desc">Scheduling and reservation platform for service-based industries including salons, barber shops, and car washes.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Full-Stack</span>
+                <span class="tag tag--sm">UX</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="fullstack">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Colmado</h4>
+                <span class="project-card__badge">E-Commerce</span>
+              </div>
+              <p class="project-card__desc">Marketplace for businesses and their customers with scalable architecture and user-friendly interfaces.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Full-Stack</span>
+                <span class="tag tag--sm">E-Commerce</span>
+              </div>
+              <a href="https://github.com/Colmado-Inc" class="project-card__link" target="_blank" rel="noopener">GitHub Org</a>
+            </div>
+
+            <div class="project-card" data-category="fullstack">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Hush-Brush</h4>
+                <span class="project-card__badge">App</span>
+              </div>
+              <p class="project-card__desc">Beauty industry application for salon management and client booking.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Full-Stack</span>
+              </div>
+              <a href="https://github.com/Hush-Brush" class="project-card__link" target="_blank" rel="noopener">GitHub Org</a>
+            </div>
+
+            <div class="project-card" data-category="fullstack">
+              <div class="project-card__header">
+                <h4 class="project-card__name">BarberShopPlay</h4>
+                <span class="project-card__badge">App</span>
+              </div>
+              <p class="project-card__desc">Barber shop management application with scheduling and client management.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Full-Stack</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="fullstack">
+              <div class="project-card__header">
+                <h4 class="project-card__name">BeautyPOS</h4>
+                <span class="project-card__badge">POS</span>
+              </div>
+              <p class="project-card__desc">Point of sale system designed for beauty and grooming businesses.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Full-Stack</span>
+                <span class="tag tag--sm">Stripe</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="fullstack">
+              <div class="project-card__header">
+                <h4 class="project-card__name">CrowdScope</h4>
+                <span class="project-card__badge">App</span>
+              </div>
+              <p class="project-card__desc">Crowd analytics application for event management and audience insights.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Full-Stack</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="fullstack">
+              <div class="project-card__header">
+                <h4 class="project-card__name">NFTeria Meta Backend</h4>
+                <span class="project-card__badge">Backend</span>
+              </div>
+              <p class="project-card__desc">Scalable Express.js backend with PostgreSQL, batch processing for financial data, ML signal generation, deployed on AWS with Docker.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Express</span>
+                <span class="tag tag--sm">PostgreSQL</span>
+                <span class="tag tag--sm">Docker</span>
+                <span class="tag tag--sm">AWS</span>
+              </div>
+            </div>
+
+            <!-- Security -->
+            <div class="project-card" data-category="security">
+              <div class="project-card__header">
+                <h4 class="project-card__name">CodeHawks: Token-0x</h4>
+                <span class="project-card__badge">Audit</span>
+              </div>
+              <p class="project-card__desc">Competitive smart contract security audit on the CodeHawks platform.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">Security</span>
+              </div>
+              <a href="https://github.com/doble196/2025-12-token-0x" class="project-card__link" target="_blank" rel="noopener">GitHub</a>
+            </div>
+
+            <div class="project-card" data-category="security">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Puppy Raffle Audit</h4>
+                <span class="project-card__badge">Audit</span>
+              </div>
+              <p class="project-card__desc">Security audit identifying reentrancy vulnerabilities, weak randomness, and integer overflow issues.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Foundry</span>
+                <span class="tag tag--sm tag--purple">Security</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="security">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Santa's List Audit</h4>
+                <span class="project-card__badge">Audit</span>
+              </div>
+              <p class="project-card__desc">Smart contract vulnerability assessment and security review.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Foundry</span>
+                <span class="tag tag--sm tag--purple">Security</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="security">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Multisig Timelock Audit</h4>
+                <span class="project-card__badge">Audit</span>
+              </div>
+              <p class="project-card__desc">Multi-signature wallet and timelock security review for governance contracts.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">Multisig</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="security">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Audit Report Template</h4>
+                <span class="project-card__badge">Tooling</span>
+              </div>
+              <p class="project-card__desc">Standardized audit reporting framework for consistent and professional security assessments.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Templates</span>
+                <span class="tag tag--sm tag--purple">Reports</span>
+              </div>
+            </div>
+
+            <!-- ML & Data -->
+            <div class="project-card" data-category="ml">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Deep Learning Neural Network</h4>
+                <span class="project-card__badge">ML</span>
+              </div>
+              <p class="project-card__desc">Venture funding predictions with deep learning using TensorFlow neural networks.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">TensorFlow</span>
+                <span class="tag tag--sm tag--blue">Deep Learning</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="ml">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Credit Risk Classification</h4>
+                <span class="project-card__badge">ML</span>
+              </div>
+              <p class="project-card__desc">Credit risk analysis using resampling techniques and classification models.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">Scikit-Learn</span>
+                <span class="tag tag--sm tag--blue">Classification</span>
+              </div>
+              <a href="https://github.com/doble196/Credit_Risk_Resampling" class="project-card__link" target="_blank" rel="noopener">GitHub</a>
+            </div>
+
+            <div class="project-card" data-category="ml">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Forecasting Net Prophet</h4>
+                <span class="project-card__badge">ML</span>
+              </div>
+              <p class="project-card__desc">Time series forecasting with Prophet for financial market predictions.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">Python</span>
+                <span class="tag tag--sm tag--blue">Prophet</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="ml">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Financial Simulations</h4>
+                <span class="project-card__badge">Finance</span>
+              </div>
+              <p class="project-card__desc">Monte Carlo simulations and API-driven financial modeling.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">Python</span>
+                <span class="tag tag--sm tag--blue">APIs</span>
+              </div>
+            </div>
+
+            <div class="project-card" data-category="ml">
+              <div class="project-card__header">
+                <h4 class="project-card__name">PyViz Data Visualization</h4>
+                <span class="project-card__badge">Data</span>
+              </div>
+              <p class="project-card__desc">Interactive data visualization dashboards with PyViz ecosystem.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">Python</span>
+                <span class="tag tag--sm tag--blue">PyViz</span>
+              </div>
+              <a href="https://github.com/doble196/PyViz" class="project-card__link" target="_blank" rel="noopener">GitHub</a>
+            </div>
+
+            <div class="project-card" data-category="ml">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Unsupervised ML Clustering</h4>
+                <span class="project-card__badge">ML</span>
+              </div>
+              <p class="project-card__desc">Clustering analysis with unsupervised machine learning algorithms.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">Scikit-Learn</span>
+                <span class="tag tag--sm tag--blue">Clustering</span>
+              </div>
+              <a href="https://github.com/doble196/Unsupervised_Machine_Learning" class="project-card__link" target="_blank" rel="noopener">GitHub</a>
+            </div>
+
+            <div class="project-card" data-category="ml">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Robo-Advisor</h4>
+                <span class="project-card__badge">Finance</span>
+              </div>
+              <p class="project-card__desc">Automated investment advisor with portfolio optimization and risk assessment.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">Python</span>
+                <span class="tag tag--sm tag--blue">Finance</span>
+              </div>
+              <a href="https://github.com/doble196/Robo_Advisor" class="project-card__link" target="_blank" rel="noopener">GitHub</a>
+            </div>
+
+            <div class="project-card" data-category="ml">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Algo Forecaster App</h4>
+                <span class="project-card__badge">ML</span>
+              </div>
+              <p class="project-card__desc">Forecasting bot rentals and subscription service with ML-powered predictions.</p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--blue">Python</span>
+                <span class="tag tag--sm tag--blue">ML</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SECURITY AUDITING ========== -->
+      <section class="section" id="security">
+        <div class="container reveal">
+          <h2 class="section__title">Security Auditing</h2>
+          <p class="section__subtitle">
+            <a href="https://codehawks.cyfrin.io" target="_blank" rel="noopener">CodeHawks</a> competitive auditor — Rank <strong>#190</strong> &bull; 1,144 EXP &bull; 17 Findings
+          </p>
+          <div class="codehawks-stats">
+            <div class="codehawks-stat codehawks-stat--high">
+              <span class="codehawks-stat__count">9</span>
+              <span class="codehawks-stat__label">High</span>
+            </div>
+            <div class="codehawks-stat codehawks-stat--medium">
+              <span class="codehawks-stat__count">6</span>
+              <span class="codehawks-stat__label">Medium</span>
+            </div>
+            <div class="codehawks-stat codehawks-stat--low">
+              <span class="codehawks-stat__count">2</span>
+              <span class="codehawks-stat__label">Low</span>
+            </div>
+          </div>
+          <div class="security-grid">
+            <div class="audit-card">
+              <h4 class="audit-card__name">CodeHawks: Token-0x</h4>
+              <p class="audit-card__desc">Competitive audit on the CodeHawks platform. Analyzed token contract for vulnerabilities including access control, reentrancy, and economic exploits.</p>
+            </div>
+            <div class="audit-card">
+              <h4 class="audit-card__name">Puppy Raffle</h4>
+              <p class="audit-card__desc">Identified reentrancy vulnerabilities, weak randomness in winner selection, and integer overflow risks in fee calculations.</p>
+            </div>
+            <div class="audit-card">
+              <h4 class="audit-card__name">Santa's List</h4>
+              <p class="audit-card__desc">Smart contract vulnerability assessment covering access control, state manipulation, and logic flaws in the naughty/nice list system.</p>
+            </div>
+            <div class="audit-card">
+              <h4 class="audit-card__name">Multisig Timelock</h4>
+              <p class="audit-card__desc">Security review of multi-signature wallet and timelock governance contracts. Assessed signing threshold logic and timelock bypass risks.</p>
+            </div>
+          </div>
+          <div class="security-toolkit">
+            <h3 class="security-toolkit__title">Security Toolkit</h3>
+            <div class="skill-group__tags">
+              <span class="tag tag--purple">Foundry Fuzzing</span>
+              <span class="tag tag--purple">Slither</span>
+              <span class="tag tag--purple">Aderyn</span>
+              <span class="tag tag--purple">Manual Review</span>
+              <span class="tag tag--purple">Formal Verification</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== EDUCATION ========== -->
+      <section class="section" id="education">
+        <div class="container reveal">
+          <h2 class="section__title">Education</h2>
+          <p class="section__subtitle">Where it started.</p>
+          <div class="education-card">
+            <span class="education-card__badge mono">2024</span>
+            <div>
+              <h3 class="education-card__title">Cyfrin Updraft</h3>
+              <p class="education-card__desc">
+                Advanced smart contract security and DeFi development. Foundry fundamentals, smart contract auditing, security research, DeFi stablecoins, account abstraction, DAO governance, upgradeable contracts, and assembly/formal verification. Massive props to <a href="https://twitter.com/PatrickAlphaC" target="_blank" rel="noopener">Patrick Collins</a> for building <a href="https://updraft.cyfrin.io" target="_blank" rel="noopener">Cyfrin Updraft</a> — the best smart contract education in the space.
+              </p>
+              <div class="education-card__links" style="margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://profiles.cyfrin.io/u/rensley" target="_blank" rel="noopener">My Cyfrin Profile</a>
+                <a href="https://profiles.cyfrin.io/u/rensley/achievements" target="_blank" rel="noopener">Achievements</a>
+                <a href="https://github.com/PatrickAlphaC" target="_blank" rel="noopener">Patrick on GitHub</a>
+                <a href="https://www.youtube.com/@PatrickAlphaC" target="_blank" rel="noopener">Patrick on YouTube</a>
+              </div>
+            </div>
+          </div>
+          <div class="education-card" style="margin-top: 1rem;">
+            <span class="education-card__badge mono">2022</span>
+            <div>
+              <h3 class="education-card__title">Columbia FinTech Executive Bootcamp</h3>
+              <p class="education-card__desc">
+                Six-month intensive program focused on blockchain technologies and financial applications. Gained hands-on experience with Python programming, portfolio app development, forecasting models (TensorFlow, Scikit-Learn), algorithmic trading, AWS Lambda, smart contract development, and dApp architecture.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========== FOOTER / CONTACT ========== -->
+    <footer class="footer" id="contact">
+      <div class="container">
+        <h2 class="footer__title">Get In Touch</h2>
+        <p class="footer__tagline">Open to full-time roles, freelance contracts, and collaborations.</p>
+        <div class="footer__links">
+          <a href="mailto:rensley@nfteria.cc" class="footer__link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            rensley@nfteria.cc
+          </a>
+          <a href="https://github.com/doble196" class="footer__link" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="https://linkedin.com/in/rensley-2-nfty" class="footer__link" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+        <p class="footer__location">New York, NY, USA</p>
+        <p class="footer__copy mono">&copy; <span id="year"></span> Rensley Ramos. All rights reserved.</p>
       </div>
     </footer>
-    <script src="shared.js"></script>
+
+    <script src="assets/js/main.js"></script>
   </body>
 </html>
