@@ -204,11 +204,12 @@ function initHeatmap() {
     }
 
     // Month labels — absolutely positioned to match grid columns
+    // These values must match the CSS exactly
     var isMobile = window.innerWidth <= 768;
     var CELL_SIZE = isMobile ? 10 : 12;
     var CELL_GAP = isMobile ? 2 : 3;
-    var DAYS_WIDTH = isMobile ? 26 : 30;
-    var BODY_GAP = isMobile ? 2 : 4;
+    var DAYS_WIDTH = isMobile ? 28 : 32;
+    var BODY_GAP = isMobile ? 4 : 6;
     var gridOffset = DAYS_WIDTH + BODY_GAP;
 
     // Place each month label above the week column containing the 1st of that month
@@ -312,8 +313,27 @@ function initHeatmap() {
     window.open("https://github.com/doble196?tab=overview&from=" + date + "&to=" + date, "_blank");
   });
 
+  // Track current year for resize handler
+  var currentYear = 2026;
+
+  // Re-render on resize to fix month label alignment
+  var resizeTimeout;
+  window.addEventListener("resize", function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+      renderYear(currentYear);
+    }, 150);
+  }, { passive: true });
+
+  // Update currentYear when user clicks year buttons
+  yearBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      currentYear = parseInt(btn.dataset.year);
+    });
+  });
+
   // Default: render current year
-  renderYear(2026);
+  renderYear(currentYear);
 }
 
 // ========================================
