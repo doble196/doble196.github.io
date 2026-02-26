@@ -38,7 +38,7 @@ Six-month intensive program focused on blockchain technologies and financial app
 
 ## Contact
 
-- **Email:** [rensley@nfteria.cc](mailto:rensley@nfteria.cc)
+- **Email:** [rensley@githat.io](mailto:rensley@githat.io)
 - **LinkedIn:** [linkedin.com/in/rensley-2-nfty](https://linkedin.com/in/rensley-2-nfty)
 - **GitHub:** [doble196](https://github.com/doble196)
 - **Location:** New York, NY, USA
