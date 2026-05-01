@@ -1164,3 +1164,32 @@ img {
     font-size: 0.72rem;
   }
 }
+
+/* ========================================
+   N. EPIGRAPH (pull quote)
+   ======================================== */
+.epigraph {
+  border-left: 2px solid var(--accent-primary);
+  padding: 0.6rem 0 0.6rem 1.4rem;
+  margin: 1.5rem 0 2.5rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 640px;
+}
+
+.epigraph__cite {
+  display: block;
+  margin-top: 0.65rem;
+  font-style: normal;
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+  letter-spacing: 0.04em;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
+.epigraph__cite em {
+  font-style: italic;
+  color: var(--text-secondary);
+}
