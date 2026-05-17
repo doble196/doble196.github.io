@@ -1,4 +1,4 @@
-# Rensley R. — Portfolio
+# <!-- IDENTITY:name -->Rensley R.<!-- /IDENTITY:name --> — Portfolio
 
 **Live:** [doble196.github.io](https://doble196.github.io)
 
@@ -35,10 +35,10 @@ Comfortable across several languages and ecosystems; usually picking up another.
 ## Contact
 
 <!-- IDENTITY:contact -->
-- **Email:** [rensley@githat.io](mailto:rensley@githat.io)
-- **X:** [@VyperPilledDev](https://x.com/VyperPilledDev)
+- **Email:** [<!-- IDENTITY:email -->rensley@githat.io<!-- /IDENTITY:email -->](mailto:rensley@githat.io)
+- **X:** [<!-- IDENTITY:x -->@VyperPilledDev<!-- /IDENTITY:x -->](https://x.com/VyperPilledDev)
 - **LinkedIn:** [linkedin.com/in/rensley-2-nfty](https://linkedin.com/in/rensley-2-nfty)
 - **GitHub:** [@doble196](https://github.com/doble196)
-- **Location:** New York, NY
+- **Location:** <!-- IDENTITY:location -->New York, NY<!-- /IDENTITY:location -->
 <!-- /IDENTITY:contact -->
 
