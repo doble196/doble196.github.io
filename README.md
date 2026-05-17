@@ -6,6 +6,8 @@ Rensley R.
 
 ## About
 
+> 🛠️ <!-- IDENTITY:status -->shipping the GitHat fleet<!-- /IDENTITY:status -->
+
 Builder based in NYC. I work across the full stack — from on-chain protocols to AI agents to multi-tenant SaaS — and care about shipping things that work end-to-end. The Vyper-pilled dev.
 
 ## What I work on
