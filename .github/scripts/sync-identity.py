@@ -40,8 +40,8 @@ def render(key: str, d: dict) -> str:
     if key == "x":
         return f"[@{d['x_handle']}](https://x.com/{d['x_handle']})"
     if key == "linkedin":
-        slug = d["linkedin_path"]
-        return f"[linkedin.com/in/{slug}](https://linkedin.com/in/{slug})"
+        slug = d.get("linkedin_path")
+        return f"[linkedin.com/in/{slug}](https://linkedin.com/in/{slug})" if slug else ""
     if key == "github":
         u = d["github_user"]
         return f"[@{u}](https://github.com/{u})"
@@ -55,10 +55,16 @@ def render(key: str, d: dict) -> str:
         lines = [
             f"- **Email:** [{d['email']}](mailto:{d['email']})",
             f"- **X:** [@{d['x_handle']}](https://x.com/{d['x_handle']})",
-            f"- **LinkedIn:** [linkedin.com/in/{d['linkedin_path']}](https://linkedin.com/in/{d['linkedin_path']})",
+        ]
+        if d.get("linkedin_path"):
+            slug = d["linkedin_path"]
+            lines.append(
+                f"- **LinkedIn:** [linkedin.com/in/{slug}](https://linkedin.com/in/{slug})"
+            )
+        lines.extend([
             f"- **GitHub:** [@{d['github_user']}](https://github.com/{d['github_user']})",
             f"- **Location:** {d['location']}",
-        ]
+        ])
         return "\n".join(lines)
     if key == "fleet_table":
         rows = ["| App | Domain | Role |", "|---|---|---|"]
