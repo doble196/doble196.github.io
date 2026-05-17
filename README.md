@@ -1,4 +1,4 @@
-# Rensley Ramos — Portfolio
+# Rensley R. — Portfolio
 
 Personal portfolio website showcasing my work as a Full-Stack Blockchain Developer, Smart Contract Security Auditor, and AI Engineer.
 
