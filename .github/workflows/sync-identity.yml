@@ -1,0 +1,37 @@
+name: Sync identity
+
+on:
+  schedule:
+    - cron: "15 5 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/scripts/sync-identity.py"
+      - ".github/workflows/sync-identity.yml"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      README_PATH: ${{ vars.README_PATH || 'README.md' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - run: python3 .github/scripts/sync-identity.py
+      - name: Commit if changed
+        run: |
+          if [ -n "$(git status --porcelain "$README_PATH")" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add "$README_PATH"
+            git commit -m "sync identity from doble196/doble196/identity.yml"
+            git push
+          else
+            echo "no changes"
+          fi
