@@ -20,7 +20,7 @@ Full-Stack Blockchain Developer and Smart Contract Security Auditor based in NYC
 
 ## Organizations
 
-- **[GitHat](https://githat.io)** — Auth + hosting platform (replacing Clerk + Vercel) with micro front-ends, LLM agents, and blockchain integration
+- **[GitHat](https://githat.io)** — Auth + hosting platform with micro front-ends, LLM agents, and blockchain integration
 - **[SebasTN](https://sebastn.com)** — AI company building sebastnOS, Eliza agents, and forecasting models
 - **[ClickReserve](https://github.com/ClickReserve)** — Scheduling platform for service-based industries
 - **[QuantLinc](https://github.com/QuantLinc)** — Quantitative finance research and tools
