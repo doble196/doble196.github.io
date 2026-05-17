@@ -95,7 +95,11 @@ def replace_blocks(text: str, d: dict) -> str:
         except ValueError as e:
             sys.stderr.write(f"warn: {e}\n")
             return m.group(0)
-        return f"<!-- IDENTITY:{key} -->\n{body}\n<!-- /IDENTITY:{key} -->"
+        # Multi-line bodies (composites) get block formatting;
+        # single-line bodies stay inline so they don't break headings/URLs.
+        if "\n" in body:
+            return f"<!-- IDENTITY:{key} -->\n{body}\n<!-- /IDENTITY:{key} -->"
+        return f"<!-- IDENTITY:{key} -->{body}<!-- /IDENTITY:{key} -->"
 
     return pattern.sub(repl, text)
 
