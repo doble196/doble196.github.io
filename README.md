@@ -1,43 +1,37 @@
 # Rensley R. — Portfolio
 
-Personal portfolio website showcasing my work as a Full-Stack Blockchain Developer, Smart Contract Security Auditor, and AI Engineer.
-
 **Live:** [doble196.github.io](https://doble196.github.io)
 
-## About Me
+## About
 
-Full-Stack Blockchain Developer and Smart Contract Security Auditor based in NYC. I build DeFi protocols, AI agents, and SaaS platforms. The Vyper pilled dev.
+Builder based in NYC. I work across the full stack — from on-chain protocols to AI agents to multi-tenant SaaS — and care about shipping things that work end-to-end. The Vyper-pilled dev.
 
-## Skills
+## What I work on
 
-- **Languages:** Python, JavaScript, TypeScript, Solidity, Vyper, Clarity, Rust, SQL
-- **Smart Contracts & DeFi:** Foundry, OpenZeppelin, ERC-20/721/1155, DAOs, Account Abstraction, CCIP Cross-chain, Stablecoins, Merkle Airdrops, zkSync, Stacks / Clarinet, DeFi Protocols
-- **AI & ML:** LangChain, RAG, ElizaOS, Flowise, TensorFlow, Scikit-Learn, Deep Learning, AI Agents, LLMs, MCP
-- **Frontend:** React, Next.js, Vue, HTML/CSS/SCSS, Tailwind CSS, DaisyUI, Bootstrap, Micro Front-Ends, Gatsby, Shopify Themes
-- **Backend & Databases:** Node.js, Express, Flask, AWS Lambda, PostgreSQL, DynamoDB, MongoDB, Firestore, Stripe
-- **Cloud & DevOps:** AWS, GCP, IPFS, Docker
-- **Architecture:** Microservices, Micro Front-Ends, SaaS, Cross-chain Protocols, MetaMask Snaps
+- **On-chain** — smart-contract development and security review across EVM and a few non-EVM chains
+- **AI agents** — agentic workflows, retrieval, and orchestration around modern LLMs
+- **Fullstack web** — modern frontend stacks, typed APIs, AWS-native edge
+- **Data / forecasting** — time-series modeling and algorithmic trading research
 
-## Organizations
+Comfortable across several languages and ecosystems; usually picking up another. Still learning every week.
 
-- **[GitHat](https://githat.io)** — Auth + hosting platform with micro front-ends, LLM agents, and blockchain integration
-- **[SebasTN](https://sebastn.com)** — AI company building sebastnOS, Eliza agents, and forecasting models
-- **[ClickReserve](https://github.com/ClickReserve)** — Scheduling platform for service-based industries
-- **[QuantLinc](https://github.com/QuantLinc)** — Quantitative finance research and tools
+## Building
 
-## Education
+- **[GitHat](https://githat.io)** — identity + edge platform for modern apps
+- **[ClickReserv](https://reserv.click)** — booking SaaS with 56 templates
+- **[Sebastn](https://sebastn.com)** — payments rail for the fleet
+- **[Quantl](https://quantl.click)** — quant signals + forecasting
+- **[Colmado](https://colmado.click)** — neighborhood commerce
 
-### Cyfrin Updraft (2024)
+## Background
 
-Advanced smart contract security and DeFi development. Foundry fundamentals, smart contract auditing, security research, DeFi stablecoins, account abstraction, DAO governance, upgradeable contracts, and assembly/formal verification.
+**Cyfrin Updraft (2024)** — Smart-contract security, auditing, DeFi protocol design, account abstraction, DAO governance, formal verification.
 
-### Columbia FinTech Executive Bootcamp (2022)
-
-Six-month intensive program focused on blockchain technologies and financial applications. Gained hands-on experience with Python, forecasting models, algorithmic trading, and smart contract development.
+**Columbia FinTech Executive Bootcamp (2022)** — Six-month intensive on blockchain + financial applications, algorithmic trading, forecasting.
 
 ## Contact
 
 - **Email:** [rensley@githat.io](mailto:rensley@githat.io)
 - **LinkedIn:** [linkedin.com/in/rensley-2-nfty](https://linkedin.com/in/rensley-2-nfty)
-- **GitHub:** [doble196](https://github.com/doble196)
-- **Location:** New York, NY, USA
+- **GitHub:** [@doble196](https://github.com/doble196) · **X:** [@VyperPilledDev](https://x.com/VyperPilledDev)
+- **Location:** New York, NY
