@@ -1,6 +1,4 @@
-# <!-- IDENTITY:name -->
-Rensley R.
-<!-- /IDENTITY:name --> — Portfolio
+# <!-- IDENTITY:name -->Rensley R.<!-- /IDENTITY:name --> — Portfolio
 
 **Live:** [doble196.github.io](https://doble196.github.io)
 
