@@ -17,11 +17,14 @@ Comfortable across several languages and ecosystems; usually picking up another.
 
 ## Building
 
+<!-- IDENTITY:fleet_links -->
 - **[GitHat](https://githat.io)** — identity + edge platform for modern apps
 - **[ClickReserv](https://reserv.click)** — booking SaaS with 56 templates
 - **[Sebastn](https://sebastn.com)** — payments rail for the fleet
 - **[Quantl](https://quantl.click)** — quant signals + forecasting
 - **[Colmado](https://colmado.click)** — neighborhood commerce
+<!-- /IDENTITY:fleet_links -->
+
 
 ## Background
 
@@ -31,7 +34,10 @@ Comfortable across several languages and ecosystems; usually picking up another.
 
 ## Contact
 
+<!-- IDENTITY:contact -->
 - **Email:** [rensley@githat.io](mailto:rensley@githat.io)
 - **LinkedIn:** [linkedin.com/in/rensley-2-nfty](https://linkedin.com/in/rensley-2-nfty)
 - **GitHub:** [@doble196](https://github.com/doble196) · **X:** [@VyperPilledDev](https://x.com/VyperPilledDev)
 - **Location:** New York, NY
+<!-- /IDENTITY:contact -->
+
