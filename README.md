@@ -18,11 +18,11 @@ Comfortable across several languages and ecosystems; usually picking up another.
 ## Building
 
 <!-- IDENTITY:fleet_links -->
-- **[GitHat](https://githat.io)** — identity + edge platform for modern apps
-- **[ClickReserv](https://reserv.click)** — booking SaaS with 56 templates
-- **[Sebastn](https://sebastn.com)** — payments rail for the fleet
-- **[Quantl](https://quantl.click)** — quant signals + forecasting
-- **[Colmado](https://colmado.click)** — neighborhood commerce
+- **[GitHat](https://githat.io)** — Identity layer for the fleet
+- **[Sebastn](https://sebastn.com)** — Payments rail
+- **[ClickReserv](https://reserv.click)** — Multi-tenant booking SaaS
+- **[Quantl](https://quantl.click)** — Quant signals + forecasting
+- **[Colmado](https://colmado.click)** — Neighborhood commerce
 <!-- /IDENTITY:fleet_links -->
 
 
@@ -36,8 +36,9 @@ Comfortable across several languages and ecosystems; usually picking up another.
 
 <!-- IDENTITY:contact -->
 - **Email:** [rensley@githat.io](mailto:rensley@githat.io)
+- **X:** [@VyperPilledDev](https://x.com/VyperPilledDev)
 - **LinkedIn:** [linkedin.com/in/rensley-2-nfty](https://linkedin.com/in/rensley-2-nfty)
-- **GitHub:** [@doble196](https://github.com/doble196) · **X:** [@VyperPilledDev](https://x.com/VyperPilledDev)
+- **GitHub:** [@doble196](https://github.com/doble196)
 - **Location:** New York, NY
 <!-- /IDENTITY:contact -->
 
