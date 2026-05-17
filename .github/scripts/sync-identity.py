@@ -33,8 +33,7 @@ def load_identity() -> dict:
 
 
 def render(key: str, d: dict) -> str:
-    if key == "name":
-        return d["name"]
+    # Custom-formatted keys (linkified)
     if key == "email":
         return f"[{d['email']}](mailto:{d['email']})"
     if key == "x":
@@ -45,10 +44,6 @@ def render(key: str, d: dict) -> str:
     if key == "github":
         u = d["github_user"]
         return f"[@{u}](https://github.com/{u})"
-    if key == "location":
-        return d["location"]
-    if key == "templates_count":
-        return str(d["templates_count"])
     if key == "website":
         return f"[{d['website']}](https://{d['website']})"
     if key == "contact":
@@ -79,7 +74,13 @@ def render(key: str, d: dict) -> str:
             for f in d["fleet"]
         ]
         return "\n".join(items)
-    raise ValueError(f"unknown IDENTITY key: {key}")
+    # Fallback: any top-level scalar field renders as itself.
+    val = d.get(key)
+    if val is None:
+        raise ValueError(f"unknown IDENTITY key: {key}")
+    if isinstance(val, (list, dict)):
+        raise ValueError(f"key {key} is structured; needs a custom renderer")
+    return str(val)
 
 
 def replace_blocks(text: str, d: dict) -> str:
