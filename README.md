@@ -28,6 +28,16 @@ Comfortable across several languages and ecosystems; usually picking up another.
 <!-- /IDENTITY:fleet_links -->
 
 
+## Access0x1 — live onchain
+
+Open-source, on-chain payments + commerce + identity layer. One shared, multi-tenant router — zero custody, USD-priced via Chainlink feeds read in-tx, exact fee-split — joined with one permissionless call. Source-verified on Base Sepolia, Ethereum + Optimism Sepolia, and Avalanche Fuji (Arc Testnet + Robinhood Chain deployed, verification pending); deployment and repo activity below refresh on each daily sync.
+
+<!-- IDENTITY:access0x1_card -->
+- **Router (Arc Testnet):** `0xA5982ea8842Eea97C6e313A5f75FD8CF72C69Aad` (verification pending)
+- **Router (Base Sepolia):** [`0xec89c9eE…6E8E57`](https://sepolia.basescan.org/address/0xec89c9eE28AF42Ae2b917BB0bAe245EAad6E8E57#code)
+- **Repo:** [Access0x1/Access0x1](https://github.com/Access0x1/Access0x1)
+<!-- /IDENTITY:access0x1_card -->
+
 ## Background
 
 **Cyfrin Updraft (2024)** — Smart-contract security, auditing, DeFi protocol design, account abstraction, DAO governance, formal verification.
