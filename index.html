@@ -113,14 +113,17 @@
               products, and gone deep into DeFi, AI, and security.
             </p>
             <p>
-              I founded <strong>GitHat</strong> — an auth and hosting platform
-              replacing Clerk + Vercel with micro front-ends and LLM-powered
-              agents. I built a full DeFi + AI ecosystem with smart contract
-              factories, Vyper contracts, ElizaOS agents, and ML-powered
-              forecasting bots. I created
+              I founded <strong>GitHat</strong> — an identity and payments
+              platform that gives a fleet of apps auth, orgs, and payment links
+              from one script tag. I built <strong>Access0x1</strong>, an
+              open-source on-chain payments layer whose shared router is
+              source-verified across Base, Ethereum, and Optimism Sepolia plus
+              Avalanche Fuji. I created
               <strong>ClickReserv</strong> — a booking, POS, and payments
-              platform live in production at reserv.click — and
-              <strong>SebasTN</strong> for AI applications.
+              platform live in production at reserv.click;
+              <strong>NFTeria</strong>, an onchain commerce product built on
+              Access0x1; and <strong>SebasTN</strong>, a Stripe Connect payments
+              product.
             </p>
             <p>
               I write smart contracts in <strong>Solidity</strong>,
@@ -309,16 +312,64 @@
             Companies and platforms I've founded and built.
           </p>
           <div class="orgs-grid">
+            <div class="org-card org-card--purple">
+              <div class="org-card__header">
+                <h3 class="org-card__name">Access0x1</h3>
+                <span class="org-card__type mono">Onchain Payments — Live</span>
+              </div>
+              <p class="org-card__desc">
+                Open-source, on-chain payments + commerce + identity layer. One
+                shared, multi-tenant Access0x1Router — zero custody, USD-priced
+                via Chainlink feeds read inside the settlement transaction, exact
+                fee-split — that any merchant joins with a single permissionless
+                call and one link, no contract code required. On top sit ERC-6909
+                payment lanes, ERC-7702/6492 agent sessions, and a five-primitive
+                commerce quintet. A universal deployer wires all 12 contracts in
+                one command across 23 testnets; a standalone verifier re-uploads
+                source to every explorer. Router source-verified on Base Sepolia
+                (0xec89c9eE…6E8E57), Ethereum + Optimism Sepolia, and Avalanche
+                Fuji; also deployed on Arc Testnet (0xA5982ea8…69Aad) and Robinhood
+                Chain, verification pending.
+              </p>
+              <div class="org-card__tech">
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">Foundry</span>
+                <span class="tag tag--sm tag--purple">Chainlink</span>
+                <span class="tag tag--sm tag--purple">ERC-6909</span>
+                <span class="tag tag--sm tag--purple">ERC-7702</span>
+                <span class="tag tag--sm tag--purple">viem / wagmi</span>
+              </div>
+              <p class="org-card__meta">
+                864 tests &bull; 100% router coverage &bull; 13 invariants
+              </p>
+              <div class="org-card__links">
+                <a
+                  href="https://github.com/Access0x1/Access0x1"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub</a
+                >
+                <a
+                  href="https://github.com/Access0x1"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub Org</a
+                >
+              </div>
+            </div>
+
             <div class="org-card">
               <div class="org-card__header">
                 <h3 class="org-card__name">GitHat</h3>
-                <span class="org-card__type mono">SaaS Platform</span>
+                <span class="org-card__type mono">Identity Platform — Live</span>
               </div>
               <p class="org-card__desc">
-                Auth + hosting platform replacing Clerk + Vercel. Micro
-                front-ends (React/Vue), micro backends (Lambda/DynamoDB), LLM
-                agents (ChatHat, CodeHat), PDF processing, create-githat-app
-                CLI, and blockchain integration.
+                Identity and payments platform — auth, orgs, and payment links
+                from one script tag. Email/password, passkeys, magic links, seven
+                social providers, RS256 JWTs via KMS, org and role management, and
+                AI-agent wallet auth. The shared auth rail behind a fleet of web
+                apps, so each ships zero auth code. Backend on AWS Lambda +
+                DynamoDB; frontend in Next.js 16. Live at githat.io.
               </p>
               <div class="org-card__tech">
                 <span class="tag tag--sm">React</span>
@@ -345,17 +396,19 @@
             <div class="org-card org-card--blue">
               <div class="org-card__header">
                 <h3 class="org-card__name">SebasTN</h3>
-                <span class="org-card__type mono">AI Company</span>
+                <span class="org-card__type mono">Payments Infra — Live</span>
               </div>
               <p class="org-card__desc">
-                AI company building sebastnOS operating system, Eliza autonomous
-                agents, micro frontend deployed on AWS, AI applications,
-                forecasting models, and algorithmic trading systems.
+                Payments infrastructure built on Stripe Connect. Express vendor
+                onboarding, marketplace payment splits, next-day payouts, tax, and
+                dispute handling through a single integration. Keyless by design —
+                authenticated surfaces delegate to a hosted white-label auth, so
+                no publishable key ships in the bundle. Live at sebastn.com.
               </p>
               <div class="org-card__tech">
-                <span class="tag tag--sm tag--blue">Python</span>
-                <span class="tag tag--sm tag--blue">TensorFlow</span>
-                <span class="tag tag--sm tag--blue">ElizaOS</span>
+                <span class="tag tag--sm tag--blue">Next.js 16</span>
+                <span class="tag tag--sm tag--blue">React 19</span>
+                <span class="tag tag--sm tag--blue">Stripe Connect</span>
                 <span class="tag tag--sm tag--blue">AWS</span>
               </div>
               <p class="org-card__meta">Hosted at sebastn.com</p>
@@ -406,17 +459,22 @@
             <div class="org-card org-card--blue">
               <div class="org-card__header">
                 <h3 class="org-card__name">QuantL</h3>
-                <span class="org-card__type mono">Quantitative Finance</span>
+                <span class="org-card__type mono">Quant Analytics — Live</span>
               </div>
               <p class="org-card__desc">
-                Quantitative trading research and tooling. ML-powered signal
-                generation, algorithmic trading strategies, and financial
-                analysis.
+                Market data and quantitative analytics SaaS for self-directed
+                stock traders. Runs 24 ML classification algorithms plus 30+
+                forecasting models against real-time Alpaca and Polygon data and
+                surfaces confidence-scored directional reads, paper trading, and a
+                live candlestick dashboard. A Claude MCP server answers signal
+                queries in natural language. Never holds funds or trades with
+                discretion. Live at quantl.click.
               </p>
               <div class="org-card__tech">
                 <span class="tag tag--sm tag--blue">Python</span>
-                <span class="tag tag--sm tag--blue">ML</span>
-                <span class="tag tag--sm tag--blue">Trading</span>
+                <span class="tag tag--sm tag--blue">TensorFlow</span>
+                <span class="tag tag--sm tag--blue">FastAPI</span>
+                <span class="tag tag--sm tag--blue">Next.js 16</span>
               </div>
               <div class="org-card__links">
                 <a href="https://quantl.click" target="_blank" rel="noopener"
@@ -489,20 +547,32 @@
               </div>
             </div>
 
-            <div class="project-card" data-category="defi">
+            <div class="project-card" data-category="defi ml fullstack">
               <div class="project-card__header">
                 <h4 class="project-card__name">QuantL</h4>
-                <span class="project-card__badge">DeFi</span>
+                <span class="project-card__badge">SaaS — Live</span>
               </div>
               <p class="project-card__desc">
-                ML trading bot for GMX + ALPACA perpetual DEX with self-training
-                capabilities and autonomous execution.
+                Quantitative analytics SaaS for self-directed stock traders, live
+                at quantl.click. 24 ML algorithms plus 30+ forecasting models run
+                against real-time Alpaca and Polygon data to surface
+                confidence-scored directional reads, paper trading, and a live
+                candlestick dashboard. Ships a Claude MCP server for
+                natural-language signal queries. Never holds funds.
               </p>
               <div class="project-card__tech">
                 <span class="tag tag--sm">Python</span>
-                <span class="tag tag--sm">GMX</span>
-                <span class="tag tag--sm">ALPACA</span>
+                <span class="tag tag--sm">TensorFlow</span>
+                <span class="tag tag--sm">FastAPI</span>
+                <span class="tag tag--sm">Next.js 16</span>
               </div>
+              <a
+                href="https://quantl.click"
+                class="project-card__link"
+                target="_blank"
+                rel="noopener"
+                >Live Site</a
+              >
             </div>
 
             <div class="project-card" data-category="defi">
@@ -610,6 +680,66 @@
             </div>
 
             <!-- Smart Contracts -->
+            <div class="project-card" data-category="contracts security defi">
+              <div class="project-card__header">
+                <h4 class="project-card__name">Access0x1 Router</h4>
+                <span class="project-card__badge">Verified</span>
+              </div>
+              <p class="project-card__desc">
+                Open-source, on-chain payments layer. One shared, multi-tenant
+                router — zero custody, USD-priced via Chainlink feeds read in-tx,
+                exact fee-split — that any merchant joins with one permissionless
+                call. A universal deployer wires all 12 contracts across 23
+                testnets in one command. Source-verified on Base Sepolia
+                (0xec89c9eE…6E8E57), Ethereum + Optimism Sepolia, and Avalanche
+                Fuji; deployed on Arc Testnet (0xA5982ea8…69Aad) + Robinhood Chain,
+                verification pending. 864 tests, 100% router coverage, 13
+                money-safety invariants.
+              </p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">Solidity</span>
+                <span class="tag tag--sm tag--purple">Foundry</span>
+                <span class="tag tag--sm tag--purple">Chainlink</span>
+                <span class="tag tag--sm tag--purple">ERC-6909</span>
+              </div>
+              <a
+                href="https://github.com/Access0x1/Access0x1"
+                class="project-card__link"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+            </div>
+
+            <div class="project-card" data-category="contracts fullstack security">
+              <div class="project-card__header">
+                <h4 class="project-card__name">NFTeria</h4>
+                <span class="project-card__badge">Onchain — Live</span>
+              </div>
+              <p class="project-card__desc">
+                Onchain commerce product built on Access0x1's open technology,
+                live at nfteria.click. One link to accept USD-priced crypto
+                payments, run an onchain storefront, and mint tamper-proof
+                on-chain SVG credential NFTs —
+                no code. Wallet-only auth via Sign-In-with-Ethereum with ENS and
+                World ID trust tiers. Shipped as a static Next.js export pinned to
+                IPFS and served via DNSLink — no server, no custody.
+              </p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm tag--purple">viem</span>
+                <span class="tag tag--sm">Next.js 16</span>
+                <span class="tag tag--sm">IPFS</span>
+                <span class="tag tag--sm">SIWE</span>
+              </div>
+              <a
+                href="https://nfteria.click"
+                class="project-card__link"
+                target="_blank"
+                rel="noopener"
+                >Live Site</a
+              >
+            </div>
+
             <div class="project-card" data-category="contracts">
               <div class="project-card__header">
                 <h4 class="project-card__name">Foundry Fund Me</h4>
@@ -861,39 +991,106 @@
             <!-- Full-Stack -->
             <div class="project-card" data-category="fullstack">
               <div class="project-card__header">
+                <h4 class="project-card__name">GitHat</h4>
+                <span class="project-card__badge">SaaS — Live</span>
+              </div>
+              <p class="project-card__desc">
+                Identity and payments platform — auth, orgs, and payment links
+                from one script tag, live at githat.io. Email/password, passkeys,
+                magic links, seven social providers, RS256 JWTs via KMS, and
+                AI-agent wallet auth. The shared auth rail behind a fleet of web
+                apps. Backend on AWS Lambda + DynamoDB; frontend in Next.js 16.
+              </p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Next.js 16</span>
+                <span class="tag tag--sm">Lambda</span>
+                <span class="tag tag--sm">DynamoDB</span>
+                <span class="tag tag--sm">KMS</span>
+              </div>
+              <a
+                href="https://githat.io"
+                class="project-card__link"
+                target="_blank"
+                rel="noopener"
+                >Live Site</a
+              >
+            </div>
+
+            <div class="project-card" data-category="fullstack">
+              <div class="project-card__header">
+                <h4 class="project-card__name">SebasTN</h4>
+                <span class="project-card__badge">Payments — Live</span>
+              </div>
+              <p class="project-card__desc">
+                Payments infrastructure on Stripe Connect, live at sebastn.com.
+                Express vendor onboarding, marketplace splits, next-day payouts,
+                tax, and dispute handling through one integration. Keyless by
+                design — no publishable key ships in the bundle. Server-rendered
+                Next.js 16 on a shared EC2 fleet behind CloudFront.
+              </p>
+              <div class="project-card__tech">
+                <span class="tag tag--sm">Next.js 16</span>
+                <span class="tag tag--sm">Stripe Connect</span>
+                <span class="tag tag--sm">AWS</span>
+              </div>
+              <a
+                href="https://sebastn.com"
+                class="project-card__link"
+                target="_blank"
+                rel="noopener"
+                >Live Site</a
+              >
+            </div>
+
+            <div class="project-card" data-category="fullstack">
+              <div class="project-card__header">
                 <h4 class="project-card__name">ClickReserv</h4>
                 <span class="project-card__badge">SaaS — Live</span>
               </div>
               <p class="project-card__desc">
-                Booking, POS, and payments platform for service businesses,
-                live in production at reserv.click — white-label booking
-                pages, Stripe checkout, and AI-agent access over MCP.
+                Booking and payments platform for service businesses, live in
+                production at reserv.click — 170+ business templates, white-label
+                booking pages, Stripe Connect deposits and memberships, an
+                installable PWA with Web Push reminders, and AI-agent access over
+                MCP. Built on Next.js 16 and PostgreSQL.
               </p>
               <div class="project-card__tech">
-                <span class="tag tag--sm">Full-Stack</span>
-                <span class="tag tag--sm">UX</span>
+                <span class="tag tag--sm">Next.js 16</span>
+                <span class="tag tag--sm">Stripe</span>
+                <span class="tag tag--sm">PostgreSQL</span>
               </div>
+              <a
+                href="https://reserv.click"
+                class="project-card__link"
+                target="_blank"
+                rel="noopener"
+                >Live Site</a
+              >
             </div>
 
             <div class="project-card" data-category="fullstack">
               <div class="project-card__header">
                 <h4 class="project-card__name">Colmado</h4>
-                <span class="project-card__badge">E-Commerce</span>
+                <span class="project-card__badge">Beta</span>
               </div>
               <p class="project-card__desc">
-                Marketplace for businesses and their customers with scalable
-                architecture and user-friendly interfaces.
+                Local commerce platform bringing neighborhood shops online with
+                unified pickup, delivery, and in-store POS. Marketing site and
+                waitlist are live at colmado.click on a server-rendered Next.js 16
+                stack deployed to AWS. Auth delegates to a hosted white-label UI,
+                keeping the public bundle credential-free.
               </p>
               <div class="project-card__tech">
-                <span class="tag tag--sm">Full-Stack</span>
-                <span class="tag tag--sm">E-Commerce</span>
+                <span class="tag tag--sm">Next.js 16</span>
+                <span class="tag tag--sm">React 19</span>
+                <span class="tag tag--sm">AWS</span>
               </div>
               <a
-                href="https://github.com/Colmado-Inc"
+                href="https://colmado.click"
                 class="project-card__link"
                 target="_blank"
                 rel="noopener"
-                >GitHub Org</a
+                >Live Site</a
               >
             </div>
 
@@ -1224,11 +1421,24 @@
           </div>
           <div class="security-grid">
             <div class="audit-card">
-              <h4 class="audit-card__name">CodeHawks: Token-0x</h4>
+              <h4 class="audit-card__name">Token0x: NFTeria</h4>
               <p class="audit-card__desc">
-                Competitive audit on the CodeHawks platform. Analyzed token
-                contract for vulnerabilities including access control,
-                reentrancy, and economic exploits.
+                Security audit of NFTeria's onchain commerce, which builds on the
+                Access0x1 router. Reviewed the money path — USD pricing read
+                in-tx, exact fee-split, no-custody settlement, and the ERC-6909
+                payment-lane firewall — backed by 13 money-safety invariants
+                holding under the fuzzer with zero reverts.
+              </p>
+            </div>
+            <div class="audit-card">
+              <h4 class="audit-card__name">Verify Everywhere</h4>
+              <p class="audit-card__desc">
+                Source-verification assurance for the Access0x1 stack. A
+                standalone, idempotent verifier re-uploads contract source to
+                every target explorer — Etherscan, Blockscout, Routescan, and
+                Sourcify — so deployed bytecode is publicly auditable on Base
+                Sepolia, Ethereum + Optimism Sepolia, and Avalanche Fuji (Arc
+                Testnet + Robinhood Chain pending) with no keystore in the loop.
               </p>
             </div>
             <div class="audit-card">
@@ -1259,9 +1469,11 @@
             <h3 class="security-toolkit__title">Security Toolkit</h3>
             <div class="skill-group__tags">
               <span class="tag tag--purple">Foundry Fuzzing</span>
+              <span class="tag tag--purple">Invariant Testing</span>
               <span class="tag tag--purple">Slither</span>
               <span class="tag tag--purple">Aderyn</span>
               <span class="tag tag--purple">Manual Review</span>
+              <span class="tag tag--purple">Source Verification</span>
               <span class="tag tag--purple">Formal Verification</span>
             </div>
           </div>
