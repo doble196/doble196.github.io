@@ -8,10 +8,12 @@ sync-identity workflow.
 
 from __future__ import annotations
 
+import json
 import os
 import pathlib
 import re
 import sys
+import urllib.error
 import urllib.request
 
 try:
@@ -30,6 +32,25 @@ README_PATH = pathlib.Path(os.environ.get("README_PATH", "README.md"))
 def load_identity() -> dict:
     with urllib.request.urlopen(IDENTITY_URL, timeout=15) as r:
         return yaml.safe_load(r.read())
+
+
+def fetch_latest_commit(repo: str) -> dict | None:
+    # Public GitHub API, stdlib urllib only (same pattern as load_identity) — no
+    # third-party HTTP client and no CDN. Returns None on any failure so a
+    # transient network/rate-limit error never breaks the rest of the sync.
+    api = f"https://api.github.com/repos/{repo}/commits/main"
+    req = urllib.request.Request(
+        api, headers={"Accept": "application/vnd.github+json"}
+    )
+    token = os.environ.get("GITHUB_TOKEN")
+    if token:
+        req.add_header("Authorization", f"Bearer {token}")
+    try:
+        with urllib.request.urlopen(req, timeout=15) as r:
+            return json.loads(r.read())
+    except (urllib.error.URLError, json.JSONDecodeError, TimeoutError) as e:
+        sys.stderr.write(f"warn: could not fetch latest commit for {repo}: {e}\n")
+        return None
 
 
 def render(key: str, d: dict) -> str:
@@ -74,6 +95,35 @@ def render(key: str, d: dict) -> str:
             for f in d["fleet"]
         ]
         return "\n".join(items)
+    if key == "access0x1_card":
+        # Deployment facts come from identity.yml so addresses/chains/links stay
+        # owner-controlled and truthful; repo activity is fetched live at
+        # Action time. Missing facts raise ValueError so repl keeps the existing
+        # block verbatim rather than emitting a half-empty card.
+        required = (
+            "access0x1_contract",
+            "access0x1_chain",
+            "access0x1_explorer",
+            "access0x1_repo",
+        )
+        missing = [k for k in required if not d.get(k)]
+        if missing:
+            raise ValueError(f"access0x1_card missing keys: {', '.join(missing)}")
+        addr = d["access0x1_contract"]
+        chain = d["access0x1_chain"]
+        scan = d["access0x1_explorer"]
+        repo = d["access0x1_repo"]
+        short = f"{addr[:6]}…{addr[-4:]}"
+        lines = [f"- **Router:** [`{short}`]({scan}) on {chain}"]
+        if d.get("access0x1_deploy_date"):
+            lines.append(f"- **Deployed:** {d['access0x1_deploy_date']}")
+        commit = fetch_latest_commit(repo)
+        if commit and commit.get("sha"):
+            sha = commit["sha"]
+            msg = commit["commit"]["message"].splitlines()[0][:72]
+            url = f"https://github.com/{repo}/commit/{sha}"
+            lines.append(f"- **Latest commit:** [`{sha[:7]}`]({url}) — {msg}")
+        return "\n".join(lines)
     # Fallback: any top-level scalar field renders as itself.
     val = d.get(key)
     if val is None:

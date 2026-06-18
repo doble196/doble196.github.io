@@ -24,6 +24,8 @@ jobs:
           python-version: "3.12"
       - run: pip install pyyaml
       - run: python3 .github/scripts/sync-identity.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit if changed
         run: |
           if [ -n "$(git status --porcelain "$README_PATH")" ]; then
