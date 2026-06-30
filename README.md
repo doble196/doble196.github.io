@@ -4,7 +4,7 @@
 
 ## About
 
-> 🛠️ <!-- IDENTITY:status -->shipping the GitHat fleet<!-- /IDENTITY:status -->
+> 🛠️ <!-- IDENTITY:status -->building Access0x1 — open-source onchain payments<!-- /IDENTITY:status -->
 
 Builder based in NYC. I work across the full stack — from on-chain protocols to AI agents to multi-tenant SaaS — and care about shipping things that work end-to-end. The Vyper-pilled dev.
 
@@ -20,11 +20,8 @@ Comfortable across several languages and ecosystems; usually picking up another.
 ## Building
 
 <!-- IDENTITY:fleet_links -->
-- **[GitHat](https://githat.io)** — Identity layer for the fleet
-- **[Sebastn](https://sebastn.com)** — Payments rail
-- **[ClickReserv](https://reserv.click)** — Multi-tenant booking SaaS
-- **[Quantl](https://quantl.click)** — Quant signals + forecasting
-- **[Colmado](https://colmado.click)** — Neighborhood commerce
+- **[Access0x1](https://github.com/Access0x1/Access0x1)** — Open-source onchain payments + identity rail
+- **[NFTeria](https://nfteria.click)** — Onchain commerce built on Access0x1
 <!-- /IDENTITY:fleet_links -->
 
 
@@ -38,6 +35,23 @@ Open-source, on-chain payments + commerce + identity layer. One shared, multi-te
 - **Repo:** [Access0x1/Access0x1](https://github.com/Access0x1/Access0x1)
 <!-- /IDENTITY:access0x1_card -->
 
+### ETHGlobal Hacker Pack
+
+An on-chain credential — the EG-HACKER token held on Optimism (contract `0x32382a82d9faDc55f971f33DaEeE5841cfbADbE0`, wallet `0x53c61cfb8128ad59244e8c1d26109252ace23d14`, balance 1).
+
+```js
+// ETHGlobal Hacker Pack — onchain holder check (Optimism)
+const { ethers } = require('ethers'); // npm install ethers
+const provider = new ethers.JsonRpcProvider('https://mainnet.optimism.io');
+
+const pack   = '0x32382a82d9faDc55f971f33DaEeE5841cfbADbE0'; // ETHGlobal Hacker Pack (EG-HACKER)
+const wallet = '0x53c61cfb8128ad59244e8c1d26109252ace23d14';
+const abi    = ['function balanceOf(address owner) view returns (uint256)'];
+
+const held = await new ethers.Contract(pack, abi, provider).balanceOf(wallet);
+console.log(`${wallet} ${held > 0n ? 'is' : 'is not'} a pack holder`); // → is  (balance: 1)
+```
+
 ## Background
 
 **Cyfrin Updraft (2024)** — Smart-contract security, auditing, DeFi protocol design, account abstraction, DAO governance, formal verification.
@@ -47,7 +61,7 @@ Open-source, on-chain payments + commerce + identity layer. One shared, multi-te
 ## Contact
 
 <!-- IDENTITY:contact -->
-- **Email:** [rensley@githat.io](mailto:rensley@githat.io)
+- **Email:** [rensley@nfteria.cc](mailto:rensley@nfteria.cc)
 - **X:** [@VyperPilledDev](https://x.com/VyperPilledDev)
 - **GitHub:** [@doble196](https://github.com/doble196)
 - **Location:** New York, NY

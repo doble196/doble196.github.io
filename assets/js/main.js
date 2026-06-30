@@ -310,7 +310,12 @@ function initHeatmap() {
     const count = cell.getAttribute("data-count") || "0";
     const date = cell.getAttribute("data-date");
     const word = count === "1" ? "contribution" : "contributions";
-    tooltip.innerHTML = `<strong>${count}</strong> ${word} on ${formatDate(date)}`;
+    // Build via DOM + textContent so values from the contributions API can
+    // never be interpreted as HTML (defends against a compromised/MITM'd feed).
+    tooltip.replaceChildren();
+    const strong = document.createElement("strong");
+    strong.textContent = count;
+    tooltip.append(strong, ` ${word} on ${formatDate(date)}`);
 
     const cellRect = cell.getBoundingClientRect();
     const tipW = tooltip.offsetWidth;
@@ -341,6 +346,9 @@ function initHeatmap() {
     const cell = e.target.closest(".heatmap-cell[data-date]");
     if (!cell) return;
     const date = cell.getAttribute("data-date");
+    // Only open the deep link for a well-formed date so feed-supplied values
+    // can never inject extra URL parameters.
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return;
     window.open(
       `https://github.com/${GITHUB_USERNAME}?tab=overview&from=${date}&to=${date}`,
       "_blank"

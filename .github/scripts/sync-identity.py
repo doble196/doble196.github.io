@@ -14,6 +14,7 @@ import pathlib
 import re
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 
 try:
@@ -27,6 +28,81 @@ IDENTITY_URL = os.environ.get(
     "https://raw.githubusercontent.com/doble196/doble196/main/identity.yml",
 )
 README_PATH = pathlib.Path(os.environ.get("README_PATH", "README.md"))
+
+# --- Sanitization ----------------------------------------------------------
+# identity.yml is owner-controlled, but it lives in a *separate* public repo
+# and is fetched + rendered into this README by an Action with `contents:
+# write`. Treating its fields as untrusted input keeps a typo (or a
+# compromised upstream) from breaking out of its markdown context: closing a
+# link/code span, splitting a table row, smuggling a `javascript:` href, or
+# terminating the `<!-- /IDENTITY:key -->` sentinel that the replacer keys on.
+
+_ALLOWED_URL_SCHEMES = ("http", "https", "mailto")
+
+
+def md_text(value: object) -> str:
+    """Escape a value for use as inline markdown / link text / table cell.
+
+    Neutralizes the characters that could close the surrounding construct
+    (`[` `]` `` ` `` `|`), open raw HTML (`<` `>`), or escape the IDENTITY
+    sentinel comment. Newlines collapse to spaces so a single field can never
+    become multiple lines (which would break a table or leak outside the
+    block).
+    """
+    s = str(value)
+    s = s.replace("\\", "\\\\")
+    for ch in ("[", "]", "`", "|", "<", ">"):
+        s = s.replace(ch, "\\" + ch)
+    # Collapse every kind of line break to a single space.
+    s = re.sub(r"[\r\n]+", " ", s)
+    # `-->` would terminate the surrounding HTML comment sentinel.
+    s = s.replace("-->", "--\\>")
+    return s
+
+
+def md_code(value: object) -> str:
+    """Sanitize a value rendered inside a `` `...` `` code span.
+
+    Backslash escaping does not work inside code spans, so the only defense
+    against closing the span early is to drop backticks outright; newlines
+    are collapsed for the same reason as md_text.
+    """
+    s = re.sub(r"[\r\n]+", " ", str(value))
+    return s.replace("`", "")
+
+
+def md_url(value: object) -> str:
+    """Sanitize a value for use inside a markdown link/image target `(...)`.
+
+    Only http/https/mailto targets are allowed; anything else (notably
+    `javascript:` / `data:`) collapses to an empty fragment so it can never
+    become an executable href. The result is percent-encoded enough that it
+    cannot contain `)`, whitespace, angle brackets, or a comment terminator
+    that would break out of the `(...)`.
+    """
+    s = str(value).strip()
+    if not s:
+        return ""
+    scheme = s.split(":", 1)[0].lower() if ":" in s else ""
+    # A value with no scheme is a relative/host fragment (e.g. the bare domain
+    # the caller will prefix with `https://`); that's allowed. A value WITH a
+    # scheme must be on the allowlist.
+    if scheme and scheme not in _ALLOWED_URL_SCHEMES:
+        return ""
+    # Keep URL structure intact but neutralize the break-out characters.
+    return urllib.parse.quote(s, safe="/:@?#&=+,.~%-_!*'$;")
+
+
+def md_host(value: object) -> str:
+    """Sanitize a bare host/domain that the renderer prefixes with a scheme.
+
+    Rejects anything that isn't a plausible hostname[/path] so a crafted
+    `domain` can't smuggle a second link, a scheme, or a `)` break-out.
+    """
+    s = str(value).strip()
+    # Strip any scheme the value tries to carry; the renderer adds its own.
+    s = re.sub(r"^[a-zA-Z][a-zA-Z0-9+.-]*://", "", s)
+    return urllib.parse.quote(s, safe="/.-_~")
 
 
 def load_identity() -> dict:
@@ -53,45 +129,58 @@ def fetch_latest_commit(repo: str) -> dict | None:
         return None
 
 
+def _email_link(addr: object) -> str:
+    # md_url keeps the `mailto:` scheme on its allowlist and percent-encodes
+    # any break-out characters in the address portion.
+    return f"[{md_text(addr)}]({md_url('mailto:' + str(addr).strip())})"
+
+
 def render(key: str, d: dict) -> str:
-    # Custom-formatted keys (linkified)
+    # Every identity value is escaped for its markdown context before
+    # interpolation (see md_text / md_url / md_host): link text can't close
+    # its bracket, hrefs can't carry `javascript:` or break out of `(...)`,
+    # and no field can split a table row or end the IDENTITY comment.
     if key == "email":
-        return f"[{d['email']}](mailto:{d['email']})"
+        return _email_link(d["email"])
     if key == "x":
-        return f"[@{d['x_handle']}](https://x.com/{d['x_handle']})"
+        h = d["x_handle"]
+        return f"[@{md_text(h)}](https://x.com/{md_host(h)})"
     if key == "linkedin":
         slug = d.get("linkedin_path")
-        return f"[linkedin.com/in/{slug}](https://linkedin.com/in/{slug})" if slug else ""
+        if not slug:
+            return ""
+        return f"[linkedin.com/in/{md_text(slug)}](https://linkedin.com/in/{md_host(slug)})"
     if key == "github":
         u = d["github_user"]
-        return f"[@{u}](https://github.com/{u})"
+        return f"[@{md_text(u)}](https://github.com/{md_host(u)})"
     if key == "website":
-        return f"[{d['website']}](https://{d['website']})"
+        w = d["website"]
+        return f"[{md_text(w)}](https://{md_host(w)})"
     if key == "contact":
         lines = [
-            f"- **Email:** [{d['email']}](mailto:{d['email']})",
-            f"- **X:** [@{d['x_handle']}](https://x.com/{d['x_handle']})",
+            f"- **Email:** {_email_link(d['email'])}",
+            f"- **X:** [@{md_text(d['x_handle'])}](https://x.com/{md_host(d['x_handle'])})",
         ]
         if d.get("linkedin_path"):
             slug = d["linkedin_path"]
             lines.append(
-                f"- **LinkedIn:** [linkedin.com/in/{slug}](https://linkedin.com/in/{slug})"
+                f"- **LinkedIn:** [linkedin.com/in/{md_text(slug)}](https://linkedin.com/in/{md_host(slug)})"
             )
         lines.extend([
-            f"- **GitHub:** [@{d['github_user']}](https://github.com/{d['github_user']})",
-            f"- **Location:** {d['location']}",
+            f"- **GitHub:** [@{md_text(d['github_user'])}](https://github.com/{md_host(d['github_user'])})",
+            f"- **Location:** {md_text(d['location'])}",
         ])
         return "\n".join(lines)
     if key == "fleet_table":
         rows = ["| App | Domain | Role |", "|---|---|---|"]
         for f in d["fleet"]:
             rows.append(
-                f"| **{f['name']}** | [{f['domain']}](https://{f['domain']}) | {f['role']} |"
+                f"| **{md_text(f['name'])}** | [{md_text(f['domain'])}](https://{md_host(f['domain'])}) | {md_text(f['role'])} |"
             )
         return "\n".join(rows)
     if key == "fleet_links":
         items = [
-            f"- **[{f['name']}](https://{f['domain']})** — {f['role']}"
+            f"- **[{md_text(f['name'])}](https://{md_host(f['domain'])})** — {md_text(f['role'])}"
             for f in d["fleet"]
         ]
         return "\n".join(items)
@@ -109,28 +198,33 @@ def render(key: str, d: dict) -> str:
         missing = [k for k in required if not d.get(k)]
         if missing:
             raise ValueError(f"access0x1_card missing keys: {', '.join(missing)}")
-        addr = d["access0x1_contract"]
+        addr = str(d["access0x1_contract"])
         chain = d["access0x1_chain"]
         scan = d["access0x1_explorer"]
-        repo = d["access0x1_repo"]
-        short = f"{addr[:6]}…{addr[-4:]}"
-        lines = [f"- **Router:** [`{short}`]({scan}) on {chain}"]
+        repo = str(d["access0x1_repo"])
+        # Code-span text: a stray backtick would close the span, so escape it.
+        short = md_code(f"{addr[:6]}…{addr[-4:]}")
+        lines = [f"- **Router:** [`{short}`]({md_url(scan)}) on {md_text(chain)}"]
         if d.get("access0x1_deploy_date"):
-            lines.append(f"- **Deployed:** {d['access0x1_deploy_date']}")
+            lines.append(f"- **Deployed:** {md_text(d['access0x1_deploy_date'])}")
+        # repo flows into a github.com URL path; keep it host-safe.
         commit = fetch_latest_commit(repo)
         if commit and commit.get("sha"):
-            sha = commit["sha"]
+            sha = str(commit["sha"])
             msg = commit["commit"]["message"].splitlines()[0][:72]
-            url = f"https://github.com/{repo}/commit/{sha}"
-            lines.append(f"- **Latest commit:** [`{sha[:7]}`]({url}) — {msg}")
+            url = f"https://github.com/{md_host(repo)}/commit/{md_host(sha)}"
+            lines.append(
+                f"- **Latest commit:** [`{md_code(sha[:7])}`]({url}) — {md_text(msg)}"
+            )
         return "\n".join(lines)
-    # Fallback: any top-level scalar field renders as itself.
+    # Fallback: any top-level scalar field renders as itself, escaped so it
+    # cannot break out of its surrounding block.
     val = d.get(key)
     if val is None:
         raise ValueError(f"unknown IDENTITY key: {key}")
     if isinstance(val, (list, dict)):
         raise ValueError(f"key {key} is structured; needs a custom renderer")
-    return str(val)
+    return md_text(val)
 
 
 def replace_blocks(text: str, d: dict) -> str:

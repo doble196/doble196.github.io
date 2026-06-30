@@ -4,7 +4,7 @@ Guidance for AI coding agents working in this repo.
 
 ## Repo role
 
-Part of the [GitHat](https://www.githat.io) fleet. Auth is provided by GitHat. Payments — when present — flow through the fleet's shared payments rail.
+Public portfolio site for **doble196** ([github.com/doble196](https://github.com/doble196)) — a static personal site served from GitHub Pages. Keep everything here public-clean: no internal infrastructure details, no private brands, no secrets.
 
 ## House rules
 
