@@ -104,6 +104,11 @@
           </blockquote>
           <div class="about__content">
             <p>
+              Most recently, I joined <strong>ETHGlobal</strong> — shipping
+              Access0x1 and winning a prize from <strong>ENS</strong> — and I'm
+              heading to <strong>Lisbon</strong> next to do what I do.
+            </p>
+            <p>
               I'm a <strong>Full-Stack Blockchain Developer</strong> and
               <strong>Smart Contract Security Auditor</strong> based in New York
               City. My journey started at the
@@ -113,17 +118,12 @@
               products, and gone deep into DeFi, AI, and security.
             </p>
             <p>
-              I founded <strong>GitHat</strong> — an identity and payments
-              platform that gives a fleet of apps auth, orgs, and payment links
-              from one script tag. I built <strong>Access0x1</strong>, an
-              open-source on-chain payments layer whose shared router is
-              source-verified across Base, Ethereum, and Optimism Sepolia plus
-              Avalanche Fuji. I created
-              <strong>ClickReserv</strong> — a booking, POS, and payments
-              platform live in production at reserv.click;
-              <strong>NFTeria</strong>, an onchain commerce product built on
-              Access0x1; and <strong>SebasTN</strong>, a Stripe Connect payments
-              product.
+              I built <strong>Access0x1</strong> — an open-source onchain
+              payments + identity rail whose shared router is source-verified
+              across Arc, Base, Ethereum, and Optimism Sepolia. On top of it I
+              built <strong>NFTeria</strong>, an onchain commerce product —
+              USD-priced crypto checkout, non-custodial — that any merchant
+              joins with one link.
             </p>
             <p>
               I write smart contracts in <strong>Solidity</strong>,
@@ -135,6 +135,32 @@
               secure and useful. Looking ahead, I'm building toward
               <strong>Layer 2 solutions in Rust</strong>.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== ETHGLOBAL CREDENTIAL ========== -->
+      <section class="section" id="credential">
+        <div class="container reveal">
+          <h2 class="section__title">Verified ETHGlobal Hacker Pack holder</h2>
+          <div class="org-card org-card--purple">
+            <p class="org-card__desc">
+              An on-chain credential — the EG-HACKER token held on Optimism
+              (contract
+              <code>0x32382a82d9faDc55f971f33DaEeE5841cfbADbE0</code>, wallet
+              <code>0x53c61cfb8128ad59244e8c1d26109252ace23d14</code>, balance
+              1).
+            </p>
+            <pre><code>// ETHGlobal Hacker Pack — onchain holder check (Optimism)
+const { ethers } = require('ethers'); // npm install ethers
+const provider = new ethers.JsonRpcProvider('https://mainnet.optimism.io');
+
+const pack   = '0x32382a82d9faDc55f971f33DaEeE5841cfbADbE0'; // ETHGlobal Hacker Pack (EG-HACKER)
+const wallet = '0x53c61cfb8128ad59244e8c1d26109252ace23d14';
+const abi    = ['function balanceOf(address owner) view returns (uint256)'];
+
+const held = await new ethers.Contract(pack, abi, provider).balanceOf(wallet);
+console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // → is  (balance: 1)</code></pre>
           </div>
         </div>
       </section>
@@ -307,9 +333,9 @@
       <!-- ========== ORGANIZATIONS ========== -->
       <section class="section" id="orgs">
         <div class="container reveal">
-          <h2 class="section__title">Organizations</h2>
+          <h2 class="section__title">Onchain Work</h2>
           <p class="section__subtitle">
-            Companies and platforms I've founded and built.
+            Open-source rails and the products built on them.
           </p>
           <div class="orgs-grid">
             <div class="org-card org-card--purple">
@@ -358,136 +384,26 @@
               </div>
             </div>
 
-            <div class="org-card">
+            <div class="org-card org-card--purple">
               <div class="org-card__header">
-                <h3 class="org-card__name">ClickReserv</h3>
-                <span class="org-card__type mono">Booking · POS · Payments — Live in production</span>
+                <h3 class="org-card__name">NFTeria</h3>
+                <span class="org-card__type mono">Onchain Commerce</span>
               </div>
               <p class="org-card__desc">
-                Booking, point-of-sale, and payments platform for service
-                businesses — barbershops, salons, restaurants, and more. 170+
-                white-label business templates, Stripe Connect deposits and
-                memberships, customer capture and retention, an installable PWA
-                with Web Push reminders, and an MCP endpoint for AI agents. Live
-                in production at reserv.click on Next.js 16 + PostgreSQL.
+                Onchain commerce product built on the Access0x1 rail. One link to
+                accept USD-priced crypto checkout — non-custodial, settled on-chain
+                with no server in the money path — so any merchant can sell onchain
+                without writing contract code.
               </p>
               <div class="org-card__tech">
-                <span class="tag tag--sm">Next.js 16</span>
-                <span class="tag tag--sm">Stripe Connect</span>
-                <span class="tag tag--sm">PostgreSQL</span>
-                <span class="tag tag--sm">PWA</span>
-                <span class="tag tag--sm">AWS</span>
-              </div>
-              <p class="org-card__meta">170+ business templates · live at reserv.click</p>
-              <div class="org-card__links">
-                <a href="https://reserv.click" target="_blank" rel="noopener"
-                  >Live Site</a
-                >
-                <a
-                  href="https://github.com/ClickReserv"
-                  target="_blank"
-                  rel="noopener"
-                  >GitHub Org</a
-                >
-              </div>
-            </div>
-
-            <div class="org-card">
-              <div class="org-card__header">
-                <h3 class="org-card__name">GitHat</h3>
-                <span class="org-card__type mono">Identity Platform — Live</span>
-              </div>
-              <p class="org-card__desc">
-                Identity and payments platform — auth, orgs, and payment links
-                from one script tag. Email/password, passkeys, magic links, seven
-                social providers, RS256 JWTs via KMS, org and role management, and
-                AI-agent wallet auth. The shared auth rail behind a fleet of web
-                apps, so each ships zero auth code. Backend on AWS Lambda +
-                DynamoDB; frontend in Next.js 16. Live at githat.io.
-              </p>
-              <div class="org-card__tech">
-                <span class="tag tag--sm">React</span>
-                <span class="tag tag--sm">Vue</span>
-                <span class="tag tag--sm">Next.js</span>
-                <span class="tag tag--sm">Lambda</span>
-                <span class="tag tag--sm">DynamoDB</span>
-                <span class="tag tag--sm">LangChain</span>
-              </div>
-              <p class="org-card__meta">25+ repositories</p>
-              <div class="org-card__links">
-                <a href="https://githat.io" target="_blank" rel="noopener"
-                  >Live Site</a
-                >
-                <a
-                  href="https://github.com/GitHat-IO"
-                  target="_blank"
-                  rel="noopener"
-                  >GitHub Org</a
-                >
-              </div>
-            </div>
-
-            <div class="org-card org-card--blue">
-              <div class="org-card__header">
-                <h3 class="org-card__name">SebasTN</h3>
-                <span class="org-card__type mono">Payments Infra — Live</span>
-              </div>
-              <p class="org-card__desc">
-                Payments infrastructure built on Stripe Connect. Express vendor
-                onboarding, marketplace payment splits, next-day payouts, tax, and
-                dispute handling through a single integration. Keyless by design —
-                authenticated surfaces delegate to a hosted white-label auth, so
-                no publishable key ships in the bundle. Live at sebastn.com.
-              </p>
-              <div class="org-card__tech">
-                <span class="tag tag--sm tag--blue">Next.js 16</span>
-                <span class="tag tag--sm tag--blue">React 19</span>
-                <span class="tag tag--sm tag--blue">Stripe Connect</span>
-                <span class="tag tag--sm tag--blue">AWS</span>
-              </div>
-              <p class="org-card__meta">Hosted at sebastn.com</p>
-              <div class="org-card__links">
-                <a href="https://sebastn.com" target="_blank" rel="noopener"
-                  >Live Site</a
-                >
-                <a
-                  href="https://github.com/SebasTN-Rhys"
-                  target="_blank"
-                  rel="noopener"
-                  >GitHub Org</a
-                >
-              </div>
-            </div>
-
-            <div class="org-card org-card--blue">
-              <div class="org-card__header">
-                <h3 class="org-card__name">QuantL</h3>
-                <span class="org-card__type mono">Quant Analytics — Live</span>
-              </div>
-              <p class="org-card__desc">
-                Market data and quantitative analytics SaaS for self-directed
-                stock traders. Runs 24 ML classification algorithms plus 30+
-                forecasting models against real-time Alpaca and Polygon data and
-                surfaces confidence-scored directional reads, paper trading, and a
-                live candlestick dashboard. A Claude MCP server answers signal
-                queries in natural language. Never holds funds or trades with
-                discretion. Live at quantl.click.
-              </p>
-              <div class="org-card__tech">
-                <span class="tag tag--sm tag--blue">Python</span>
-                <span class="tag tag--sm tag--blue">TensorFlow</span>
-                <span class="tag tag--sm tag--blue">FastAPI</span>
-                <span class="tag tag--sm tag--blue">Next.js 16</span>
+                <span class="tag tag--sm tag--purple">Access0x1</span>
+                <span class="tag tag--sm tag--purple">viem</span>
+                <span class="tag tag--sm tag--purple">Next.js 16</span>
+                <span class="tag tag--sm tag--purple">SIWE</span>
               </div>
               <div class="org-card__links">
-                <a href="https://quantl.click" target="_blank" rel="noopener"
+                <a href="https://nfteria.click" target="_blank" rel="noopener"
                   >Live Site</a
-                >
-                <a
-                  href="https://github.com/QuantLinc"
-                  target="_blank"
-                  rel="noopener"
-                  >GitHub Org</a
                 >
               </div>
             </div>
@@ -548,34 +464,6 @@
                 <span class="tag tag--sm">ML</span>
                 <span class="tag tag--sm">GMX</span>
               </div>
-            </div>
-
-            <div class="project-card" data-category="defi ml fullstack">
-              <div class="project-card__header">
-                <h4 class="project-card__name">QuantL</h4>
-                <span class="project-card__badge">SaaS — Live</span>
-              </div>
-              <p class="project-card__desc">
-                Quantitative analytics SaaS for self-directed stock traders, live
-                at quantl.click. 24 ML algorithms plus 30+ forecasting models run
-                against real-time Alpaca and Polygon data to surface
-                confidence-scored directional reads, paper trading, and a live
-                candlestick dashboard. Ships a Claude MCP server for
-                natural-language signal queries. Never holds funds.
-              </p>
-              <div class="project-card__tech">
-                <span class="tag tag--sm">Python</span>
-                <span class="tag tag--sm">TensorFlow</span>
-                <span class="tag tag--sm">FastAPI</span>
-                <span class="tag tag--sm">Next.js 16</span>
-              </div>
-              <a
-                href="https://quantl.click"
-                class="project-card__link"
-                target="_blank"
-                rel="noopener"
-                >Live Site</a
-              >
             </div>
 
             <div class="project-card" data-category="defi">
@@ -892,7 +780,7 @@
                 <span class="project-card__badge">LLM</span>
               </div>
               <p class="project-card__desc">
-                LLM-powered chatbot for the GitHat platform with context-aware
+                LLM-powered chatbot with context-aware, retrieval-backed
                 conversations.
               </p>
               <div class="project-card__tech">
@@ -907,27 +795,12 @@
                 <span class="project-card__badge">LLM</span>
               </div>
               <p class="project-card__desc">
-                Code generation LLM for the GitHat ecosystem with intelligent
-                code assistance.
+                Code-generation LLM with intelligent, context-aware code
+                assistance.
               </p>
               <div class="project-card__tech">
                 <span class="tag tag--sm tag--blue">LLMs</span>
                 <span class="tag tag--sm tag--blue">Code Gen</span>
-              </div>
-            </div>
-
-            <div class="project-card" data-category="ai">
-              <div class="project-card__header">
-                <h4 class="project-card__name">sebastnOS</h4>
-                <span class="project-card__badge">OS</span>
-              </div>
-              <p class="project-card__desc">
-                AI operating system for SebasTN, orchestrating agents, models,
-                and applications.
-              </p>
-              <div class="project-card__tech">
-                <span class="tag tag--sm tag--blue">Python</span>
-                <span class="tag tag--sm tag--blue">AI</span>
               </div>
             </div>
 
@@ -982,8 +855,8 @@
                 <span class="project-card__badge">Agents</span>
               </div>
               <p class="project-card__desc">
-                Custom LLM agent framework for the GitHat platform with tool use
-                and autonomous task completion.
+                Custom LLM agent framework with tool use and autonomous task
+                completion.
               </p>
               <div class="project-card__tech">
                 <span class="tag tag--sm tag--blue">LangChain</span>
@@ -992,111 +865,6 @@
             </div>
 
             <!-- Full-Stack -->
-            <div class="project-card" data-category="fullstack">
-              <div class="project-card__header">
-                <h4 class="project-card__name">GitHat</h4>
-                <span class="project-card__badge">SaaS — Live</span>
-              </div>
-              <p class="project-card__desc">
-                Identity and payments platform — auth, orgs, and payment links
-                from one script tag, live at githat.io. Email/password, passkeys,
-                magic links, seven social providers, RS256 JWTs via KMS, and
-                AI-agent wallet auth. The shared auth rail behind a fleet of web
-                apps. Backend on AWS Lambda + DynamoDB; frontend in Next.js 16.
-              </p>
-              <div class="project-card__tech">
-                <span class="tag tag--sm">Next.js 16</span>
-                <span class="tag tag--sm">Lambda</span>
-                <span class="tag tag--sm">DynamoDB</span>
-                <span class="tag tag--sm">KMS</span>
-              </div>
-              <a
-                href="https://githat.io"
-                class="project-card__link"
-                target="_blank"
-                rel="noopener"
-                >Live Site</a
-              >
-            </div>
-
-            <div class="project-card" data-category="fullstack">
-              <div class="project-card__header">
-                <h4 class="project-card__name">SebasTN</h4>
-                <span class="project-card__badge">Payments — Live</span>
-              </div>
-              <p class="project-card__desc">
-                Payments infrastructure on Stripe Connect, live at sebastn.com.
-                Express vendor onboarding, marketplace splits, next-day payouts,
-                tax, and dispute handling through one integration. Keyless by
-                design — no publishable key ships in the bundle. Server-rendered
-                Next.js 16 on a shared EC2 fleet behind CloudFront.
-              </p>
-              <div class="project-card__tech">
-                <span class="tag tag--sm">Next.js 16</span>
-                <span class="tag tag--sm">Stripe Connect</span>
-                <span class="tag tag--sm">AWS</span>
-              </div>
-              <a
-                href="https://sebastn.com"
-                class="project-card__link"
-                target="_blank"
-                rel="noopener"
-                >Live Site</a
-              >
-            </div>
-
-            <div class="project-card" data-category="fullstack">
-              <div class="project-card__header">
-                <h4 class="project-card__name">ClickReserv</h4>
-                <span class="project-card__badge">SaaS — Live</span>
-              </div>
-              <p class="project-card__desc">
-                Booking and payments platform for service businesses, live in
-                production at reserv.click — 170+ business templates, white-label
-                booking pages, Stripe Connect deposits and memberships, an
-                installable PWA with Web Push reminders, and AI-agent access over
-                MCP. Built on Next.js 16 and PostgreSQL.
-              </p>
-              <div class="project-card__tech">
-                <span class="tag tag--sm">Next.js 16</span>
-                <span class="tag tag--sm">Stripe</span>
-                <span class="tag tag--sm">PostgreSQL</span>
-              </div>
-              <a
-                href="https://reserv.click"
-                class="project-card__link"
-                target="_blank"
-                rel="noopener"
-                >Live Site</a
-              >
-            </div>
-
-            <div class="project-card" data-category="fullstack">
-              <div class="project-card__header">
-                <h4 class="project-card__name">Colmado</h4>
-                <span class="project-card__badge">Beta</span>
-              </div>
-              <p class="project-card__desc">
-                Local commerce platform bringing neighborhood shops online with
-                unified pickup, delivery, and in-store POS. Marketing site and
-                waitlist are live at colmado.click on a server-rendered Next.js 16
-                stack deployed to AWS. Auth delegates to a hosted white-label UI,
-                keeping the public bundle credential-free.
-              </p>
-              <div class="project-card__tech">
-                <span class="tag tag--sm">Next.js 16</span>
-                <span class="tag tag--sm">React 19</span>
-                <span class="tag tag--sm">AWS</span>
-              </div>
-              <a
-                href="https://colmado.click"
-                class="project-card__link"
-                target="_blank"
-                rel="noopener"
-                >Live Site</a
-              >
-            </div>
-
             <div class="project-card" data-category="fullstack">
               <div class="project-card__header">
                 <h4 class="project-card__name">Hush-Brush</h4>
@@ -1575,7 +1343,7 @@
           Open to full-time roles, freelance contracts, and collaborations.
         </p>
         <div class="footer__links">
-          <a href="mailto:rensley@githat.io" class="footer__link">
+          <a href="mailto:rensley@nfteria.cc" class="footer__link">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -1587,7 +1355,7 @@
               <rect x="2" y="4" width="20" height="16" rx="2" />
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
             </svg>
-            rensley@githat.io
+            rensley@nfteria.cc
           </a>
           <a
             href="https://github.com/doble196"
