@@ -1,10 +1,58 @@
 document.addEventListener("DOMContentLoaded", () => {
   initNav();
+  initThemeToggle();
   initScrollReveal();
   initProjectFilter();
   initHeatmap();
   initYearDisplay();
 });
+
+// ========================================
+// HOME / AWAY KIT TOGGLE
+// HOME = light theme, AWAY = dark theme.
+// The <head> bootstrap script sets the initial
+// data-theme before first paint; this wires the switch.
+// ========================================
+function initThemeToggle() {
+  const toggle = document.getElementById("theme-toggle");
+  if (!toggle) return;
+
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
+  const apply = (theme) => {
+    document.documentElement.setAttribute("data-theme", theme);
+    toggle.setAttribute("aria-checked", String(theme === "away"));
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute(
+        "content",
+        theme === "away" ? "#071733" : "#fbfaf7"
+      );
+    }
+    try {
+      localStorage.setItem("theme", theme);
+    } catch (e) {
+      /* private mode — the choice just won't persist */
+    }
+  };
+
+  // Sync the switch with whatever the bootstrap script chose
+  const current =
+    document.documentElement.getAttribute("data-theme") === "away"
+      ? "away"
+      : "home";
+  toggle.setAttribute("aria-checked", String(current === "away"));
+  if (themeColorMeta && current === "away") {
+    themeColorMeta.setAttribute("content", "#071733");
+  }
+
+  toggle.addEventListener("click", () => {
+    const next =
+      document.documentElement.getAttribute("data-theme") === "away"
+        ? "home"
+        : "away";
+    apply(next);
+  });
+}
 
 // ========================================
 // NAVIGATION

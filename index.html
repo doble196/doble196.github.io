@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rensley R.— Full-Stack Blockchain Developer</title>
+    <title>Rensley R. — Full-Stack Blockchain Developer</title>
     <meta
       name="description"
-      content="Full-Stack Blockchain Developer, Smart Contract Security Auditor, and AI Engineer based in NYC. Building DeFi protocols, AI agents, and SaaS platforms."
+      content="Full-Stack Blockchain Developer, Smart Contract Security Auditor, and AI Engineer based in New York City. Building payment rails, AI agents, and SaaS products."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Rensley R." />
@@ -17,7 +17,7 @@
     />
     <meta
       property="og:description"
-      content="The Vyper pilled dev. Building DeFi protocols, AI agents, and SaaS platforms in NYC."
+      content="Building payment rails, AI agents, and secure smart contracts in New York City."
     />
     <meta
       property="og:image"
@@ -34,7 +34,7 @@
     />
     <meta
       name="twitter:description"
-      content="The Vyper pilled dev. Building DeFi protocols, AI agents, and SaaS platforms in NYC."
+      content="Building payment rails, AI agents, and secure smart contracts in New York City."
     />
     <meta
       name="twitter:image"
@@ -42,9 +42,30 @@
     />
 
     <link rel="canonical" href="https://doble196.github.io" />
+    <meta name="theme-color" content="#fbfaf7" />
+    <!-- Kit bootstrap: set Home/Away before first paint (no flash).
+         HOME = light kit, AWAY = dark kit. Falls back to the OS scheme. -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t !== "home" && t !== "away") {
+            t =
+              window.matchMedia &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "away"
+                : "home";
+          }
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "home");
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <!-- ========== NAVIGATION ========== -->
     <nav class="nav" id="nav">
       <div class="nav__inner container">
@@ -65,6 +86,28 @@
           <li><a href="#security">Security</a></li>
           <li><a href="#contact" class="nav__cta">Contact</a></li>
         </ul>
+        <button
+          type="button"
+          class="theme-toggle"
+          id="theme-toggle"
+          role="switch"
+          aria-checked="false"
+          aria-label="Switch color kit: Home is the light theme, Away is the dark theme"
+        >
+          <span class="theme-toggle__opt theme-toggle__opt--home" aria-hidden="true">
+            <svg class="theme-toggle__jersey" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+              <path d="M8 3 3 6l2 4 2-1v12h10V9l2 1 2-4-5-3-2 2h-4L8 3z" />
+            </svg>
+            Home
+          </span>
+          <span class="theme-toggle__opt theme-toggle__opt--away" aria-hidden="true">
+            <svg class="theme-toggle__jersey" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+              <path d="M8 3 3 6l2 4 2-1v12h10V9l2 1 2-4-5-3-2 2h-4L8 3z" />
+            </svg>
+            Away
+          </span>
+          <span class="theme-toggle__thumb" aria-hidden="true"></span>
+        </button>
       </div>
     </nav>
 
@@ -72,16 +115,20 @@
     <section class="hero" id="hero">
       <div class="hero__content container">
         <div class="hero__text">
-          <p class="hero__greeting mono">Hello, I'm</p>
-          <h1 class="hero__name">Rensley</h1>
+          <p class="hero__greeting mono">Hi there — I'm glad you're here.</p>
+          <h1 class="hero__name">I'm Rensley.</h1>
           <p class="hero__title">
             Full-Stack Blockchain Developer &amp; Security Auditor
           </p>
-          <p class="hero__tagline mono">// the Vyper pilled dev</p>
+          <p class="hero__tagline">
+            I build payment rails, AI agents, and smart contracts people can
+            rely on — and I care as much about the people using them as the
+            code underneath.
+          </p>
           <p class="hero__location">New York City</p>
           <div class="hero__actions">
-            <a href="#projects" class="btn btn--primary">View My Work</a>
-            <a href="#contact" class="btn btn--outline">Get In Touch</a>
+            <a href="#projects" class="btn btn--primary">See my work</a>
+            <a href="#contact" class="btn btn--outline">Say hello</a>
           </div>
         </div>
         <div class="hero__image">
@@ -90,23 +137,20 @@
       </div>
     </section>
 
-    <main>
+    <main id="main">
       <!-- ========== ABOUT ========== -->
       <section class="section" id="about">
         <div class="container reveal">
           <h2 class="section__title">About Me</h2>
           <p class="section__subtitle">
-            Blockchain developer, security auditor, and builder of things.
+            Blockchain developer, security auditor, and builder — here's the
+            story.
           </p>
-          <blockquote class="epigraph">
-            “I'm not a businessman, I'm a business, man.”
-            <cite class="epigraph__cite">— Jay-Z, <em>Diamonds from Sierra Leone (Remix)</em></cite>
-          </blockquote>
           <div class="about__content">
             <p>
-              Most recently, I joined <strong>ETHGlobal</strong> — shipping
-              Access0x1 and winning a prize from <strong>ENS</strong> — and I'm
-              heading to <strong>Lisbon</strong> next to do what I do.
+              Most recently I took <strong>Access0x1</strong> from idea to
+              shipped rail at <strong>ETHGlobal</strong> in New York, and I'm
+              heading to <strong>Lisbon</strong> next to keep building.
             </p>
             <p>
               I'm a <strong>Full-Stack Blockchain Developer</strong> and
@@ -1172,10 +1216,6 @@ console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // →
             competitive auditor — Rank <strong>#190</strong> &bull; 1,144 EXP
             &bull; 17 Findings
           </p>
-          <blockquote class="epigraph">
-            “If I can't do it, homie, it can't be done.”
-            <cite class="epigraph__cite">— 50 Cent, <em>Many Men (Wish Death)</em></cite>
-          </blockquote>
           <div class="codehawks-stats">
             <div class="codehawks-stat codehawks-stat--high">
               <span class="codehawks-stat__count">9</span>
@@ -1338,9 +1378,10 @@ console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // →
     <!-- ========== FOOTER / CONTACT ========== -->
     <footer class="footer" id="contact">
       <div class="container">
-        <h2 class="footer__title">Get In Touch</h2>
+        <h2 class="footer__title">Let's talk.</h2>
         <p class="footer__tagline">
           Open to full-time roles, freelance contracts, and collaborations.
+          Have a project, a role, or just a question? My inbox is open.
         </p>
         <div class="footer__links">
           <a href="mailto:rensley@nfteria.cc" class="footer__link">
@@ -1386,7 +1427,7 @@ console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // →
         </div>
         <p class="footer__location">New York, NY, USA</p>
         <p class="footer__copy mono">
-          &copy; <span id="year"></span> Rensley R.. All rights reserved.
+          &copy; <span id="year"></span> Rensley R. All rights reserved.
         </p>
       </div>
     </footer>
