@@ -114,6 +114,56 @@
     /* keep the site nav floating above the canvas */
     .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; }
 
+    /* IDENTITY CARD — the 30-second answer for a visitor who never clicks.
+       Fixed corner "business card" over the canvas (like map attribution):
+       name, face, role, contact, and an explicit nudge to explore. The
+       wrapper is pointer-events:none so it never blocks a drag; only the
+       links re-enable pointer events. */
+    .idcard {
+      position: fixed;
+      top: 64px;
+      left: 16px;
+      width: min(300px, calc(100vw - 32px));
+      display: flex;
+      gap: 12px;
+      padding: 14px;
+      background: rgba(22, 27, 34, 0.82);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      z-index: 9;
+      pointer-events: none;
+    }
+    .idcard a { pointer-events: auto; }
+    .idcard__avatar {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex: 0 0 auto;
+      border: 1px solid var(--accent-primary);
+    }
+    .idcard__name { font-weight: 700; font-size: 1rem; line-height: 1.2; }
+    .idcard__role {
+      margin-top: 3px;
+      font-size: 0.78rem;
+      line-height: 1.4;
+      color: var(--text-secondary);
+    }
+    .idcard__links {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .idcard__cue { margin-top: 8px; font-size: 0.72rem; color: var(--text-tertiary); }
+    @media (max-width: 560px) {
+      .idcard { top: 60px; padding: 11px; }
+      .idcard__cue { display: none; } /* the bottom hint bar covers this on mobile */
+    }
+
     /* on-screen camera controls — bottom right, keyboard-focusable buttons */
     .tree-controls {
       position: fixed;
@@ -162,6 +212,22 @@
       </div>
     </div>
   </nav>
+
+  <!-- Always-visible identity: guarantees the 30-second, zero-click visitor
+       gets who/what/how-to-reach even if they never touch the tree. -->
+  <aside class="idcard" aria-label="About Rensley R.">
+    <img class="idcard__avatar" src="assets/images/profile-pic.png" alt="Rensley R." width="46" height="46" />
+    <div class="idcard__body">
+      <p class="idcard__name">Rensley R.</p>
+      <p class="idcard__role">Reasoning-first fullstack developer — leaning backend, where fintech lies.</p>
+      <p class="idcard__links">
+        <a href="https://github.com/doble196" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/rensley-2-nfty" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:rensley@nfteria.cc">Email</a>
+      </p>
+      <p class="idcard__cue mono" aria-hidden="true">▶ tap the center to explore my work</p>
+    </div>
+  </aside>
 
   <div class="tree-stage" id="treeStage" aria-label="Interactive map: capabilities and the products they power">
     <div class="bg3d" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
