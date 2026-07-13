@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <title>Muscles — Rensley R.</title>
+  <meta
+    name="description"
+    content="An interactive map of what I build with: each core capability (muscle) cascades into the live products it powers. Dependency-free — the animations are readable source."
+  />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    /* Tree page only — everything else comes from styles.css tokens. */
+    html, body { height: 100%; }
+    body { overflow: hidden; }
+
+    .tree-stage {
+      position: fixed;
+      inset: 0;
+      top: 0;
+      background:
+        radial-gradient(1200px 600px at 70% 20%, rgba(78, 168, 122, 0.05), transparent 60%),
+        var(--bg-primary);
+      touch-action: none;
+      cursor: grab;
+      overflow: hidden;
+    }
+    .tree-stage:active { cursor: grabbing; }
+
+    .tree-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .tline {
+      fill: none;
+      stroke: var(--accent-primary);
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      opacity: 0.9;
+    }
+
+    .tree-world { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+
+    .tnode {
+      position: absolute;
+      left: 0; top: 0;
+      width: 230px;
+      display: block;
+      text-align: left;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      color: var(--text-primary);
+      font: inherit;
+      cursor: pointer;
+      will-change: transform, opacity;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .tnode:hover, .tnode:focus-visible {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px var(--accent-primary-dim);
+      outline: none;
+    }
+    .tnode--open { border-color: var(--border-hover); }
+    .tnode--d0 { background: var(--bg-tertiary); border-color: var(--accent-primary); }
+    .tnode--leaf { border-style: dashed; }
+    .tnode--leaf:hover { border-style: solid; }
+
+    /* padding-right clears the count chip so long labels can't collide with it */
+    .tnode__label { display: block; font-weight: 700; font-size: 0.95rem; line-height: 1.3; padding-right: 34px; }
+    .tnode__sub {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: var(--text-secondary);
+    }
+    .tnode__chip {
+      position: absolute;
+      top: 10px; right: 12px;
+      font-size: 0.72rem;
+      color: var(--accent-tertiary);
+    }
+    .tnode--open .tnode__chip { transform: rotate(90deg); }
+    .tnode__chip { transition: transform var(--transition-base); }
+
+    @keyframes tnodePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(78, 168, 122, 0); }
+      50% { box-shadow: 0 0 0 6px rgba(78, 168, 122, 0.18); }
+    }
+    .tnode--pulse { animation: tnodePulse 1.6s ease-in-out 3; }
+
+    .tree-hint {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      background: rgba(22, 27, 34, 0.85);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    /* keep the site nav floating above the canvas */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tnode { transition: none; }
+      .tnode--pulse { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Minimal nav on purpose: the full site menu is a hamburger on mobile
+       (wired in main.js, not loaded here) — one back-link can't break. -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__brand mono">RR</a>
+      <a href="index.html" class="nav__cta" style="margin-left: auto">← portfolio</a>
+    </div>
+  </nav>
+
+  <div class="tree-stage" id="treeStage" aria-label="Interactive map: capabilities and the products they power">
+    <svg class="tree-lines" id="treeLines" aria-hidden="true">
+      <g id="treeLinesG"></g>
+    </svg>
+    <div class="tree-world" id="treeWorld"></div>
+  </div>
+
+  <p class="tree-hint mono">tap a node to expand · drag to pan · scroll / pinch to zoom</p>
+
+  <noscript>
+    <div style="position: fixed; inset: 80px 16px auto; z-index: 20">
+      <p>
+        This page is an interactive tree and needs JavaScript. The same story
+        in plain HTML: <a href="index.html">the main portfolio</a>.
+      </p>
+    </div>
+  </noscript>
+
+  <script src="assets/js/tree-data.js"></script>
+  <script src="assets/js/muscle-tree.js"></script>
+</body>
+</html>
