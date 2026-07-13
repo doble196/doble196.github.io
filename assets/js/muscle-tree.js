@@ -232,7 +232,10 @@
     var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
     var v = viewport();
     var margin = 60;
-    var need = Math.min((v.w - margin) / Math.max(1, maxX - minX), (v.h - margin) / Math.max(1, maxY - minY));
+    // vertical reserve accounts for the fixed nav (top) + hint/controls
+    // (bottom) so a tall expansion — e.g. the root's 8 children — actually
+    // fits on screen instead of clipping the last card behind the hint bar.
+    var need = Math.min((v.w - margin) / Math.max(1, maxX - minX), (v.h - NAV_H - 90) / Math.max(1, maxY - minY));
     // Zoom to where the focus + its children fit; never zoom IN past current.
     // clampZ then keeps it at/above "whole tree fits" — so the auto-jump lands
     // exactly where it fits, never past it. The spring smooths the move.
@@ -362,9 +365,27 @@
   cam.y = cam.ty = v.h / 2 - root.ty;
   kick();
   // invite the first click
-  setTimeout(function () { if (!root.expanded) root.el.classList.add("tnode--pulse"); }, 900);
+  setTimeout(function () { if (!root.expanded && !userInteracted) root.el.classList.add("tnode--pulse"); }, 900);
   root.el.addEventListener("click", function () { root.el.classList.remove("tnode--pulse"); }, { once: true });
   window.addEventListener("resize", function () { frameCamera(root); kick(); });
+
+  // ---- auto-reveal ------------------------------------------------------------------
+  // The median visitor never clicks, so the whole story can't hinge on a click.
+  // After a beat we expand the root ONCE on their behalf — the 8 domains
+  // cascade into view unprompted — UNLESS they've already started exploring
+  // (don't yank a view they're driving). Reduced-motion → reveal immediately,
+  // no timed animation.
+  var userInteracted = false;
+  ["pointerdown", "wheel", "keydown"].forEach(function (ev) {
+    stage.addEventListener(ev, function () { userInteracted = true; }, { once: true, passive: true });
+  });
+  function autoReveal() {
+    if (userInteracted || root.expanded) return;
+    root.el.classList.remove("tnode--pulse");
+    toggle(root);
+  }
+  if (REDUCED) autoReveal();
+  else setTimeout(autoReveal, 1300);
 
   // ---- on-screen controls (+ / − / reset) — optional hooks in the HTML ---------------
   // Buttons zoom around the viewport center via SPRING TARGETS (damped, never
