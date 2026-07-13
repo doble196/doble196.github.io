@@ -176,17 +176,49 @@
     }
     layout();
     frameCamera(n);
+    // after a COLLAPSE the tree shrank → its fit-floor rose → snap the zoom
+    // back in so we never sit zoomed-out on empty space.
+    cam.ts = clampZ(cam.ts);
     kick();
   }
 
   // ---- camera --------------------------------------------------------------------
   var cam = { x: 0, y: 0, vx: 0, vy: 0, s: 1, tx: 0, ty: 0, ts: 1, o: 1, to: 1 };
-  // ONE zoom clamp for every path (wheel, pinch, buttons, auto-framing).
-  // Before: wheel/pinch clamped inline to [0.3,1.6] while frameCamera used
-  // [0.45,1] — three disagreeing bounds were part of the jumpiness.
-  var MIN_Z = 0.35, MAX_Z = 1.5, DEFAULT_Z = 1;
-  function clampZ(s) { return Math.min(MAX_Z, Math.max(MIN_Z, s)); }
+  // Zoom is bounded on BOTH ends, and the LOWER bound is DYNAMIC: you can zoom
+  // out exactly until the whole tree fits the viewport and NO further — past
+  // that is just empty canvas. Upper bound is a fixed max. Every zoom path
+  // (wheel, pinch, +/− buttons, and the auto-frame on expand) runs through
+  // clampZ, so nothing — not even an auto "jump" — escapes "where it fits".
+  var HARD_MIN = 0.25, MAX_Z = 1.5, DEFAULT_Z = 1, NAV_H = 72;
   function viewport() { return { w: stage.clientWidth, h: stage.clientHeight }; }
+  // bounding box of the VISIBLE (non-exiting) tree at its target layout
+  function contentBBox() {
+    var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity, any = false;
+    nodes.forEach(function (n) {
+      if (!n.visible || n.exiting) return;
+      any = true;
+      if (n.tx - NODE_W / 2 < minX) minX = n.tx - NODE_W / 2;
+      if (n.tx + NODE_W / 2 > maxX) maxX = n.tx + NODE_W / 2;
+      if (n.ty - SLOT_H / 2 < minY) minY = n.ty - SLOT_H / 2;
+      if (n.ty + SLOT_H / 2 > maxY) maxY = n.ty + SLOT_H / 2;
+    });
+    return any ? { w: maxX - minX, h: maxY - minY, cx: (minX + maxX) / 2, cy: (minY + maxY) / 2 } : null;
+  }
+  // scale at which the whole tree fits the viewport (with margin)
+  function fitScale() {
+    var b = contentBBox(); if (!b) return DEFAULT_Z;
+    var v = viewport();
+    // not laid out yet (0×0 in a background tab) → don't compute a bogus
+    // (possibly negative) fit; fall back to default so the floor stays sane.
+    if (v.w < 60 || v.h < 60) return DEFAULT_Z;
+    var margin = 90;
+    var availW = Math.max(40, v.w - margin), availH = Math.max(40, v.h - NAV_H - margin);
+    return Math.min(availW / Math.max(1, b.w), availH / Math.max(1, b.h));
+  }
+  // dynamic floor: never smaller than "fits", but never so small the content
+  // vanishes (HARD_MIN), and a tiny tree isn't forced to zoom IN (cap at default)
+  function minZoom() { return Math.max(HARD_MIN, Math.min(DEFAULT_Z, fitScale())); }
+  function clampZ(s) { return Math.min(MAX_Z, Math.max(minZoom(), s)); }
   function frameCamera(focus) {
     // frame the focus node + its (new) children; pan mostly, zoom only if needed.
     // Both card edges go into the bbox — a single-point bbox would center the
@@ -201,14 +233,12 @@
     var v = viewport();
     var margin = 60;
     var need = Math.min((v.w - margin) / Math.max(1, maxX - minX), (v.h - margin) / Math.max(1, maxY - minY));
-    // A node click may zoom OUT at most 30% per action and never zooms IN —
-    // the camera prefers panning over rescaling, so expand/collapse cannot
-    // scale-jump. (Before: a root click retargeted 1.0 → 0.45 in one shot.)
-    var fit = Math.min(DEFAULT_Z, need);
-    cam.ts = clampZ(Math.min(cam.s, Math.max(fit, cam.s * 0.7)));
+    // Zoom to where the focus + its children fit; never zoom IN past current.
+    // clampZ then keeps it at/above "whole tree fits" — so the auto-jump lands
+    // exactly where it fits, never past it. The spring smooths the move.
+    cam.ts = clampZ(Math.min(cam.s, Math.min(DEFAULT_Z, need)));
     cam.tx = v.w / 2 - ((minX + maxX) / 2) * cam.ts;
     // +NAV_H/2 centers content in the space BELOW the fixed nav bar
-    var NAV_H = 72;
     cam.ty = (v.h + NAV_H) / 2 - ((minY + maxY) / 2) * cam.ts;
   }
 
@@ -348,10 +378,16 @@
     kick();
   }
   function resetView() {
-    var v2 = viewport();
-    cam.ts = DEFAULT_Z;
-    cam.tx = v2.w / 2 - root.tx * DEFAULT_Z;
-    cam.ty = (v2.h + 72) / 2 - root.ty * DEFAULT_Z;
+    // "fit everything": frame the whole visible tree, centered, at the scale
+    // where it exactly fits (never zoomed in past default, never below floor).
+    var v2 = viewport(), b = contentBBox();
+    cam.ts = b
+      ? Math.max(HARD_MIN, Math.min(DEFAULT_Z,
+          Math.min((v2.w - 90) / Math.max(1, b.w), (v2.h - NAV_H - 90) / Math.max(1, b.h))))
+      : DEFAULT_Z;
+    var cx = b ? b.cx : root.tx, cy = b ? b.cy : root.ty;
+    cam.tx = v2.w / 2 - cx * cam.ts;
+    cam.ty = (v2.h + NAV_H) / 2 - cy * cam.ts;
     kick();
   }
   function wire(id, fn) {
@@ -362,7 +398,7 @@
   wire("zoomOut", function () { zoomTo(cam.ts / 1.25); });
   wire("zoomReset", resetView);
   // test hook: lets a verifier PROVE the clamp instead of trusting the code
-  window.__tree = { zoomTo: zoomTo, resetView: resetView, cam: cam, MIN_Z: MIN_Z, MAX_Z: MAX_Z };
+  window.__tree = { zoomTo: zoomTo, resetView: resetView, cam: cam, MAX_Z: MAX_Z, minZoom: minZoom, fitScale: fitScale };
   // Background-tab guard: a tab opened in the background lays out at 0×0, so
   // the boot centers the camera on garbage. Re-center the moment the stage
   // first gets a real size (and snap — the user never saw the wrong state).
