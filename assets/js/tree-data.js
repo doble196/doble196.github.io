@@ -84,7 +84,7 @@ window.MUSCLE_TREE = {
         {
           label: "ETHGlobal credential",
           sub: "EG-HACKER token, verifiable on Optimism",
-          href: "index.html#credential",
+          href: "classic.html#credential",
         },
       ],
     },
@@ -100,7 +100,7 @@ window.MUSCLE_TREE = {
         {
           label: "Agent engineering",
           sub: "LangChain · ElizaOS · RAG",
-          href: "index.html#skills",
+          href: "classic.html#skills",
         },
       ],
     },
@@ -116,7 +116,7 @@ window.MUSCLE_TREE = {
         {
           label: "Audit practice",
           sub: "Foundry fuzzing + manual review",
-          href: "index.html#security",
+          href: "classic.html#security",
         },
       ],
     },
