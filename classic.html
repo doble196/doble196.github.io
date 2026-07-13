@@ -41,14 +41,25 @@
       content="https://doble196.github.io/assets/images/profile-pic.png"
     />
 
-    <link rel="canonical" href="https://doble196.github.io" />
+    <link rel="canonical" href="https://doble196.github.io/classic.html" />
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+    <link rel="apple-touch-icon" href="assets/images/profile-pic.png" />
+    <meta name="theme-color" content="#0e1116" />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
+    <!-- ambient 3D wallpaper — z-index:-1, pointer-events:none (styles.css) -->
+    <div class="bg3d" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <!-- ========== NAVIGATION ========== -->
     <nav class="nav" id="nav">
       <div class="nav__inner container">
         <a href="#hero" class="nav__brand mono">RR</a>
+        <!-- view toggle sits OUTSIDE .nav__links so it never collapses into
+             the mobile hamburger — the tree⇄cabinet switch is always visible -->
+        <div class="view-toggle" role="group" aria-label="Portfolio view">
+          <a href="index.html" class="view-toggle__opt">Tree</a>
+          <a href="classic.html" class="view-toggle__opt is-active" aria-current="page">Cabinet</a>
+        </div>
         <button
           type="button"
           class="nav__toggle"
@@ -59,7 +70,6 @@
         </button>
         <ul class="nav__links">
           <li><a href="#about">About</a></li>
-          <li><a href="index.html">Muscle Tree</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#orgs">Organizations</a></li>
           <li><a href="#projects">Projects</a></li>
@@ -93,9 +103,16 @@
 
     <main>
       <!-- ========== ABOUT ========== -->
-      <section class="section" id="about">
+      <section class="section drawer drawer--open" id="about">
         <div class="container reveal">
-          <h2 class="section__title">About Me</h2>
+          <h2 class="section__title drawer__heading">
+            <button type="button" class="drawer__toggle" aria-expanded="true" aria-controls="about-body">
+              <span>About Me</span>
+              <span class="drawer__chevron" aria-hidden="true">▾</span>
+            </button>
+          </h2>
+          <div class="drawer__body" id="about-body">
+            <div class="drawer__inner">
           <p class="section__subtitle">
             Blockchain developer, security auditor, and builder of things.
           </p>
@@ -148,13 +165,22 @@
               <strong>Layer 2 solutions in Rust</strong>.
             </p>
           </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- ========== ETHGLOBAL CREDENTIAL ========== -->
-      <section class="section" id="credential">
+      <section class="section drawer" id="credential">
         <div class="container reveal">
-          <h2 class="section__title">Verified ETHGlobal Hacker Pack holder</h2>
+          <h2 class="section__title drawer__heading">
+            <button type="button" class="drawer__toggle" aria-expanded="false" aria-controls="credential-body">
+              <span>Verified ETHGlobal Hacker Pack holder</span>
+              <span class="drawer__chevron" aria-hidden="true">▾</span>
+            </button>
+          </h2>
+          <div class="drawer__body" id="credential-body">
+            <div class="drawer__inner">
           <div class="org-card org-card--purple">
             <p class="org-card__desc">
               An on-chain credential — the EG-HACKER token held on Optimism
@@ -174,13 +200,22 @@ const abi    = ['function balanceOf(address owner) view returns (uint256)'];
 const held = await new ethers.Contract(pack, abi, provider).balanceOf(wallet);
 console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // → is  (balance: 1)</code></pre>
           </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- ========== GITHUB ACTIVITY ========== -->
-      <section class="section" id="activity">
+      <section class="section drawer" id="activity">
         <div class="container reveal">
-          <h2 class="section__title">GitHub Activity</h2>
+          <h2 class="section__title drawer__heading">
+            <button type="button" class="drawer__toggle" aria-expanded="false" aria-controls="activity-body">
+              <span>GitHub Activity</span>
+              <span class="drawer__chevron" aria-hidden="true">▾</span>
+            </button>
+          </h2>
+          <div class="drawer__body" id="activity-body">
+            <div class="drawer__inner">
           <p class="section__subtitle">
             <strong class="heatmap-total" id="heatmap-total"></strong>
             <span id="heatmap-year-label">contributions in 2026</span>
@@ -226,13 +261,22 @@ console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // →
             </div>
           </div>
           <p class="heatmap-lastyear" id="heatmap-lastyear"></p>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- ========== SKILLS ========== -->
-      <section class="section" id="skills">
+      <section class="section drawer" id="skills">
         <div class="container reveal">
-          <h2 class="section__title">Skills</h2>
+          <h2 class="section__title drawer__heading">
+            <button type="button" class="drawer__toggle" aria-expanded="false" aria-controls="skills-body">
+              <span>Skills</span>
+              <span class="drawer__chevron" aria-hidden="true">▾</span>
+            </button>
+          </h2>
+          <div class="drawer__body" id="skills-body">
+            <div class="drawer__inner">
           <p class="section__subtitle">
             Technologies and tools I work with daily.
           </p>
@@ -339,13 +383,22 @@ console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // →
               </div>
             </div>
           </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- ========== ORGANIZATIONS ========== -->
-      <section class="section" id="orgs">
+      <section class="section drawer" id="orgs">
         <div class="container reveal">
-          <h2 class="section__title">Onchain Work</h2>
+          <h2 class="section__title drawer__heading">
+            <button type="button" class="drawer__toggle" aria-expanded="false" aria-controls="orgs-body">
+              <span>Onchain Work</span>
+              <span class="drawer__chevron" aria-hidden="true">▾</span>
+            </button>
+          </h2>
+          <div class="drawer__body" id="orgs-body">
+            <div class="drawer__inner">
           <p class="section__subtitle">
             One open-source rail — Access0x1 — and the growing portfolio of live
             products built on it.
@@ -493,13 +546,22 @@ console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // →
               </div>
             </div>
           </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- ========== PROJECTS ========== -->
-      <section class="section" id="projects">
+      <section class="section drawer" id="projects">
         <div class="container reveal">
-          <h2 class="section__title">Projects</h2>
+          <h2 class="section__title drawer__heading">
+            <button type="button" class="drawer__toggle" aria-expanded="false" aria-controls="projects-body">
+              <span>Projects</span>
+              <span class="drawer__chevron" aria-hidden="true">▾</span>
+            </button>
+          </h2>
+          <div class="drawer__body" id="projects-body">
+            <div class="drawer__inner">
           <p class="section__subtitle">
             A selection of what I've built across DeFi, AI, smart contracts, and
             full-stack.
@@ -1243,13 +1305,22 @@ console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // →
               </div>
             </div>
           </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- ========== SECURITY AUDITING ========== -->
-      <section class="section" id="security">
+      <section class="section drawer" id="security">
         <div class="container reveal">
-          <h2 class="section__title">Security Auditing</h2>
+          <h2 class="section__title drawer__heading">
+            <button type="button" class="drawer__toggle" aria-expanded="false" aria-controls="security-body">
+              <span>Security Auditing</span>
+              <span class="drawer__chevron" aria-hidden="true">▾</span>
+            </button>
+          </h2>
+          <div class="drawer__body" id="security-body">
+            <div class="drawer__inner">
           <p class="section__subtitle">
             <a href="https://codehawks.cyfrin.io" target="_blank" rel="noopener"
               >CodeHawks</a
@@ -1333,13 +1404,22 @@ console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // →
               <span class="tag tag--purple">Formal Verification</span>
             </div>
           </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- ========== EDUCATION ========== -->
-      <section class="section" id="education">
+      <section class="section drawer" id="education">
         <div class="container reveal">
-          <h2 class="section__title">Education</h2>
+          <h2 class="section__title drawer__heading">
+            <button type="button" class="drawer__toggle" aria-expanded="false" aria-controls="education-body">
+              <span>Education</span>
+              <span class="drawer__chevron" aria-hidden="true">▾</span>
+            </button>
+          </h2>
+          <div class="drawer__body" id="education-body">
+            <div class="drawer__inner">
           <p class="section__subtitle">Where it started.</p>
           <div class="education-card">
             <span class="education-card__badge mono">2024</span>
@@ -1416,6 +1496,8 @@ console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // →
               </p>
             </div>
           </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -1477,5 +1559,6 @@ console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // →
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/cabinet.js"></script>
   </body>
 </html>

@@ -181,6 +181,11 @@
 
   // ---- camera --------------------------------------------------------------------
   var cam = { x: 0, y: 0, vx: 0, vy: 0, s: 1, tx: 0, ty: 0, ts: 1, o: 1, to: 1 };
+  // ONE zoom clamp for every path (wheel, pinch, buttons, auto-framing).
+  // Before: wheel/pinch clamped inline to [0.3,1.6] while frameCamera used
+  // [0.45,1] — three disagreeing bounds were part of the jumpiness.
+  var MIN_Z = 0.35, MAX_Z = 1.5, DEFAULT_Z = 1;
+  function clampZ(s) { return Math.min(MAX_Z, Math.max(MIN_Z, s)); }
   function viewport() { return { w: stage.clientWidth, h: stage.clientHeight }; }
   function frameCamera(focus) {
     // frame the focus node + its (new) children; pan mostly, zoom only if needed.
@@ -196,7 +201,11 @@
     var v = viewport();
     var margin = 60;
     var need = Math.min((v.w - margin) / Math.max(1, maxX - minX), (v.h - margin) / Math.max(1, maxY - minY));
-    cam.ts = Math.min(1, Math.max(0.45, Math.min(cam.s, need)));
+    // A node click may zoom OUT at most 30% per action and never zooms IN —
+    // the camera prefers panning over rescaling, so expand/collapse cannot
+    // scale-jump. (Before: a root click retargeted 1.0 → 0.45 in one shot.)
+    var fit = Math.min(DEFAULT_Z, need);
+    cam.ts = clampZ(Math.min(cam.s, Math.max(fit, cam.s * 0.7)));
     cam.tx = v.w / 2 - ((minX + maxX) / 2) * cam.ts;
     // +NAV_H/2 centers content in the space BELOW the fixed nav bar
     var NAV_H = 72;
@@ -226,7 +235,7 @@
       kick();
     } else if (pointers.size === 2 && pinch0) {
       var pts = Array.from(pointers.values());
-      var scale = Math.min(1.6, Math.max(0.3, pinch0.s * (dist(pts[0], pts[1]) / pinch0.d)));
+      var scale = clampZ(pinch0.s * (dist(pts[0], pts[1]) / pinch0.d));
       var mx = (pts[0].x + pts[1].x) / 2, my = (pts[0].y + pts[1].y) / 2;
       // keep the pinch midpoint fixed in world space
       cam.s = cam.ts = scale;
@@ -240,9 +249,12 @@
   stage.addEventListener("pointercancel", endPointer);
   stage.addEventListener("wheel", function (e) {
     e.preventDefault();
-    var factor = Math.exp(-e.deltaY * 0.0015);
-    var s2 = Math.min(1.6, Math.max(0.3, cam.s * factor));
-    // zoom around the cursor
+    // Damped: sensitivity halved (0.0015 → 0.0008) AND per-event delta capped
+    // at ±60 — trackpads fire |deltaY| > 300, which used to mean a ~1.6×
+    // scale change in a single tick. Worst case now: e^0.048 ≈ 1.05×/event.
+    var dy = Math.max(-60, Math.min(60, e.deltaY));
+    var s2 = clampZ(cam.s * Math.exp(-dy * 0.0008));
+    // zoom around the cursor (kept — never jump-to-center)
     cam.x = cam.tx = e.clientX - ((e.clientX - cam.x) / cam.s) * s2;
     cam.y = cam.ty = e.clientY - ((e.clientY - cam.y) / cam.s) * s2;
     cam.s = cam.ts = s2;
@@ -323,6 +335,34 @@
   setTimeout(function () { if (!root.expanded) root.el.classList.add("tnode--pulse"); }, 900);
   root.el.addEventListener("click", function () { root.el.classList.remove("tnode--pulse"); }, { once: true });
   window.addEventListener("resize", function () { frameCamera(root); kick(); });
+
+  // ---- on-screen controls (+ / − / reset) — optional hooks in the HTML ---------------
+  // Buttons zoom around the viewport center via SPRING TARGETS (damped, never
+  // a snap). Reset returns to the exact boot framing: root centered, scale 1.
+  function zoomTo(s2) {
+    s2 = clampZ(s2);
+    var v = viewport(), cx = v.w / 2, cy = v.h / 2;
+    cam.tx = cx - ((cx - cam.x) / cam.s) * s2;
+    cam.ty = cy - ((cy - cam.y) / cam.s) * s2;
+    cam.ts = s2;
+    kick();
+  }
+  function resetView() {
+    var v2 = viewport();
+    cam.ts = DEFAULT_Z;
+    cam.tx = v2.w / 2 - root.tx * DEFAULT_Z;
+    cam.ty = (v2.h + 72) / 2 - root.ty * DEFAULT_Z;
+    kick();
+  }
+  function wire(id, fn) {
+    var b = document.getElementById(id);
+    if (b) b.addEventListener("click", fn);
+  }
+  wire("zoomIn", function () { zoomTo(cam.ts * 1.25); });
+  wire("zoomOut", function () { zoomTo(cam.ts / 1.25); });
+  wire("zoomReset", resetView);
+  // test hook: lets a verifier PROVE the clamp instead of trusting the code
+  window.__tree = { zoomTo: zoomTo, resetView: resetView, cam: cam, MIN_Z: MIN_Z, MAX_Z: MAX_Z };
   // Background-tab guard: a tab opened in the background lays out at 0×0, so
   // the boot centers the camera on garbage. Re-center the moment the stage
   // first gets a real size (and snap — the user never saw the wrong state).

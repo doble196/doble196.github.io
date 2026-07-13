@@ -1339,3 +1339,124 @@ a:hover {
 .codehawks-stat--low .codehawks-stat__label {
   color: var(--accent-primary);
 }
+
+/* ========================================
+   VIEW TOGGLE — tree ⇄ cabinet (both navs)
+   ======================================== */
+/* A two-state segmented control: the active view is filled with the accent
+   dim + accent text, so which view you're in is readable at a glance. Links
+   (not JS buttons) — keyboard-accessible and works with JS disabled. */
+.view-toggle {
+  display: inline-flex;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  background: var(--bg-secondary);
+}
+.view-toggle__opt {
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+.view-toggle__opt:hover { color: var(--text-primary); opacity: 1; }
+.view-toggle__opt:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 1px;
+}
+.view-toggle__opt.is-active {
+  background: var(--accent-primary-dim);
+  color: var(--accent-primary);
+}
+
+/* ========================================
+   CABINET — collapsible drawers (classic.html)
+   ======================================== */
+/* Accessible accordion: heading > button (valid content model), button owns
+   aria-expanded/aria-controls, natively Enter/Space operable. Content stays
+   in the DOM (SEO + view-source); closed drawers hide it via the 0fr grid
+   row + visibility (removed from a11y tree and tab order when closed). */
+.drawer__heading { margin: 0; }
+.drawer__toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: none;
+  border: 0;
+  padding: 6px 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.drawer__toggle:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+.drawer__chevron {
+  flex: 0 0 auto;
+  color: var(--accent-tertiary);
+  font-size: 0.9em;
+  transition: transform var(--transition-base);
+}
+.drawer--open .drawer__chevron { transform: rotate(180deg); }
+.drawer__body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms ease;
+}
+.drawer--open .drawer__body { grid-template-rows: 1fr; }
+.drawer__inner {
+  overflow: hidden;
+  visibility: hidden;
+  transition: visibility 320ms;
+}
+.drawer--open .drawer__inner { visibility: visible; }
+
+/* ========================================
+   3D BOX BACKGROUND — CSS transforms only
+   ======================================== */
+/* Slow-drifting wireframe boxes: wallpaper, never focus. pointer-events:none
+   so every click passes through; opacity kept ≤ .12 so it can't compete with
+   the tree's SVG lines. On classic.html the layer sits at z-index:-1 (above
+   the canvas background, below all content); on index.html the same markup
+   lives INSIDE .tree-stage as its first child, painting under the SVG. */
+.bg3d {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+  perspective: 900px;
+}
+.tree-stage .bg3d { position: absolute; z-index: auto; }
+.bg3d i {
+  position: absolute;
+  display: block;
+  border: 1px solid rgba(78, 168, 122, 0.10);
+  border-radius: 8px;
+  transform-style: preserve-3d;
+  animation: bg3dDrift 110s linear infinite;
+}
+.bg3d i:nth-child(1) { width: 180px; height: 180px; left: 8%;  top: 15%; animation-duration: 120s; }
+.bg3d i:nth-child(2) { width: 260px; height: 260px; left: 70%; top: 8%;  animation-duration: 95s;  animation-delay: -30s; }
+.bg3d i:nth-child(3) { width: 140px; height: 140px; left: 82%; top: 62%; animation-duration: 130s; animation-delay: -60s; }
+.bg3d i:nth-child(4) { width: 220px; height: 220px; left: 25%; top: 68%; animation-duration: 105s; animation-delay: -45s; }
+.bg3d i:nth-child(5) { width: 100px; height: 100px; left: 48%; top: 30%; animation-duration: 140s; animation-delay: -80s; }
+.bg3d i:nth-child(6) { width: 320px; height: 320px; left: -6%; top: 55%; animation-duration: 150s; animation-delay: -20s; border-color: rgba(78, 168, 122, 0.06); }
+@keyframes bg3dDrift {
+  0%   { transform: rotateX(0deg)   rotateY(0deg)   rotateZ(0deg)  translateY(0); }
+  50%  { transform: rotateX(180deg) rotateY(90deg)  rotateZ(10deg) translateY(-30px); }
+  100% { transform: rotateX(360deg) rotateY(180deg) rotateZ(0deg)  translateY(0); }
+}
+
+/* Reduced motion: the background stops COMPLETELY; drawers open instantly. */
+@media (prefers-reduced-motion: reduce) {
+  .bg3d i { animation: none; }
+  .drawer__body, .drawer__inner, .drawer__chevron, .view-toggle__opt { transition: none; }
+}

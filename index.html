@@ -8,6 +8,14 @@
     name="description"
     content="The portfolio as a living map: start at the base, expand each muscle, and follow it to the live products it powers. Judge the logic before the button. Dependency-free — the animation code is readable source."
   />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/images/profile-pic.png" />
+  <meta name="theme-color" content="#0e1116" />
+  <meta property="og:title" content="Rensley R. — reasoning-first portfolio" />
+  <meta property="og:description" content="Judge the logic and the complexity of the project before the way the button looks. Fullstack, leaning backend — where fintech lies." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://doble196.github.io/" />
+  <meta property="og:image" content="https://doble196.github.io/assets/images/profile-pic.png" />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <style>
     /* Tree page only — everything else comes from styles.css tokens. */
@@ -106,6 +114,36 @@
     /* keep the site nav floating above the canvas */
     .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; }
 
+    /* on-screen camera controls — bottom right, keyboard-focusable buttons */
+    .tree-controls {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 10;
+    }
+    .tree-ctl {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-size: 1.15rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .tree-ctl:hover, .tree-ctl:focus-visible {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px var(--accent-primary-dim);
+      outline: none;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .tnode { transition: none; }
       .tnode--pulse { animation: none; }
@@ -118,15 +156,25 @@
   <nav class="nav" id="nav">
     <div class="nav__inner container">
       <a href="index.html" class="nav__brand mono">RR</a>
-      <a href="classic.html" class="nav__cta" style="margin-left: auto">full portfolio →</a>
+      <div class="view-toggle" role="group" aria-label="Portfolio view" style="margin-left: auto">
+        <a href="index.html" class="view-toggle__opt is-active" aria-current="page">Tree</a>
+        <a href="classic.html" class="view-toggle__opt">Cabinet</a>
+      </div>
     </div>
   </nav>
 
   <div class="tree-stage" id="treeStage" aria-label="Interactive map: capabilities and the products they power">
+    <div class="bg3d" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <svg class="tree-lines" id="treeLines" aria-hidden="true">
       <g id="treeLinesG"></g>
     </svg>
     <div class="tree-world" id="treeWorld"></div>
+  </div>
+
+  <div class="tree-controls" role="group" aria-label="Tree view controls">
+    <button type="button" id="zoomIn" class="tree-ctl" aria-label="Zoom in" title="Zoom in">+</button>
+    <button type="button" id="zoomOut" class="tree-ctl" aria-label="Zoom out" title="Zoom out">−</button>
+    <button type="button" id="zoomReset" class="tree-ctl" aria-label="Reset view" title="Reset view">⌖</button>
   </div>
 
   <p class="tree-hint mono">tap a node to expand · drag to pan · scroll / pinch to zoom</p>
