@@ -144,11 +144,19 @@
       border: 1px solid var(--accent-primary);
     }
     .idcard__name { font-weight: 700; font-size: 1rem; line-height: 1.2; }
+    .idcard__avail { font-weight: 600; font-size: 0.72rem; color: var(--accent-primary); }
     .idcard__role {
       margin-top: 3px;
       font-size: 0.78rem;
       line-height: 1.4;
       color: var(--text-secondary);
+    }
+    /* concrete receipts for the ZERO-CLICK viewer — the tagline made real */
+    .idcard__proof {
+      margin-top: 7px;
+      font-size: 0.72rem;
+      line-height: 1.4;
+      color: var(--accent-tertiary);
     }
     .idcard__links {
       margin-top: 8px;
@@ -218,14 +226,15 @@
   <aside class="idcard" aria-label="About Rensley R.">
     <img class="idcard__avatar" src="assets/images/profile-pic.png" alt="Rensley R." width="46" height="46" />
     <div class="idcard__body">
-      <p class="idcard__name">Rensley R.</p>
-      <p class="idcard__role">Reasoning-first fullstack developer — leaning backend, where fintech lies.</p>
+      <p class="idcard__name">Rensley R. <span class="idcard__avail">· open to roles</span></p>
+      <p class="idcard__role">Reasoning-first fullstack dev, backend-leaning — payments &amp; on-chain infra, where fintech lies.</p>
+      <p class="idcard__proof mono">1,746 tests · live on 8+ testnets · ETHGlobal × ENS</p>
       <p class="idcard__links">
         <a href="https://github.com/doble196" target="_blank" rel="noopener">GitHub</a>
         <a href="https://linkedin.com/in/rensley-2-nfty" target="_blank" rel="noopener">LinkedIn</a>
         <a href="mailto:rensley@nfteria.cc">Email</a>
       </p>
-      <p class="idcard__cue mono" aria-hidden="true">▶ tap the center to explore my work</p>
+      <p class="idcard__cue mono" aria-hidden="true">▶ tap any node to dig in</p>
     </div>
   </aside>
 
