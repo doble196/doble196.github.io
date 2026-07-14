@@ -14,7 +14,7 @@ window.MUSCLE_TREE = {
   children: [
     {
       label: "Payments & Settlement",
-      sub: "USD-priced, non-custodial, onchain",
+      sub: "USD-priced checkout, settled non-custodially",
       featured: true, // the flagship — rendered with visual dominance so the
                       // eye lands here first (weight, not just reading order)
       sectors: ["payments"],
