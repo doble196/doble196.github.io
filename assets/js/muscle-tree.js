@@ -78,11 +78,26 @@
   }
   var root = makeNode(window.MUSCLE_TREE, null, 0, 0);
 
+  // ---- sector filter ----------------------------------------------------------
+  // Only the root's children (the muscles) carry `sectors`. When a sector is
+  // active, layout + expansion see ONLY the matching muscles; deeper levels
+  // (projects) are never filtered. This is the whole filter mechanism — every
+  // function that walks children goes through visibleChildren(), so the layout
+  // can never disagree with what's mounted.
+  var activeSector = null;
+  function inSector(n) {
+    return !activeSector || (n.data.sectors || []).indexOf(activeSector) !== -1;
+  }
+  function visibleChildren(n) {
+    return (activeSector && n.depth === 0) ? n.children.filter(inSector) : n.children;
+  }
+
   // ---- tidy layout ------------------------------------------------------------
   function subtreeH(n) {
-    if (!n.expanded || !n.children.length) return SLOT_H;
+    var kids = n.expanded ? visibleChildren(n) : [];
+    if (!kids.length) return SLOT_H;
     var h = 0;
-    n.children.forEach(function (c) { h += subtreeH(c); });
+    kids.forEach(function (c) { h += subtreeH(c); });
     return Math.max(SLOT_H, h);
   }
   function assign(n, x, yTop) {
@@ -91,7 +106,7 @@
     n.ty = yTop + h / 2;
     if (n.expanded) {
       var cy = yTop;
-      n.children.forEach(function (c) {
+      visibleChildren(n).forEach(function (c) {
         assign(c, x + COL_W, cy);
         cy += subtreeH(c);
       });
@@ -169,7 +184,7 @@
       n.el.setAttribute("aria-expanded", "true");
       n.el.classList.add("tnode--open");
       var t0 = now();
-      n.children.forEach(function (c, i) {
+      visibleChildren(n).forEach(function (c, i) {
         mount(c, n);
         c.lineP = 0;
         c.lineStart = t0 + i * STAGGER_MS;
@@ -419,8 +434,54 @@
   wire("zoomIn", function () { zoomTo(cam.ts * 1.25); });
   wire("zoomOut", function () { zoomTo(cam.ts / 1.25); });
   wire("zoomReset", resetView);
-  // test hook: lets a verifier PROVE the clamp instead of trusting the code
-  window.__tree = { zoomTo: zoomTo, resetView: resetView, cam: cam, MAX_Z: MAX_Z, minZoom: minZoom, fitScale: fitScale };
+
+  // ---- sector filter: apply + build the chip bar ------------------------------
+  function applyFilter(sector) {
+    activeSector = sector || null;
+    var chips = document.querySelectorAll(".sector-chip");
+    for (var k = 0; k < chips.length; k++) {
+      var on = (chips[k].getAttribute("data-sector") || "") === (activeSector || "");
+      chips[k].setAttribute("aria-pressed", on ? "true" : "false");
+    }
+    if (root.expanded) {
+      var wanted = {};
+      visibleChildren(root).forEach(function (c) { wanted[c.id] = true; });
+      var t0 = now(), idx = 0;
+      root.children.forEach(function (c) {
+        if (wanted[c.id]) {
+          if (!c.el) { mount(c, root); c.lineP = 0; c.lineStart = t0 + idx++ * STAGGER_MS; }
+          else if (c.exiting) { c.exiting = false; c.to = 1; c.ts = 1; } // was leaving — keep it
+        } else if (c.el && !c.exiting) {
+          unmountSubtree(c);
+        }
+      });
+    }
+    layout();
+    resetView();
+    kick();
+  }
+  // chips are generated from data (window.MUSCLE_SECTORS) so the engine stays
+  // content-blind — add a sector by editing tree-data.js, not this file.
+  var bar = document.getElementById("sectorBar");
+  if (bar && window.MUSCLE_SECTORS) {
+    window.MUSCLE_SECTORS.forEach(function (s) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "sector-chip";
+      b.textContent = s.label;
+      b.setAttribute("data-sector", s.key || "");
+      b.setAttribute("aria-pressed", s.key ? "false" : "true");
+      b.addEventListener("click", function () { applyFilter(s.key); });
+      bar.appendChild(b);
+    });
+  }
+
+  // test hook: lets a verifier PROVE the clamp/filter instead of trusting code
+  window.__tree = {
+    zoomTo: zoomTo, resetView: resetView, cam: cam, MAX_Z: MAX_Z,
+    minZoom: minZoom, fitScale: fitScale, applyFilter: applyFilter,
+    sector: function () { return activeSector; },
+  };
   // Background-tab guard: a tab opened in the background lays out at 0×0, so
   // the boot centers the camera on garbage. Re-center the moment the stage
   // first gets a real size (and snap — the user never saw the wrong state).
