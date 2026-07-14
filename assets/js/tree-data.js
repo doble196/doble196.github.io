@@ -32,7 +32,9 @@ window.MUSCLE_TREE = {
         {
           label: "Rebates module",
           sub: "idea → fuzz-proven contract → live on two testnets, same day",
-          href: "https://github.com/Access0x1/Access0x1/tree/feat/rebates-module",
+          // the feat/rebates-module branch was merged into main and deleted;
+          // point at the repo root (the honest, live source) not a dead branch
+          href: "https://github.com/Access0x1/Access0x1",
         },
       ],
     },
