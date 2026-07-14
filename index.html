@@ -160,11 +160,22 @@
     }
     .idcard__name { font-weight: 700; font-size: 1.35rem; line-height: 1.1; }
     .idcard__avail { font-weight: 600; font-size: 0.8rem; color: var(--accent-primary); }
+    /* the ROLE leads (bold, primary color) — a hiring manager's 5-second
+       scan should land on the competency first. "Reasoning-first" is real
+       and mine, but it's a philosophy, not a bucket a manager filters by —
+       so it moves to a smaller, secondary line right under it. */
     .idcard__role {
       margin-top: 5px;
-      font-size: 0.92rem;
-      line-height: 1.4;
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.35;
       color: var(--text-primary);
+    }
+    .idcard__tagline {
+      margin-top: 2px;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: var(--text-secondary);
     }
     /* concrete receipts for the ZERO-CLICK viewer — the tagline made real */
     .idcard__proof {
@@ -289,7 +300,8 @@
     <img class="idcard__avatar" src="assets/images/profile-pic.png" alt="Rensley R." width="46" height="46" />
     <div class="idcard__body">
       <p class="idcard__name">Rensley R. <span class="idcard__avail">· open to roles</span></p>
-      <p class="idcard__role">Reasoning-first fullstack dev, backend-leaning — payments &amp; on-chain infra, where fintech lies.</p>
+      <p class="idcard__role">Payments &amp; on-chain infrastructure engineer</p>
+      <p class="idcard__tagline">Reasoning-first · fullstack, backend-leaning — where fintech lies.</p>
       <p class="idcard__proof mono">1,746 tests · live on 8+ testnets · ETHGlobal × ENS</p>
       <p class="idcard__links">
         <a href="https://github.com/doble196" target="_blank" rel="noopener">GitHub</a>
