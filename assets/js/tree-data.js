@@ -11,6 +11,8 @@ window.MUSCLE_TREE = {
     {
       label: "Payments & Settlement",
       sub: "USD-priced, non-custodial, onchain",
+      featured: true, // the flagship — rendered with visual dominance so the
+                      // eye lands here first (weight, not just reading order)
       children: [
         {
           label: "Access0x1",

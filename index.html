@@ -72,6 +72,18 @@
     .tnode--leaf { border-style: dashed; }
     .tnode--leaf:hover { border-style: solid; }
 
+    /* VISUAL HIERARCHY — the flagship domain isn't just first, it's LOUDEST.
+       A filled, glowing accent card among plain dark siblings makes the eye
+       land here first (pre-attentive contrast beats reading order). Defined
+       after --open so its accent border wins even when expanded. */
+    .tnode--featured {
+      background: var(--accent-primary-dim);
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 1px var(--accent-primary), 0 8px 30px rgba(78, 168, 122, 0.22);
+    }
+    .tnode--featured .tnode__label,
+    .tnode--featured .tnode__chip { color: var(--accent-primary); }
+
     /* padding-right clears the count chip so long labels can't collide with it */
     .tnode__label { display: block; font-weight: 700; font-size: 0.95rem; line-height: 1.3; padding-right: 34px; }
     .tnode__sub {

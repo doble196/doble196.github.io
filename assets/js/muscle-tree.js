@@ -105,7 +105,8 @@
     if (n.el) return;
     var isLeaf = !n.children.length;
     var el = document.createElement(isLeaf && n.data.href ? "a" : "button");
-    el.className = "tnode tnode--d" + Math.min(n.depth, 2) + (isLeaf ? " tnode--leaf" : "");
+    el.className = "tnode tnode--d" + Math.min(n.depth, 2) +
+      (isLeaf ? " tnode--leaf" : "") + (n.data.featured ? " tnode--featured" : "");
     if (isLeaf && n.data.href) {
       el.href = n.data.href;
       if (/^https?:/.test(n.data.href)) { el.target = "_blank"; el.rel = "noopener noreferrer"; }
@@ -115,7 +116,7 @@
     }
     var html = '<span class="tnode__label">' + esc(n.data.label) + "</span>";
     if (n.data.sub) html += '<span class="tnode__sub">' + esc(n.data.sub) + "</span>";
-    if (!isLeaf) html += '<span class="tnode__chip mono" aria-hidden="true">▸ ' + n.children.length + "</span>";
+    if (!isLeaf) html += '<span class="tnode__chip mono" aria-hidden="true">' + (n.data.featured ? "★ " : "▸ ") + n.children.length + "</span>";
     else if (n.data.href) html += '<span class="tnode__chip mono" aria-hidden="true">↗</span>';
     el.innerHTML = html;
     if (!isLeaf) el.addEventListener("click", function () { toggle(n); });
