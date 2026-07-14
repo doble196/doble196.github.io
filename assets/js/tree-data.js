@@ -1,9 +1,13 @@
 // Muscle tree — CONTENT ONLY. The engine (muscle-tree.js) never hardcodes a
 // node: add/remove/reorder anything here and the layout, lines, and
 // animations adapt. Shape of a node:
-//   { label, sub?, href?, children? }
-// A node with `children` expands on click; a node with `href` is a leaf that
-// links out. Keep it public-clean (no internal infrastructure) per AGENTS.md.
+//   { label, sub?, href?, featured?, sectors?, children? }
+// - children  → expands on click.  href → a leaf that links out.
+// - featured  → rendered with visual dominance (the flagship).
+// - sectors   → tags used by the sector filter bar; a top-level muscle shows
+//               only when its sector is selected (or "All"). Keep these HONEST
+//               — only tag a sector you actually have work in.
+// Keep it public-clean (no internal infrastructure) per AGENTS.md.
 window.MUSCLE_TREE = {
   label: "Rensley",
   sub: "reasoning & logic first · fullstack, leaning backend — where fintech lies",
@@ -13,6 +17,7 @@ window.MUSCLE_TREE = {
       sub: "USD-priced, non-custodial, onchain",
       featured: true, // the flagship — rendered with visual dominance so the
                       // eye lands here first (weight, not just reading order)
+      sectors: ["payments"],
       children: [
         {
           label: "Access0x1",
@@ -34,6 +39,7 @@ window.MUSCLE_TREE = {
     {
       label: "Identity & Auth",
       sub: "one shared sign-in, sessions done once",
+      sectors: ["identity"],
       children: [
         {
           label: "GitHat",
@@ -50,6 +56,7 @@ window.MUSCLE_TREE = {
     {
       label: "Booking",
       sub: "calendar → deposit → confirmation",
+      sectors: ["commerce"],
       children: [
         {
           label: "ClickReserv",
@@ -61,6 +68,7 @@ window.MUSCLE_TREE = {
     {
       label: "Commerce & Inventory",
       sub: "carts, stock, point of sale",
+      sectors: ["commerce"],
       children: [
         {
           label: "Colmado",
@@ -77,6 +85,7 @@ window.MUSCLE_TREE = {
     {
       label: "Provenance & Verification",
       sub: "don't trust the page — check the chain",
+      sectors: ["security"],
       children: [
         {
           label: "NFTeria Super-Verify",
@@ -93,6 +102,7 @@ window.MUSCLE_TREE = {
     {
       label: "AI & Autonomous Systems",
       sub: "agents that are secure and useful",
+      sectors: ["ai"],
       children: [
         {
           label: "Quantl",
@@ -109,6 +119,7 @@ window.MUSCLE_TREE = {
     {
       label: "Security & Auditing",
       sub: "fuzzing, invariants, adversarial review",
+      sectors: ["security"],
       children: [
         {
           label: "Access0x1 test suite",
@@ -125,6 +136,7 @@ window.MUSCLE_TREE = {
     {
       label: "Teaching",
       sub: "make the idea tangible, no jargon",
+      sectors: ["teaching"],
       children: [
         {
           label: "The On-Chain Lesson",
@@ -135,3 +147,15 @@ window.MUSCLE_TREE = {
     },
   ],
 };
+
+// Sector filter bar — order + labels for the chips. `key: null` = show all.
+// Only list sectors you want a chip for; a muscle with an untagged sector
+// (e.g. teaching) still shows under "All".
+window.MUSCLE_SECTORS = [
+  { key: null, label: "All work" },
+  { key: "payments", label: "Payments" },
+  { key: "identity", label: "Identity" },
+  { key: "commerce", label: "Commerce" },
+  { key: "security", label: "Security" },
+  { key: "ai", label: "AI" },
+];

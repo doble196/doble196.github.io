@@ -27,7 +27,7 @@
       inset: 0;
       top: 0;
       background:
-        radial-gradient(1200px 600px at 70% 20%, rgba(78, 168, 122, 0.05), transparent 60%),
+        radial-gradient(1200px 600px at 70% 20%, rgba(95, 208, 138, 0.05), transparent 60%),
         var(--bg-primary);
       touch-action: none;
       cursor: grab;
@@ -79,7 +79,7 @@
     .tnode--featured {
       background: var(--accent-primary-dim);
       border-color: var(--accent-primary);
-      box-shadow: 0 0 0 1px var(--accent-primary), 0 8px 30px rgba(78, 168, 122, 0.22);
+      box-shadow: 0 0 0 1px var(--accent-primary), 0 8px 30px rgba(95, 208, 138, 0.22);
     }
     .tnode--featured .tnode__label,
     .tnode--featured .tnode__chip { color: var(--accent-primary); }
@@ -103,8 +103,8 @@
     .tnode__chip { transition: transform var(--transition-base); }
 
     @keyframes tnodePulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(78, 168, 122, 0); }
-      50% { box-shadow: 0 0 0 6px rgba(78, 168, 122, 0.18); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(95, 208, 138, 0); }
+      50% { box-shadow: 0 0 0 6px rgba(95, 208, 138, 0.18); }
     }
     .tnode--pulse { animation: tnodePulse 1.6s ease-in-out 3; }
 
@@ -131,57 +131,107 @@
        name, face, role, contact, and an explicit nudge to explore. The
        wrapper is pointer-events:none so it never blocks a drag; only the
        links re-enable pointer events. */
+    /* ENLARGED (visual hierarchy / 5-second clarity): the identity card holds
+       the most important content, so it's the biggest, most readable element
+       on the page — it should dominate the first glance. */
     .idcard {
       position: fixed;
       top: 64px;
       left: 16px;
-      width: min(300px, calc(100vw - 32px));
+      width: min(360px, calc(100vw - 32px));
       display: flex;
-      gap: 12px;
-      padding: 14px;
-      background: rgba(22, 27, 34, 0.82);
-      -webkit-backdrop-filter: blur(6px);
-      backdrop-filter: blur(6px);
+      gap: 15px;
+      padding: 20px 22px;
+      background: rgba(22, 27, 34, 0.85);
+      -webkit-backdrop-filter: blur(7px);
+      backdrop-filter: blur(7px);
       border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       z-index: 9;
       pointer-events: none;
     }
     .idcard a { pointer-events: auto; }
     .idcard__avatar {
-      width: 46px; height: 46px;
+      width: 60px; height: 60px;
       border-radius: 50%;
       object-fit: cover;
       flex: 0 0 auto;
-      border: 1px solid var(--accent-primary);
+      border: 2px solid var(--accent-primary);
     }
-    .idcard__name { font-weight: 700; font-size: 1rem; line-height: 1.2; }
-    .idcard__avail { font-weight: 600; font-size: 0.72rem; color: var(--accent-primary); }
+    .idcard__name { font-weight: 700; font-size: 1.35rem; line-height: 1.1; }
+    .idcard__avail { font-weight: 600; font-size: 0.8rem; color: var(--accent-primary); }
     .idcard__role {
-      margin-top: 3px;
-      font-size: 0.78rem;
+      margin-top: 5px;
+      font-size: 0.92rem;
       line-height: 1.4;
-      color: var(--text-secondary);
+      color: var(--text-primary);
     }
     /* concrete receipts for the ZERO-CLICK viewer — the tagline made real */
     .idcard__proof {
-      margin-top: 7px;
-      font-size: 0.72rem;
-      line-height: 1.4;
+      margin-top: 9px;
+      font-size: 0.82rem;
+      line-height: 1.45;
       color: var(--accent-tertiary);
     }
     .idcard__links {
-      margin-top: 8px;
+      margin-top: 11px;
       display: flex;
       flex-wrap: wrap;
-      gap: 4px 12px;
-      font-size: 0.8rem;
+      gap: 5px 14px;
+      font-size: 0.9rem;
       font-weight: 600;
     }
-    .idcard__cue { margin-top: 8px; font-size: 0.72rem; color: var(--text-tertiary); }
+    .idcard__cue { margin-top: 10px; font-size: 0.76rem; color: var(--text-tertiary); }
     @media (max-width: 560px) {
-      .idcard { top: 60px; padding: 11px; }
+      .idcard { top: 60px; padding: 15px 16px; gap: 12px; }
+      .idcard__name { font-size: 1.2rem; }
       .idcard__cue { display: none; } /* the bottom hint bar covers this on mobile */
+    }
+
+    /* SECTOR FILTER (progressive disclosure) — a visitor sees only the work
+       they care about, so they remember you for exactly that. Chips are
+       generated from data by the engine. */
+    .sector-bar {
+      position: fixed;
+      top: 62px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      padding: 4px;
+      max-width: calc(100vw - 32px);
+      overflow-x: auto;
+      background: rgba(22, 27, 34, 0.85);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      z-index: 10;
+      scrollbar-width: none;
+    }
+    .sector-bar::-webkit-scrollbar { display: none; }
+    .sector-chip {
+      flex: 0 0 auto;
+      border: 0;
+      background: none;
+      color: var(--text-secondary);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.15s, background 0.15s;
+    }
+    .sector-chip:hover { color: var(--text-primary); }
+    .sector-chip[aria-pressed="true"] { background: var(--accent-primary-dim); color: var(--accent-primary); }
+    .sector-chip:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 1px; }
+    @media (max-width: 560px) {
+      /* on mobile the enlarged card owns the top-left, so the filter strip
+         goes full-width right under the nav and the card drops below it */
+      .sector-bar { top: 56px; left: 10px; right: 10px; transform: none; max-width: none; justify-content: flex-start; }
+      .idcard { top: 110px; }
     }
 
     /* on-screen camera controls — bottom right, keyboard-focusable buttons */
@@ -249,6 +299,9 @@
       <p class="idcard__cue mono" aria-hidden="true">▶ tap any node to dig in</p>
     </div>
   </aside>
+
+  <!-- Sector filter — chips generated from data by the engine (muscle-tree.js) -->
+  <div class="sector-bar" id="sectorBar" role="group" aria-label="Filter work by sector"></div>
 
   <div class="tree-stage" id="treeStage" aria-label="Interactive map: capabilities and the products they power">
     <div class="bg3d" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <!-- RR brand mark — green on dark, matches the site tokens
-       (#4ea87a on #0e1116). SVG favicon: crisp at every size, zero deps. -->
+       (#5fd08a on #0e1116). SVG favicon: crisp at every size, zero deps. -->
   <rect width="64" height="64" rx="14" fill="#0e1116"/>
-  <rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#4ea87a" stroke-opacity="0.55" stroke-width="3"/>
-  <text x="32" y="43" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="27" font-weight="700" fill="#4ea87a" text-anchor="middle">RR</text>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#5fd08a" stroke-opacity="0.55" stroke-width="3"/>
+  <text x="32" y="43" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="27" font-weight="700" fill="#5fd08a" text-anchor="middle">RR</text>
 </svg>

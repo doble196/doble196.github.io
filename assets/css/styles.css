@@ -11,13 +11,13 @@
   --text-primary: #e8ecf1;
   --text-secondary: #9aa4b2;
   --text-tertiary: #6b7480;
-  --accent-primary: #4ea87a;
-  --accent-primary-dim: rgba(78, 168, 122, 0.12);
-  --accent-primary-glow: rgba(78, 168, 122, 0);
-  --accent-secondary: #4ea87a;
-  --accent-secondary-dim: rgba(78, 168, 122, 0.12);
-  --accent-tertiary: #6db89a;
-  --accent-tertiary-dim: rgba(109, 184, 154, 0.12);
+  --accent-primary: #5fd08a;
+  --accent-primary-dim: rgba(95, 208, 138, 0.12);
+  --accent-primary-glow: rgba(95, 208, 138, 0);
+  --accent-secondary: #5fd08a;
+  --accent-secondary-dim: rgba(95, 208, 138, 0.12);
+  --accent-tertiary: #7de0a8;
+  --accent-tertiary-dim: rgba(125, 224, 168, 0.12);
   --border-color: #262d38;
   --border-hover: #38414f;
   --radius-sm: 8px;
@@ -1276,7 +1276,7 @@ img {
   padding: 4px 12px;
   border-radius: 999px;
   background: var(--accent-primary-dim);
-  border: 1px solid rgba(78, 168, 122, 0.3);
+  border: 1px solid rgba(95, 208, 138, 0.3);
   font-size: 0.8rem;
   letter-spacing: 0.02em;
 }
@@ -1322,15 +1322,15 @@ a:hover {
 .heatmap-cell {
   background: rgba(255, 255, 255, 0.045);
 }
-.heatmap-cell[data-level="1"]  { background: rgba(78, 168, 122, 0.22); box-shadow: none; }
-.heatmap-cell[data-level="2"]  { background: rgba(78, 168, 122, 0.30); box-shadow: none; }
-.heatmap-cell[data-level="3"]  { background: rgba(78, 168, 122, 0.38); box-shadow: none; }
-.heatmap-cell[data-level="4"]  { background: rgba(78, 168, 122, 0.46); box-shadow: none; }
-.heatmap-cell[data-level="5"]  { background: rgba(78, 168, 122, 0.54); box-shadow: none; }
-.heatmap-cell[data-level="6"]  { background: rgba(78, 168, 122, 0.63); box-shadow: none; }
-.heatmap-cell[data-level="7"]  { background: rgba(78, 168, 122, 0.72); box-shadow: none; }
-.heatmap-cell[data-level="8"]  { background: rgba(78, 168, 122, 0.82); box-shadow: none; }
-.heatmap-cell[data-level="9"]  { background: #4ea87a; box-shadow: none; }
+.heatmap-cell[data-level="1"]  { background: rgba(95, 208, 138, 0.22); box-shadow: none; }
+.heatmap-cell[data-level="2"]  { background: rgba(95, 208, 138, 0.30); box-shadow: none; }
+.heatmap-cell[data-level="3"]  { background: rgba(95, 208, 138, 0.38); box-shadow: none; }
+.heatmap-cell[data-level="4"]  { background: rgba(95, 208, 138, 0.46); box-shadow: none; }
+.heatmap-cell[data-level="5"]  { background: rgba(95, 208, 138, 0.54); box-shadow: none; }
+.heatmap-cell[data-level="6"]  { background: rgba(95, 208, 138, 0.63); box-shadow: none; }
+.heatmap-cell[data-level="7"]  { background: rgba(95, 208, 138, 0.72); box-shadow: none; }
+.heatmap-cell[data-level="8"]  { background: rgba(95, 208, 138, 0.82); box-shadow: none; }
+.heatmap-cell[data-level="9"]  { background: #5fd08a; box-shadow: none; }
 .heatmap-cell[data-level="10"] { background: #5cc48f; box-shadow: none; }
 
 /* the "low severity" audit stat rejoins the single accent; high/medium keep
@@ -1438,7 +1438,7 @@ a:hover {
 .bg3d i {
   position: absolute;
   display: block;
-  border: 1px solid rgba(78, 168, 122, 0.10);
+  border: 1px solid rgba(95, 208, 138, 0.10);
   border-radius: 8px;
   transform-style: preserve-3d;
   animation: bg3dDrift 110s linear infinite;
@@ -1448,7 +1448,7 @@ a:hover {
 .bg3d i:nth-child(3) { width: 140px; height: 140px; left: 82%; top: 62%; animation-duration: 130s; animation-delay: -60s; }
 .bg3d i:nth-child(4) { width: 220px; height: 220px; left: 25%; top: 68%; animation-duration: 105s; animation-delay: -45s; }
 .bg3d i:nth-child(5) { width: 100px; height: 100px; left: 48%; top: 30%; animation-duration: 140s; animation-delay: -80s; }
-.bg3d i:nth-child(6) { width: 320px; height: 320px; left: -6%; top: 55%; animation-duration: 150s; animation-delay: -20s; border-color: rgba(78, 168, 122, 0.06); }
+.bg3d i:nth-child(6) { width: 320px; height: 320px; left: -6%; top: 55%; animation-duration: 150s; animation-delay: -20s; border-color: rgba(95, 208, 138, 0.06); }
 @keyframes bg3dDrift {
   0%   { transform: rotateX(0deg)   rotateY(0deg)   rotateZ(0deg)  translateY(0); }
   50%  { transform: rotateX(180deg) rotateY(90deg)  rotateZ(10deg) translateY(-30px); }
