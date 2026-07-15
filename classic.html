@@ -190,8 +190,10 @@ const pack   = '0x32382a82d9faDc55f971f33DaEeE5841cfbADbE0'; // ETHGlobal Hacker
 const wallet = '0x53c61cfb8128ad59244e8c1d26109252ace23d14';
 const abi    = ['function balanceOf(address owner) view returns (uint256)'];
 
-const held = await new ethers.Contract(pack, abi, provider).balanceOf(wallet);
-console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // → is  (balance: 1)</code></pre>
+(async () => {
+  const held = await new ethers.Contract(pack, abi, provider).balanceOf(wallet);
+  console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // → is  (balance: 1)
+})();</code></pre>
           </div>
             </div>
           </div>
@@ -1489,7 +1491,7 @@ console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // →
         </div>
         <p class="footer__location">New York, NY, USA</p>
         <p class="footer__copy mono">
-          &copy; <span id="year"></span> Rensley R.. All rights reserved.
+          &copy; <span id="year"></span> Rensley R. All rights reserved.
         </p>
       </div>
     </footer>
