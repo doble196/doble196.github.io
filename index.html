@@ -184,6 +184,8 @@
       line-height: 1.45;
       color: var(--accent-tertiary);
     }
+    /* a11y (WCAG 1.4.1): underline the inline tx link so it's not green-only */
+    .idcard__proof a { text-decoration: underline; text-underline-offset: 2px; }
     .idcard__links {
       margin-top: 11px;
       display: flex;
