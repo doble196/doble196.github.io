@@ -186,7 +186,7 @@ img {
   background: var(--accent-primary-dim);
   color: var(--accent-primary);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.78rem;
+  font-size: 0.8125rem; /* 13px legibility floor */
   transition: transform var(--transition-fast),
     background var(--transition-fast);
   margin: 0.25rem;
@@ -217,7 +217,7 @@ img {
 
 .tag--sm {
   padding: 0.2rem 0.55rem;
-  font-size: 0.72rem;
+  font-size: 0.8125rem; /* 13px legibility floor */
 }
 
 .card {
@@ -747,7 +747,7 @@ img {
 }
 
 .org-card__type {
-  font-size: 0.75rem;
+  font-size: 0.8125rem; /* 13px legibility floor */
   color: var(--text-tertiary);
 }
 
@@ -851,7 +851,7 @@ img {
 }
 
 .project-card__badge {
-  font-size: 0.7rem;
+  font-size: 0.8125rem; /* 13px legibility floor */
   padding: 0.15rem 0.5rem;
   border-radius: var(--radius-full);
   background: var(--accent-primary-dim);
@@ -1198,7 +1198,7 @@ img {
   display: block;
   margin-top: 0.65rem;
   font-style: normal;
-  font-size: 0.78rem;
+  font-size: 0.8125rem; /* 13px legibility floor */
   color: var(--text-tertiary);
   letter-spacing: 0.04em;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
