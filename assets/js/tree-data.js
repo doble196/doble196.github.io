@@ -26,7 +26,7 @@ window.MUSCLE_TREE = {
         },
         {
           label: "NFTeria checkout",
-          sub: "one-link crypto checkout for any merchant",
+          sub: "one-link USD-priced checkout for any merchant",
           href: "https://nfteria.click",
         },
         {
