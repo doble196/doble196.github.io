@@ -83,6 +83,7 @@ img {
 
 .mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.02em; /* open condensed monospace so small labels read cleanly */
 }
 
 .section {
@@ -389,6 +390,7 @@ img {
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
+  letter-spacing: normal; /* opt out of .mono tracking: keeps the steps(23) typewriter aligned to its chars */
   border-right: 2px solid var(--accent-primary);
   animation: typing 2.5s steps(23) 0.8s forwards,
     blink 0.7s step-end infinite;
