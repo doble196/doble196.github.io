@@ -62,6 +62,18 @@ a:hover {
   color: var(--accent-primary);
 }
 
+/* Accessibility — WCAG 1.4.1 (use of color): links that sit INSIDE body text
+   must not signal "clickable" by green alone. Underline inline prose links so
+   the cue survives grayscale / color blindness. Chrome links (nav, buttons,
+   chips, card link-rows) keep their shape/icon cue and stay clean. Opt-in by
+   selector so this can never accidentally underline a button. */
+.section__subtitle a,
+.education-card__desc a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
 ul {
   list-style: none;
 }
