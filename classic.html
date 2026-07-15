@@ -143,8 +143,8 @@
             <p>
               The center of that work is <strong>Access0x1</strong> — an
               open-source, USD-priced payments rail, non-custodial, with its
-              shared router source-verified across four testnets: Arc, Base,
-              Ethereum, and Optimism. I shipped it at <strong>ETHGlobal</strong>
+              shared router live at one address across 8 public testnets,
+              source-verified on 7 of them. I shipped it at <strong>ETHGlobal</strong>
               and took a prize from <strong>ENS</strong>. On top of it I built
               <strong>NFTeria</strong> — USD-priced checkout any merchant joins
               with one link.
@@ -412,11 +412,12 @@ const abi    = ['function balanceOf(address owner) view returns (uint256)'];
                 call and one link, no contract code required. On top sit ERC-6909
                 payment lanes, ERC-7702/6492 agent sessions, and a five-primitive
                 commerce quintet. A universal deployer wires all 12 contracts in
-                one command across 23 testnets; a standalone verifier re-uploads
-                source to every explorer. Router source-verified on Base Sepolia
-                (0xec89c9eE…6E8E57), Ethereum + Optimism Sepolia, and Avalanche
-                Fuji; also deployed on Arc Testnet (0xA5982ea8…69Aad) and Robinhood
-                Chain, verification pending.
+                one command, and a standalone verifier re-uploads source to every
+                explorer. The router lives at one deterministic address
+                (0xe92244e3…) mirrored across 8 public testnets — Arc, Base,
+                Ethereum, Optimism, Avalanche Fuji, Robinhood, Arbitrum, and Celo
+                Sepolia — source-verified on 7 of the 8, with 11 chains deployed
+                in total. Testnet-only; no mainnet.
               </p>
               <div class="org-card__tech">
                 <span class="tag tag--sm tag--purple">Solidity</span>
