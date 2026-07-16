@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Page not found — Rensley R.</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <meta name="theme-color" content="#0e1116" />
+  <link rel="stylesheet" href="/assets/css/styles.css?v=3" />
+  <style>
+    .lost {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 90px 20px 40px;
+      text-align: center;
+    }
+    .lost__code {
+      font-size: clamp(3rem, 12vw, 5rem);
+      font-weight: 700;
+      color: var(--accent-primary);
+      line-height: 1;
+    }
+    .lost__note { margin-top: 10px; color: var(--text-secondary); }
+    .lost__links {
+      margin-top: 22px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav nav--scrolled">
+    <div class="nav__inner container">
+      <a href="/" class="nav__brand mono">RR</a>
+      <div class="view-toggle" role="group" aria-label="Portfolio view">
+        <a href="/" class="view-toggle__opt">Tree</a>
+        <a href="/classic.html" class="view-toggle__opt">Cabinet</a>
+      </div>
+    </div>
+  </nav>
+  <div class="bg3d" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <main class="lost">
+    <div>
+      <p class="lost__code mono">404</p>
+      <p class="lost__note">That page isn't on the tree.</p>
+      <p class="lost__links">
+        <a href="/" class="btn btn--primary">Back to the portfolio</a>
+        <a href="/classic.html" class="btn btn--outline">Cabinet view</a>
+      </p>
+    </div>
+  </main>
+</body>
+</html>
