@@ -2,224 +2,124 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <!-- maximum-scale=1 + user-scalable=no: the page owns its layout — no pinch
+       zoom (Android honors the meta; iOS Safari is handled by the gesture
+       guard in muscle-tree.js). Text stays resizable via browser settings. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Rensley R. — Payments &amp; On-Chain Infrastructure Engineer</title>
   <meta
     name="description"
     content="The portfolio as a living map: start at the base, expand each muscle, and follow it to the live products it powers — payments, identity, commerce, security, and AI. Dependency-free — the animation code is readable source."
   />
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
-  <link rel="apple-touch-icon" href="assets/images/profile-pic.png" />
+  <link rel="apple-touch-icon" href="assets/images/og-image.png" />
+  <link rel="canonical" href="https://doble196.github.io/" />
   <meta name="theme-color" content="#0e1116" />
+  <meta property="og:site_name" content="Rensley R." />
   <meta property="og:title" content="Rensley R. — Payments &amp; On-Chain Infrastructure Engineer" />
   <meta property="og:description" content="Reasoning-first, fullstack, backend-leaning — where fintech lies. Judge the logic and the complexity before the way the button looks." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://doble196.github.io/" />
-  <meta property="og:image" content="https://doble196.github.io/assets/images/profile-pic.png" />
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <meta property="og:image" content="https://doble196.github.io/assets/images/og-image.png" />
+  <meta property="og:image:width" content="800" />
+  <meta property="og:image:height" content="800" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Rensley R. — Payments &amp; On-Chain Infrastructure Engineer" />
+  <meta name="twitter:description" content="Reasoning-first, fullstack, backend-leaning — where fintech lies." />
+  <meta name="twitter:image" content="https://doble196.github.io/assets/images/og-image.png" />
+  <!-- ?v= busts stale caches when these files change shape (the tree engine
+       was rewritten; an old cached engine + new HTML renders an empty page) -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=6" />
   <style>
-    /* Tree page only — everything else comes from styles.css tokens. */
-    html, body { height: 100%; }
-    body { overflow: hidden; }
-
-    .tree-stage {
-      position: fixed;
-      inset: 0;
-      top: 0;
-      background:
-        radial-gradient(1200px 600px at 70% 20%, rgba(95, 208, 138, 0.05), transparent 60%),
-        var(--bg-primary);
-      touch-action: none;
-      cursor: grab;
-      overflow: hidden;
-    }
-    .tree-stage:active { cursor: grabbing; }
-
-    .tree-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-    .tline {
-      fill: none;
-      stroke: var(--accent-primary);
-      stroke-width: 1.6;
-      stroke-linecap: round;
-      opacity: 0.9;
+    /* Tree page only — everything else comes from styles.css tokens.
+       The tree is REAL PAGE CONTENT now: no camera, no pan, no zoom. Expanding
+       a section grows the page and you scroll like any other page. One layout
+       serves every screen size — a single centered column. */
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: calc(70px + 20px) 20px 96px; /* clears the fixed nav */
     }
 
-    .tree-world { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
-
-    .tnode {
-      position: absolute;
-      left: 0; top: 0;
-      width: 230px;
-      display: block;
-      text-align: left;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 12px 14px;
-      color: var(--text-primary);
-      font: inherit;
-      cursor: pointer;
-      will-change: transform, opacity;
-      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-    }
-    .tnode:hover, .tnode:focus-visible {
-      border-color: var(--accent-primary);
-      box-shadow: 0 0 0 3px var(--accent-primary-dim);
-      outline: none;
-    }
-    .tnode--open { border-color: var(--border-hover); }
-    .tnode--d0 { background: var(--bg-tertiary); border-color: var(--accent-primary); }
-    .tnode--leaf { border-style: dashed; }
-    .tnode--leaf:hover { border-style: solid; }
-
-    /* VISUAL HIERARCHY — the flagship domain isn't just first, it's LOUDEST.
-       A filled, glowing accent card among plain dark siblings makes the eye
-       land here first (pre-attentive contrast beats reading order). Defined
-       after --open so its accent border wins even when expanded. */
-    .tnode--featured {
-      background: var(--accent-primary-dim);
-      border-color: var(--accent-primary);
-      box-shadow: 0 0 0 1px var(--accent-primary), 0 8px 30px rgba(95, 208, 138, 0.22);
-    }
-    .tnode--featured .tnode__label,
-    .tnode--featured .tnode__chip { color: var(--accent-primary); }
-
-    /* padding-right clears the count chip so long labels can't collide with it */
-    .tnode__label { display: block; font-weight: 700; font-size: 0.95rem; line-height: 1.3; padding-right: 34px; }
-    .tnode__sub {
-      display: block;
-      margin-top: 4px;
-      font-size: 0.78rem;
-      line-height: 1.45;
-      color: var(--text-secondary);
-    }
-    .tnode__chip {
-      position: absolute;
-      top: 10px; right: 12px;
-      font-size: 0.72rem;
-      color: var(--accent-tertiary);
-    }
-    .tnode--open .tnode__chip { transform: rotate(90deg); }
-    .tnode__chip { transition: transform var(--transition-base); }
-
-    @keyframes tnodePulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(95, 208, 138, 0); }
-      50% { box-shadow: 0 0 0 6px rgba(95, 208, 138, 0.18); }
-    }
-    .tnode--pulse { animation: tnodePulse 1.6s ease-in-out 3; }
-
-    .tree-hint {
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      font-size: 0.75rem;
-      color: var(--text-tertiary);
-      background: rgba(22, 27, 34, 0.85);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-full);
-      padding: 6px 14px;
-      pointer-events: none;
-      white-space: nowrap;
-    }
-
-    /* keep the site nav floating above the canvas */
-    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; }
-
-    /* IDENTITY CARD — the 30-second answer for a visitor who never clicks.
-       Fixed corner "business card" over the canvas (like map attribution):
-       name, face, role, contact, and an explicit nudge to explore. The
-       wrapper is pointer-events:none so it never blocks a drag; only the
-       links re-enable pointer events. */
-    /* ENLARGED (visual hierarchy / 5-second clarity): the identity card holds
-       the most important content, so it's the biggest, most readable element
-       on the page — it should dominate the first glance. */
-    .idcard {
-      position: fixed;
-      top: 64px;
-      left: 16px;
-      width: min(360px, calc(100vw - 32px));
+    /* HERO — the identity is the root of the tree, in normal flow. The
+       30-second, zero-scroll visitor gets who/what/how-to-reach for free. */
+    .hero-id {
       display: flex;
-      gap: 15px;
-      padding: 20px 22px;
-      background: rgba(22, 27, 34, 0.85);
-      -webkit-backdrop-filter: blur(7px);
-      backdrop-filter: blur(7px);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      z-index: 9;
-      pointer-events: none;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 26px 0 22px;
     }
-    .idcard a { pointer-events: auto; }
-    .idcard__avatar {
-      width: 60px; height: 60px;
+    .hero-id__avatar {
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
       object-fit: cover;
       flex: 0 0 auto;
       border: 2px solid var(--accent-primary);
     }
-    .idcard__name { font-weight: 700; font-size: 1.35rem; line-height: 1.1; }
-    .idcard__avail { font-weight: 600; font-size: 0.8rem; color: var(--accent-primary); }
-    /* the ROLE leads (bold, primary color) — a hiring manager's 5-second
-       scan should land on the competency first. "Reasoning-first" is real
-       and mine, but it's a philosophy, not a bucket a manager filters by —
-       so it moves to a smaller, secondary line right under it. */
-    .idcard__role {
-      margin-top: 5px;
-      font-size: 0.95rem;
+    .hero-id__name { font-weight: 700; font-size: 1.55rem; line-height: 1.15; letter-spacing: -0.01em; }
+    .hero-id__avail { font-weight: 600; font-size: 0.82rem; color: var(--accent-primary); white-space: nowrap; }
+    .hero-id__role {
+      margin-top: 6px;
+      font-size: 1.02rem;
       font-weight: 700;
       line-height: 1.35;
       color: var(--text-primary);
     }
-    .idcard__tagline {
-      margin-top: 2px;
-      font-size: 0.8rem;
-      line-height: 1.4;
+    .hero-id__tagline {
+      margin-top: 3px;
+      font-size: 0.88rem;
+      line-height: 1.5;
       color: var(--text-secondary);
     }
-    /* concrete receipts for the ZERO-CLICK viewer — the tagline made real */
-    .idcard__proof {
-      margin-top: 9px;
-      font-size: 0.82rem;
-      line-height: 1.45;
+    .hero-id__proof {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      line-height: 1.55;
       color: var(--accent-tertiary);
     }
     /* a11y (WCAG 1.4.1): underline the inline tx link so it's not green-only */
-    .idcard__proof a { text-decoration: underline; text-underline-offset: 2px; }
-    .idcard__links {
-      margin-top: 11px;
+    .hero-id__proof a { text-decoration: underline; text-underline-offset: 2px; }
+    .hero-id__links {
+      margin-top: 14px;
       display: flex;
       flex-wrap: wrap;
-      gap: 5px 14px;
-      font-size: 0.9rem;
+      gap: 8px;
+    }
+    .hero-id__links a {
+      font-size: 0.86rem;
       font-weight: 600;
-    }
-    .idcard__cue { margin-top: 10px; font-size: 0.76rem; color: var(--text-tertiary); }
-    @media (max-width: 560px) {
-      .idcard { top: 60px; padding: 15px 16px; gap: 12px; }
-      .idcard__name { font-size: 1.2rem; }
-      .idcard__cue { display: none; } /* the bottom hint bar covers this on mobile */
-    }
-
-    /* SECTOR FILTER (progressive disclosure) — a visitor sees only the work
-       they care about, so they remember you for exactly that. Chips are
-       generated from data by the engine. */
-    .sector-bar {
-      position: fixed;
-      top: 62px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 6px;
-      padding: 4px;
-      max-width: calc(100vw - 32px);
-      overflow-x: auto;
-      background: rgba(22, 27, 34, 0.85);
-      -webkit-backdrop-filter: blur(6px);
-      backdrop-filter: blur(6px);
+      padding: 7px 15px;
       border: 1px solid var(--border-color);
       border-radius: var(--radius-full);
-      z-index: 10;
+      background: var(--bg-secondary);
+      transition: border-color var(--transition-fast), background var(--transition-fast);
+    }
+    .hero-id__links a:hover { border-color: var(--accent-primary); opacity: 1; }
+    @media (max-width: 560px) {
+      .hero-id { flex-direction: column; gap: 14px; padding-top: 14px; }
+      .hero-id__avatar { width: 64px; height: 64px; }
+      .hero-id__name { font-size: 1.4rem; }
+    }
+
+    /* SECTOR FILTER — sticky pill row under the nav so the filter stays in
+       reach while scrolling. Chips are generated from data by the engine. */
+    .sector-bar {
+      position: sticky;
+      top: 70px; /* flush under the nav — no see-through slit while scrolling */
+      z-index: 9;
+      display: flex;
+      gap: 4px;
+      padding: 4px;
+      margin: 4px 0 18px;
+      max-width: 100%;
+      width: fit-content;
+      overflow-x: auto;
+      background: rgba(22, 27, 34, 0.88);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
       scrollbar-width: none;
     }
     .sector-bar::-webkit-scrollbar { display: none; }
@@ -229,7 +129,7 @@
       background: none;
       color: var(--text-secondary);
       font: inherit;
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       font-weight: 600;
       padding: 7px 14px;
       border-radius: var(--radius-full);
@@ -240,109 +140,223 @@
     .sector-chip:hover { color: var(--text-primary); }
     .sector-chip[aria-pressed="true"] { background: var(--accent-primary-dim); color: var(--accent-primary); }
     .sector-chip:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 1px; }
+    /* phones: wrap instead of hiding half the filters behind a scroll edge */
     @media (max-width: 560px) {
-      /* on mobile the enlarged card owns the top-left, so the filter strip
-         goes full-width right under the nav and the card drops below it */
-      .sector-bar { top: 56px; left: 10px; right: 10px; transform: none; max-width: none; justify-content: flex-start; }
-      .idcard { top: 110px; }
+      .sector-bar { flex-wrap: wrap; border-radius: var(--radius-lg); width: 100%; }
+    }
+    @media (pointer: coarse) {
+      .sector-chip { padding-top: 11px; padding-bottom: 11px; }
     }
 
-    /* on-screen camera controls — bottom right, keyboard-focusable buttons */
-    .tree-controls {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
+    /* TREE — a column of expanding cards. Tap a section: its work slides open
+       beneath it, indented, with a thread line (the tree's branch). */
+    .tree { display: flex; flex-direction: column; }
+
+    /* each branch sits in a collapsible slot so the sector filter can remove
+       it with the same smooth motion as expand/collapse */
+    .branch-slot {
+      display: grid;
+      grid-template-rows: 1fr;
+      transition: grid-template-rows 340ms cubic-bezier(0.32, 0.72, 0, 1), opacity 240ms ease;
+    }
+    .branch-slot--hidden { grid-template-rows: 0fr; opacity: 0; }
+    .branch-slot--hidden .branch { pointer-events: none; }
+    .branch-slot__inner {
+      overflow: hidden;
+      min-height: 0;
+      padding-bottom: 12px;
+      visibility: visible;
+      transition: visibility 340ms;
+    }
+    /* visibility (not just opacity) — filtered-out branches must leave the
+       keyboard tab order and the accessibility tree, not just fade */
+    .branch-slot--hidden .branch-slot__inner { visibility: hidden; }
+
+    .branch {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .branch:hover { border-color: var(--border-hover); }
+    .branch--featured {
+      /* opaque composite of the accent tint — the drifting bg3d wallpaper
+         must not show through the flagship's content */
+      background: #17251d;
+      background: color-mix(in srgb, var(--accent-primary) 10%, var(--bg-primary));
+      border-color: var(--accent-primary);
+      box-shadow: 0 8px 30px rgba(95, 208, 138, 0.14);
+    }
+    .branch--featured .branch__label { color: var(--accent-primary); }
+
+    .branch__heading { margin: 0; }
+    .branch__toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: none;
+      border: 0;
+      padding: 16px 18px;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      border-radius: var(--radius-lg);
+    }
+    .branch__toggle:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 2px; }
+    .branch__label { display: block; font-weight: 700; font-size: 1.02rem; line-height: 1.3; }
+    .branch__sub { display: block; margin-top: 2px; font-size: 0.84rem; line-height: 1.45; color: var(--text-secondary); }
+    .branch__meta {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8125rem; /* 13px legibility floor */
+      color: var(--accent-tertiary);
+    }
+    .branch__chevron {
+      display: inline-block;
+      font-size: 1rem;
+      transition: transform 340ms cubic-bezier(0.32, 0.72, 0, 1);
+    }
+    .branch--open .branch__chevron { transform: rotate(90deg); }
+
+    /* the reveal: 0fr → 1fr grid row — height animates without JS measuring */
+    .branch__body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 340ms cubic-bezier(0.32, 0.72, 0, 1);
+    }
+    .branch--open .branch__body { grid-template-rows: 1fr; }
+    .branch__kids {
+      overflow: hidden;
+      min-height: 0;
+      visibility: hidden;
+      transition: visibility 340ms;
+    }
+    .branch--open .branch__kids { visibility: visible; }
+    /* the thread — what keeps it reading as a TREE, not just an accordion */
+    .branch__kids-inner {
+      margin: 0 18px 14px;
+      padding-left: 16px;
+      border-left: 2px solid var(--accent-primary-dim);
       display: flex;
       flex-direction: column;
       gap: 8px;
-      z-index: 10;
     }
-    .tree-ctl {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      background: var(--bg-secondary);
+    .branch--featured .branch__kids-inner { border-left-color: rgba(95, 208, 138, 0.35); }
+
+    /* a leaf: the whole row is the link */
+    .leaf {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 14px;
+      background: var(--bg-primary);
       border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-md);
       color: var(--text-primary);
-      font-size: 1.15rem;
-      line-height: 1;
-      cursor: pointer;
-      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 260ms ease, transform 260ms cubic-bezier(0.32, 0.72, 0, 1),
+        border-color var(--transition-fast);
     }
-    .tree-ctl:hover, .tree-ctl:focus-visible {
+    .branch--open .leaf {
+      opacity: 1;
+      transform: none;
+      transition-delay: calc(var(--i, 0) * 45ms + 60ms), calc(var(--i, 0) * 45ms + 60ms), 0ms;
+    }
+    .leaf:hover {
       border-color: var(--accent-primary);
-      box-shadow: 0 0 0 3px var(--accent-primary-dim);
-      outline: none;
+      opacity: 1;
     }
+    .leaf:focus-visible {
+      outline: 2px solid var(--accent-primary);
+      outline-offset: 2px;
+      opacity: 1;
+    }
+    .leaf__label { display: block; font-weight: 600; font-size: 0.93rem; line-height: 1.35; }
+    .leaf__sub { display: block; margin-top: 1px; font-size: 0.8125rem; line-height: 1.45; color: var(--text-secondary); }
+    .leaf__go { flex: 0 0 auto; font-size: 0.85rem; color: var(--accent-tertiary); }
+
+    .page-foot {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 18px;
+      font-size: 0.84rem;
+    }
+    .page-foot a { font-weight: 600; }
+    .page-foot__copy { margin-left: auto; color: var(--text-tertiary); }
 
     @media (prefers-reduced-motion: reduce) {
-      .tnode { transition: none; }
-      .tnode--pulse { animation: none; }
+      .branch-slot, .branch-slot__inner, .branch__body, .branch__kids, .branch__chevron, .leaf { transition: none; }
     }
   </style>
 </head>
 <body>
   <!-- Minimal nav on purpose: the full site menu is a hamburger on mobile
        (wired in main.js, not loaded here) — one back-link can't break. -->
-  <nav class="nav" id="nav">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="nav nav--scrolled">
     <div class="nav__inner container">
       <a href="index.html" class="nav__brand mono">RR</a>
-      <div class="view-toggle" role="group" aria-label="Portfolio view" style="margin-left: auto">
+      <div class="view-toggle" role="group" aria-label="Portfolio view">
         <a href="index.html" class="view-toggle__opt is-active" aria-current="page">Tree</a>
         <a href="classic.html" class="view-toggle__opt">Cabinet</a>
       </div>
     </div>
   </nav>
 
-  <!-- Always-visible identity: guarantees the 30-second, zero-click visitor
-       gets who/what/how-to-reach even if they never touch the tree. -->
-  <aside class="idcard" aria-label="About Rensley R.">
-    <img class="idcard__avatar" src="assets/images/profile-pic.png" alt="Rensley R." width="60" height="60" />
-    <div class="idcard__body">
-      <p class="idcard__name">Rensley R. <span class="idcard__avail">· open to roles</span></p>
-      <p class="idcard__role">Payments &amp; on-chain infrastructure engineer</p>
-      <p class="idcard__tagline">Reasoning-first · fullstack, backend-leaning — where fintech lies.</p>
-      <p class="idcard__proof mono">1,746 tests · <a href="https://sepolia.basescan.org/tx/0x634eb3d492797532e98983b56f4fc5d97f0f7682dbb94d0f59ce7add28dd9979" target="_blank" rel="noopener">$1 payment settled on-chain →</a> · testnet only, no real money</p>
-      <p class="idcard__links">
-        <a href="https://github.com/doble196" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com/in/rensley-2-nfty" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:rensley@nfteria.cc">Email</a>
+  <div class="bg3d" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+  <main class="page" id="main">
+    <!-- The identity IS the tree's root — everything below branches from it. -->
+    <header class="hero-id">
+      <img class="hero-id__avatar" src="assets/images/profile-pic.png" alt="Rensley R." width="72" height="72" />
+      <div>
+        <h1 class="hero-id__name">Rensley R. <span class="hero-id__avail">· open to roles</span></h1>
+        <p class="hero-id__role">Payments &amp; on-chain infrastructure engineer</p>
+        <p class="hero-id__tagline">Reasoning-first · fullstack, backend-leaning — where fintech lies.</p>
+        <p class="hero-id__proof mono">1,746 tests · <a href="https://sepolia.basescan.org/tx/0x634eb3d492797532e98983b56f4fc5d97f0f7682dbb94d0f59ce7add28dd9979" target="_blank" rel="noopener">$1 payment settled on-chain →</a> · testnet only, no real money</p>
+        <p class="hero-id__links">
+          <a href="https://github.com/doble196" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/rensley-2-nfty" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:rensley@nfteria.cc">Email</a>
+        </p>
+      </div>
+    </header>
+
+    <!-- Sector filter — chips generated from data by the engine (muscle-tree.js) -->
+    <div class="sector-bar" id="sectorBar" role="group" aria-label="Filter work by sector"></div>
+
+    <!-- The tree — built from tree-data.js by the engine. A named <section>
+         so the group is a real landmark (aria-label on a div does nothing). -->
+    <section class="tree" id="tree" aria-label="Capabilities and the products they power"></section>
+
+    <noscript>
+      <p style="padding: 20px 0">
+        This page builds its tree with JavaScript. The same story in plain
+        HTML: <a href="classic.html">the classic portfolio</a>.
       </p>
-      <p class="idcard__cue mono" aria-hidden="true">▶ tap any node to dig in</p>
-    </div>
-  </aside>
+    </noscript>
 
-  <!-- Sector filter — chips generated from data by the engine (muscle-tree.js) -->
-  <div class="sector-bar" id="sectorBar" role="group" aria-label="Filter work by sector"></div>
+    <!-- slim footer so the page ends the same way the cabinet does -->
+    <footer class="page-foot">
+      <a href="mailto:rensley@nfteria.cc">rensley@nfteria.cc</a>
+      <a href="https://github.com/doble196" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/rensley-2-nfty" target="_blank" rel="noopener">LinkedIn</a>
+      <span class="page-foot__copy mono">© <span id="year">2026</span> Rensley R. · New York, NY</span>
+    </footer>
+  </main>
 
-  <div class="tree-stage" id="treeStage" aria-label="Interactive map: capabilities and the products they power">
-    <div class="bg3d" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <svg class="tree-lines" id="treeLines" aria-hidden="true">
-      <g id="treeLinesG"></g>
-    </svg>
-    <div class="tree-world" id="treeWorld"></div>
-  </div>
-
-  <div class="tree-controls" role="group" aria-label="Tree view controls">
-    <button type="button" id="zoomIn" class="tree-ctl" aria-label="Zoom in" title="Zoom in">+</button>
-    <button type="button" id="zoomOut" class="tree-ctl" aria-label="Zoom out" title="Zoom out">−</button>
-    <button type="button" id="zoomReset" class="tree-ctl" aria-label="Reset view" title="Reset view">⌖</button>
-  </div>
-
-  <p class="tree-hint mono">tap a node to expand · drag to pan · scroll / pinch to zoom</p>
-
-  <noscript>
-    <div style="position: fixed; inset: 80px 16px auto; z-index: 20">
-      <p>
-        This page is an interactive tree and needs JavaScript. The same story
-        in plain HTML: <a href="classic.html">the classic portfolio</a>.
-      </p>
-    </div>
-  </noscript>
-
-  <script src="assets/js/tree-data.js"></script>
-  <script src="assets/js/muscle-tree.js"></script>
+  <script src="assets/js/tree-data.js?v=6"></script>
+  <script src="assets/js/muscle-tree.js?v=6"></script>
 </body>
 </html>
