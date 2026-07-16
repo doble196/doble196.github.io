@@ -31,18 +31,33 @@ A running note so the next session starts with an obvious first move.
   opens instantly) so the story doesn't hide behind a click.
 - **Visual hierarchy:** Payments is the flagship — weight, not just reading order.
 
-## Next moves (start here tomorrow)
-1. **Validate, don't assume — the highest-value next step.** Run the real 30-second test: hand
-   someone who's never seen it your phone, take it back at 0:30, ask *"what does this person do,
-   and how would you reach them?"* Their answer is the only ground truth. Everything shipped so
-   far is verified to *work and fit* — not yet verified to *land*.
-2. **Identity-card positioning (a voice decision — yours to make).** Consider leading the card
-   with the role competency — *"Payments & on-chain infrastructure engineer · fullstack,
-   backend-leaning"* — and demoting the "reasoning-first" line to secondary, so a hiring manager
-   buckets you by role in the first read. Left undone on purpose: it's your positioning, not mine.
-3. **De-risk the "crypto vs payments" read.** For a non-crypto fintech shop, frame the on-chain
-   work as payments-engineering rigor (USD-priced, non-custodial, fuzz-tested) so it reads
-   "payments engineer," not "crypto person."
+## Shipped (Week 2 — accessibility pass, 2026-07-15)
+Four small commits, each overflow-gated (desktop + mobile, context-validated) and merged to
+`main` via clean fast-forward, then pushed live:
+- **Contrast:** `--text-tertiary` grey lifted to meet WCAG AA (was 3.4–4.0:1, now ~4.9–5.8:1).
+- **Small-mono legibility:** `.mono` letter-spacing `0.02em` (the `.hero__tagline` typewriter
+  opted out so its `steps(23)` animation stays aligned).
+- **Colorblind (WCAG 1.4.1):** underlined inline *prose* links (CodeHawks, Patrick/Cyfrin, the $1
+  tx) so they're not signalled by green alone; chrome links left clean (opt-in scoping).
+- **13px floor:** five reader-facing labels lifted to `0.8125rem` (`.tag`, `.tag--sm`,
+  `.org-card__type`, `.epigraph__cite`, `.project-card__badge`).
+- Earlier: role-first identity card ("Payments & On-Chain Infrastructure Engineer") live in both
+  views; dead links removed; testnet counts reconciled.
+
+## Next moves (start here tomorrow — truth before polish)
+1. **⚠️ Truth pass FIRST.** The site contradicts itself on test count: **"1,746 tests"** (index +
+   `tree-data.js`) vs **"864 tests"** (`classic.html:431` and `:716`). Reconcile to one number, or
+   make each claim's scope explicit (864 = router suite? 1,746 = full repo?). Credibility, not
+   styling — Cheatcode #20. Fix before anything else.
+2. **Verify on PROD, not localhost.** Today's a11y pass was verified on `localhost` only. Load the
+   live `doble196.github.io`, re-run the overflow + grayscale checks against production.
+   Done-in-the-world, not done-in-the-code (Cheatcode #7).
+3. **The real 30-second human test** — still unrun, still the only ground truth for "does the hero
+   land." Hand someone your phone, take it back at 0:30, ask *"what does this person do, and how
+   would you reach them?"*
+4. **Your call (flagged, not done):** borderline colorblind reinforcements (contact/org link rows,
+   filter chip); and the fate of the stale `redesign/knicks-home-away` branch (unmerged, 28 behind
+   `main`, ~1,244-line `styles.css` rewrite — revive-with-rebase or delete).
 
 ## Local preview
 ```bash
