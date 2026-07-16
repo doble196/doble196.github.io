@@ -11,13 +11,17 @@ A running note so the next session starts with an obvious first move.
 - **Content is data-only:** [`assets/js/tree-data.js`](assets/js/tree-data.js) — add/edit/reorder nodes
   here; the engine never names a node. A node is `{ label, sub?, href?, featured?, children? }`.
   `featured: true` marks the flagship (currently **Payments & Settlement**) — it renders with
-  visual dominance so the eye lands there first.
-- **Engine:** [`assets/js/muscle-tree.js`](assets/js/muscle-tree.js) — layout, springs, lines,
-  bounded zoom-to-fit, auto-reveal. Data-blind; you shouldn't need to touch it to change content.
+  visual dominance AND starts expanded.
+- **Engine:** [`assets/js/muscle-tree.js`](assets/js/muscle-tree.js) — REWRITTEN 2026-07-16: the
+  tree is now normal in-flow page content (hero header → sticky sector chips → a column of
+  expanding branch cards). No camera, no pan, NO ZOOM (pinch disabled site-wide by owner
+  decision — viewport meta + gesture guard). Motion is pure CSS (grid-rows 0fr→1fr, same idiom
+  as the cabinet drawers). Data-blind; you shouldn't need to touch it to change content.
 - **Cabinet behavior:** [`assets/js/cabinet.js`](assets/js/cabinet.js) — drawer toggles +
   hash-deeplink auto-open.
 - **Styles/tokens:** [`assets/css/styles.css`](assets/css/styles.css) (tree-specific CSS is
-  inline in `index.html`).
+  inline in `index.html`). **Bump the `?v=N` asset query in BOTH html files whenever CSS/JS
+  change shape** — GitHub Pages caches assets ~10 min; a stale engine + new HTML = empty page.
 
 ## Shipped (Week 2 — UX pass)
 - Tree portfolio as the front door; classic resume preserved at `/classic.html`; obvious
@@ -43,6 +47,24 @@ Four small commits, each overflow-gated (desktop + mobile, context-validated) an
   `.org-card__type`, `.epigraph__cite`, `.project-card__badge`).
 - Earlier: role-first identity card ("Payments & On-Chain Infrastructure Engineer") live in both
   views; dead links removed; testnet counts reconciled.
+
+## Shipped (2026-07-16 — tree rewrite + red-team pass)
+- **Tree is a real page now** (owner's call: "Apple-like, not inside a window"): in-flow hero +
+  sticky filter chips + expanding cards; vertical list on every screen size; flagship opens on load.
+- **Pinch zoom disabled everywhere** (owner decision): viewport `maximum-scale=1` +
+  `touch-action: manipulation` + iOS gesture guard in both JS entry files.
+- **Red team (95 agents, 67 confirmed findings on structure/look), top fixes applied:** credential
+  `pre` now scrolls inside its card (was hard-clipped on every phone); codehawks stats wrap;
+  cabinet hero de-monumented (natural height, 160px avatar); drawers restyled as cards (tree idiom);
+  org/audit hover no longer erases the accent stripe; filtered-out tree branches leave the tab
+  order; Tree⇄Cabinet toggle sits far right on both pages; nav collapses at 880px (was 768, band
+  collided); square 800×800 `og-image.png` + full social-meta parity; slim footer + skip links +
+  `main` landmarks on both pages; dark `404.html`; dark redirect stub; h4→h3 card headings;
+  aria-pressed on filters; dead CSS deletions (.card, org-card blue/orange, .tree-stage).
+- **Red-team leftovers (deliberately deferred, in priority order):** collapse the dead "neon layer"
+  in styles.css (~200 lines defined then overridden); unify the chip idiom (.tag vs .filter-btn vs
+  sector chips) and the two chevron treatments; type-scale + radius tokens cleanup; heatmap day
+  cells are mouse-only (keyboard/AT); second epigraph demotion; nav resting-state parity.
 
 ## Next moves (start here tomorrow — truth before polish)
 1. **⚠️ Truth pass FIRST.** The site contradicts itself on test count: **"1,746 tests"** (index +
