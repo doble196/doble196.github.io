@@ -40,6 +40,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  touch-action: manipulation; /* scroll yes, double-tap/pinch zoom no */
 }
 
 body {
@@ -220,20 +221,41 @@ img {
   font-size: 0.8125rem; /* 13px legibility floor */
 }
 
-.card {
-  background: var(--bg-secondary);
+/* code panels: scroll INSIDE the card (the drawer animation needs
+   overflow:hidden on its wrapper, so without this, long lines are clipped
+   with no way to reach them — same pattern as .heatmap-wrapper) */
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 1.5rem;
-  transition: border-color var(--transition-base),
-    box-shadow var(--transition-base), transform var(--transition-base);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  font-size: 0.8125rem;
+  line-height: 1.55;
 }
+pre::-webkit-scrollbar { height: 6px; }
+pre::-webkit-scrollbar-track { background: transparent; }
+pre::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 3px; }
+/* bare inline addresses (0x…) are unbreakable 42-char runs — let them wrap */
+.org-card__desc code { overflow-wrap: anywhere; }
 
-.card:hover {
-  border-color: rgba(74, 222, 128, 0.3);
-  box-shadow: 0 0 25px rgba(74, 222, 128, 0.08);
-  transform: translateY(-3px);
+/* skip link — hidden above the viewport until keyboard focus lands on it */
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -60px;
+  z-index: 200;
+  padding: 10px 16px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: top var(--transition-fast);
 }
+.skip-link:focus-visible { top: 12px; outline: none; }
 
 /* ========================================
    4. NAVIGATION
@@ -261,6 +283,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem; /* keeps brand/links apart now that the toggle owns the auto margin */
   height: 70px;
 }
 
@@ -300,17 +323,21 @@ img {
   color: var(--accent-primary) !important;
   padding: 0.45rem 1.1rem;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(74, 222, 128, 0.2);
+  border: 1px solid rgba(95, 208, 138, 0.2);
 }
 
 .nav__cta:hover {
-  background: rgba(74, 222, 128, 0.2);
+  background: rgba(95, 208, 138, 0.2);
 }
 
 .nav__toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
   background: none;
   border: none;
   cursor: pointer;
@@ -342,10 +369,10 @@ img {
    5. HERO
    ======================================== */
 .hero {
-  min-height: 100vh;
+  /* natural height, not a 100vh monument — content starts above the fold */
   display: flex;
   align-items: center;
-  padding-top: 70px;
+  padding: 9rem 0 3.5rem;
   background: radial-gradient(
       circle at 20% 50%,
       rgba(74, 222, 128, 0.06) 0%,
@@ -439,11 +466,10 @@ img {
 }
 
 .hero__image img {
-  width: 260px;
-  height: 260px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   border: 3px solid var(--accent-primary);
-  box-shadow: 0 0 40px var(--accent-primary-glow);
   object-fit: cover;
 }
 
@@ -592,12 +618,12 @@ img {
 
 .heatmap-tooltip {
   position: fixed;
-  background: #1f1f2e;
+  background: var(--bg-tertiary);
   color: var(--text-primary);
   font-size: 0.75rem;
   padding: 0.4rem 0.65rem;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.15s;
@@ -715,22 +741,6 @@ img {
 
 .org-card--purple:hover {
   box-shadow: 0 0 30px rgba(167, 139, 250, 0.08);
-}
-
-.org-card--blue {
-  border-top-color: var(--accent-tertiary);
-}
-
-.org-card--blue:hover {
-  box-shadow: 0 0 30px rgba(96, 165, 250, 0.08);
-}
-
-.org-card--orange {
-  border-top-color: #fb923c;
-}
-
-.org-card--orange:hover {
-  box-shadow: 0 0 30px rgba(251, 146, 60, 0.08);
 }
 
 .org-card__header {
@@ -889,6 +899,7 @@ img {
    ======================================== */
 .codehawks-stats {
   display: flex;
+  flex-wrap: wrap; /* 320px-class phones: the third card wraps instead of clipping */
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
@@ -925,7 +936,8 @@ img {
 
 .security-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* min(300px, 100%): tracks can shrink below 300px on narrow phones */
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: 1.25rem;
   margin-bottom: 2rem;
 }
@@ -1004,6 +1016,17 @@ img {
   color: var(--text-secondary);
   font-size: 0.92rem;
   line-height: 1.6;
+}
+
+.education-card + .education-card {
+  margin-top: 1rem;
+}
+
+.education-card__links {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 /* ========================================
@@ -1086,7 +1109,9 @@ img {
 /* ========================================
    15. RESPONSIVE
    ======================================== */
-@media (max-width: 768px) {
+/* nav collapses at 880px, wider than the content breakpoint — in the
+   769-880px band the full link row + view toggle can't share the bar */
+@media (max-width: 880px) {
   .nav__toggle {
     display: flex;
   }
@@ -1114,16 +1139,21 @@ img {
     font-size: 1.05rem;
     padding: 0.5rem 0;
   }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 6.5rem 0 2.5rem;
+  }
 
   .hero__content {
     flex-direction: column-reverse;
     text-align: center;
-    padding-top: 2rem;
   }
 
   .hero__image img {
-    width: 180px;
-    height: 180px;
+    width: 120px;
+    height: 120px;
   }
 
   .hero__actions {
@@ -1147,10 +1177,6 @@ img {
     gap: 0.75rem;
   }
 
-  .section {
-    padding: 3.5rem 0;
-  }
-
   .heatmap-wrapper { padding: 1rem; }
   .heatmap-months { height: 18px; margin-bottom: 6px; }
   .heatmap-cell { width: 10px; height: 10px; }
@@ -1158,7 +1184,9 @@ img {
   .heatmap-grid { gap: 2px; }
   .heatmap-body { gap: 4px; }
   .heatmap-days { gap: 2px; width: 28px; }
-  .heatmap-days span { height: 10px; line-height: 10px; font-size: 0.55rem; }
+  /* 0.65rem stays at the base size — the wrapper already scrolls, so the
+     axis labels never need to shrink below legibility */
+  .heatmap-days span { height: 10px; line-height: 10px; }
 }
 
 @media (max-width: 480px) {
@@ -1246,7 +1274,6 @@ img {
 }
 
 /* cards: calm border on hover, no neon glow, no hover jump */
-.card:hover,
 .org-card:hover,
 .project-card:hover,
 .audit-card:hover,
@@ -1256,14 +1283,16 @@ img {
   border-color: var(--border-hover);
 }
 .org-card,
-.org-card--purple,
-.org-card--blue,
-.org-card--orange {
+.org-card--purple {
   border-top-color: var(--accent-primary);
 }
 .audit-card {
   border-left-color: var(--accent-primary);
 }
+/* the border-color shorthand above would wipe the accent edge on hover —
+   re-assert it so the stripe survives the calm-down */
+.org-card:hover { border-top-color: var(--accent-primary); }
+.audit-card:hover { border-left-color: var(--accent-primary); }
 
 /* tech tags: subtle bordered chips, like the proof-of-learning stack chips */
 .tag,
@@ -1367,6 +1396,10 @@ a:hover {
   padding: 3px;
   background: var(--bg-secondary);
 }
+/* one deterministic slot on BOTH pages: the toggle hugs the right edge
+   (next to the hamburger on classic mobile) */
+.nav .view-toggle { margin-left: auto; }
+.nav .view-toggle + .nav__toggle { margin-left: 1rem; }
 .view-toggle__opt {
   padding: 6px 16px;
   border-radius: var(--radius-full);
@@ -1393,20 +1426,31 @@ a:hover {
    in the DOM (SEO + view-source); closed drawers hide it via the 0fr grid
    row + visibility (removed from a11y tree and tab order when closed). */
 .drawer__heading { margin: 0; }
+/* drawers read as tappable cards — the same idiom as the tree's branches,
+   so a closed drawer is an obvious control, not a floating headline */
+.section.drawer { padding: 0.6rem 0; }
+.section.drawer:first-of-type { padding-top: 1.25rem; }
+.drawer__heading.section__title {
+  font-size: clamp(1.15rem, 2.6vw, 1.4rem);
+  margin-bottom: 0;
+}
 .drawer__toggle {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  background: none;
-  border: 0;
-  padding: 6px 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
   color: inherit;
   font: inherit;
   text-align: left;
   cursor: pointer;
+  transition: border-color var(--transition-fast);
 }
+.drawer__toggle:hover { border-color: var(--border-hover); }
 .drawer__toggle:focus-visible {
   outline: 2px solid var(--accent-primary);
   outline-offset: 4px;
@@ -1428,6 +1472,7 @@ a:hover {
 .drawer__inner {
   overflow: hidden;
   visibility: hidden;
+  padding-top: 1.5rem;
   transition: visibility 320ms;
 }
 .drawer--open .drawer__inner { visibility: visible; }
@@ -1437,9 +1482,8 @@ a:hover {
    ======================================== */
 /* Slow-drifting wireframe boxes: wallpaper, never focus. pointer-events:none
    so every click passes through; opacity kept ≤ .12 so it can't compete with
-   the tree's SVG lines. On classic.html the layer sits at z-index:-1 (above
-   the canvas background, below all content); on index.html the same markup
-   lives INSIDE .tree-stage as its first child, painting under the SVG. */
+   content. On both pages the layer is a direct body child at z-index:-1 —
+   above the page background, below everything else. */
 .bg3d {
   position: fixed;
   inset: 0;
@@ -1448,7 +1492,6 @@ a:hover {
   z-index: -1;
   perspective: 900px;
 }
-.tree-stage .bg3d { position: absolute; z-index: auto; }
 .bg3d i {
   position: absolute;
   display: block;
@@ -1469,8 +1512,16 @@ a:hover {
   100% { transform: rotateX(360deg) rotateY(180deg) rotateZ(0deg)  translateY(0); }
 }
 
-/* Reduced motion: the background stops COMPLETELY; drawers open instantly. */
+/* Touch devices: comfortable hit areas without changing the desktop look */
+@media (pointer: coarse) {
+  .filter-btn { padding-top: 0.65rem; padding-bottom: 0.65rem; }
+  .view-toggle__opt { padding-top: 10px; padding-bottom: 10px; }
+}
+
+/* Reduced motion: the background stops COMPLETELY; drawers open instantly;
+   anchor scrolling jumps instead of gliding. */
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .bg3d i { animation: none; }
   .drawer__body, .drawer__inner, .drawer__chevron, .view-toggle__opt { transition: none; }
 }

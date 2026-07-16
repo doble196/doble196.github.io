@@ -1,3 +1,10 @@
+// No pinch zoom (matching the tree view): the viewport meta covers Android;
+// iOS Safari ignores it but exposes gesture events for pinches — cancelling
+// them blocks the zoom. Browser text-size settings still work.
+["gesturestart", "gesturechange", "gestureend"].forEach((ev) => {
+  document.addEventListener(ev, (e) => e.preventDefault(), { passive: false });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   initNav();
   initScrollReveal();
@@ -93,11 +100,20 @@ function initProjectFilter() {
   const cards = document.querySelectorAll(".project-card");
   if (!buttons.length || !cards.length) return;
 
+  // expose the toggle state to AT, mirroring the tree view's sector chips
+  buttons.forEach((b) =>
+    b.setAttribute("aria-pressed", String(b.classList.contains("filter-btn--active")))
+  );
+
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const { filter } = btn.dataset;
-      buttons.forEach((b) => b.classList.remove("filter-btn--active"));
+      buttons.forEach((b) => {
+        b.classList.remove("filter-btn--active");
+        b.setAttribute("aria-pressed", "false");
+      });
       btn.classList.add("filter-btn--active");
+      btn.setAttribute("aria-pressed", "true");
 
       cards.forEach((card) => {
         const match =
@@ -193,13 +209,16 @@ function initHeatmap() {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = `filter-btn${index === 0 ? " filter-btn--active" : ""}`;
+      btn.setAttribute("aria-pressed", String(index === 0));
       btn.dataset.year = year;
       btn.textContent = year;
       btn.addEventListener("click", () => {
         yearsContainer.querySelectorAll(".filter-btn").forEach((b) => {
           b.classList.remove("filter-btn--active");
+          b.setAttribute("aria-pressed", "false");
         });
         btn.classList.add("filter-btn--active");
+        btn.setAttribute("aria-pressed", "true");
         currentYear = year;
         renderYear(year);
       });
