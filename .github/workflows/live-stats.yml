@@ -64,21 +64,31 @@ jobs:
           echo "tests=$N" >> "$GITHUB_OUTPUT"
           echo "measured $N tests"
 
-      # OPTIONAL verification refresh — enabled only when ETHERSCAN_API_KEY is set.
-      # Extend here: query each chain's explorer (Etherscan V2 / Blockscout /
-      # Routescan) for source-verification of the router (0xe92244e3…) and emit
-      # `verified` + `testnets`. Absent the key, this step is a no-op and the
-      # committed values remain the fallback.
-      - name: Verification status (optional)
+      # Verification refresh — queries each mirror chain's block explorer
+      # (scripts/check-verification.mjs: Etherscan V2 keyed for the
+      # Etherscan-family incl. Snowscan/Fuji, Blockscout keyless for Arc /
+      # Robinhood / Celo, zkSync explorer). Conservative: an unreachable explorer
+      # is NOT counted, so the number can only understate. Runs only when the
+      # ETHERSCAN_API_KEY secret is set; absent it, verified/testnets keep their
+      # committed fallback (the generator leaves un-provided fields untouched).
+      - name: Verification status (block explorers)
         id: verify
         run: |
           if [ -z "${ETHERSCAN_API_KEY:-}" ]; then
-            echo "no ETHERSCAN_API_KEY — leaving verified/testnets as the committed fallback"
-          else
-            echo "ETHERSCAN_API_KEY present — (extend this step to query explorers)"
+            echo "no ETHERSCAN_API_KEY secret — keeping the committed verified/testnets fallback"
+            exit 0
+          fi
+          OUT=$(node scripts/check-verification.mjs) || OUT=""
+          echo "explorer result: ${OUT:-<none>}"
+          if [ -n "$OUT" ]; then
+            V=$(printf '%s' "$OUT" | node -e 'let d="";process.stdin.on("data",c=>d+=c).on("end",()=>{try{process.stdout.write(String(JSON.parse(d).verified))}catch{}})')
+            T=$(printf '%s' "$OUT" | node -e 'let d="";process.stdin.on("data",c=>d+=c).on("end",()=>{try{process.stdout.write(String(JSON.parse(d).testnets))}catch{}})')
+            [ -n "$V" ] && echo "verified=$V" >> "$GITHUB_OUTPUT"
+            [ -n "$T" ] && echo "testnets=$T" >> "$GITHUB_OUTPUT"
           fi
         env:
           ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
+          ARC_SCAN_VERIFIER_URL: 'https://testnet.arcscan.app/api?'
 
       - name: Date stamp (the "as of")
         id: date
@@ -88,6 +98,8 @@ jobs:
         run: node scripts/gen-live-stats.mjs
         env:
           STAT_TESTS: ${{ steps.count.outputs.tests }}
+          STAT_VERIFIED: ${{ steps.verify.outputs.verified }}
+          STAT_TESTNETS: ${{ steps.verify.outputs.testnets }}
           STAT_DATE: ${{ steps.date.outputs.today }}
 
       - name: Commit if the numbers changed
