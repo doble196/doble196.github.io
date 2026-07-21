@@ -48,7 +48,7 @@
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
     <link rel="apple-touch-icon" href="assets/images/og-image.png" />
     <meta name="theme-color" content="#0e1116" />
-    <link rel="stylesheet" href="assets/css/styles.css?v=6" />
+    <link rel="stylesheet" href="assets/css/styles.css?v=7" />
   </head>
   <body>
     <!-- ambient 3D wallpaper — z-index:-1, pointer-events:none (styles.css) -->
@@ -147,8 +147,8 @@
             <p>
               The center of that work is <strong>Access0x1</strong> — an
               open-source, USD-priced payments rail, non-custodial, with its
-              shared router live at one address across 8 public testnets,
-              source-verified on 7 of them. I shipped it at <strong>ETHGlobal</strong>
+              shared router live at one address across <span data-stat="testnets">9</span> public testnets,
+              source-verified on <span data-stat="verified">7</span> of them. I shipped it at <strong>ETHGlobal</strong>
               and took a prize from <strong>ENS</strong>. On top of it I built
               <strong>NFTeria</strong> — USD-priced checkout any merchant joins
               with one link.
@@ -418,10 +418,10 @@ const abi    = ['function balanceOf(address owner) view returns (uint256)'];
                 commerce quintet. A universal deployer wires all 12 contracts in
                 one command, and a standalone verifier re-uploads source to every
                 explorer. The router lives at one deterministic address
-                (0xe92244e3…) mirrored across 8 public testnets — Arc, Base,
-                Ethereum, Optimism, Avalanche Fuji, Robinhood, Arbitrum, and Celo
-                Sepolia — source-verified on 7 of the 8, with 11 chains deployed
-                in total. Testnet-only; no mainnet.
+                (0xe92244e3…) mirrored across <span data-stat="testnets">9</span> public testnets — Arc, Base,
+                Ethereum, Optimism, Avalanche Fuji, Robinhood, Arbitrum, Celo
+                Sepolia, and ZKsync Sepolia — source-verified on <span data-stat="verified">7</span> of the <span data-stat="testnets">9</span>, with
+                <span data-stat="chainsTotal">12</span> chains deployed in total. Testnet-only; no mainnet.
               </p>
               <div class="org-card__tech">
                 <span class="tag tag--sm tag--purple">Solidity</span>
@@ -432,7 +432,7 @@ const abi    = ['function balanceOf(address owner) view returns (uint256)'];
                 <span class="tag tag--sm tag--purple">viem / wagmi</span>
               </div>
               <p class="org-card__meta">
-                864 tests &bull; 100% router coverage &bull; 13 invariants
+                <span data-stat="tests">1,992</span> tests &bull; 100% router coverage &bull; 13 invariants
               </p>
               <div class="org-card__links">
                 <a
@@ -713,12 +713,11 @@ const abi    = ['function balanceOf(address owner) view returns (uint256)'];
                 Open-source, on-chain payments layer. One shared, multi-tenant
                 router — zero custody, USD-priced via Chainlink feeds read in-tx,
                 exact fee-split — that any merchant joins with one permissionless
-                call. A universal deployer wires all 12 contracts across 23
-                testnets in one command. Source-verified on Base Sepolia
-                (0xec89c9eE…6E8E57), Ethereum + Optimism Sepolia, and Avalanche
-                Fuji; deployed on Arc Testnet (0xA5982ea8…69Aad) + Robinhood Chain,
-                verification pending. 864 tests, 100% router coverage, 13
-                money-safety invariants.
+                call. A universal deployer wires the contracts across every
+                chain in one command. The router lives at one deterministic
+                address (0xe92244e3…) mirrored across <span data-stat="testnets">9</span> public testnets,
+                source-verified on <span data-stat="verified">7</span> of the <span data-stat="testnets">9</span>, with <span data-stat="chainsTotal">12</span> chains deployed in total.
+                <span data-stat="tests">1,992</span> tests, 100% router coverage, 13 money-safety invariants.
               </p>
               <div class="project-card__tech">
                 <span class="tag tag--sm tag--purple">Solidity</span>
@@ -1493,7 +1492,10 @@ const abi    = ['function balanceOf(address owner) view returns (uint256)'];
       </div>
     </footer>
 
-    <script src="assets/js/main.js?v=6"></script>
-    <script src="assets/js/cabinet.js?v=6"></script>
+    <script src="assets/js/live-stats.js?v=7"></script>
+    <script src="assets/js/main.js?v=7"></script>
+    <script src="assets/js/cabinet.js?v=7"></script>
+    <!-- fills every [data-stat] span from window.LIVE_STATS (falls back to the baked-in number). -->
+    <script src="assets/js/stats-render.js?v=7"></script>
   </body>
 </html>
