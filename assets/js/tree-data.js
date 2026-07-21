@@ -21,7 +21,11 @@ window.MUSCLE_TREE = {
       children: [
         {
           label: "Access0x1",
-          sub: "open-source payments + identity rail · 1,746 passing tests",
+          sub: "open-source payments + identity rail · " +
+            (window.LIVE_STATS && window.LIVE_STATS.tests != null
+              ? window.LIVE_STATS.tests.toLocaleString("en-US")
+              : "1,992") +
+            " passing tests",
           href: "https://github.com/Access0x1/Access0x1",
         },
         {

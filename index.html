@@ -29,7 +29,7 @@
   <meta name="twitter:image" content="https://doble196.github.io/assets/images/og-image.png" />
   <!-- ?v= busts stale caches when these files change shape (the tree engine
        was rewritten; an old cached engine + new HTML renders an empty page) -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=6" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=7" />
   <style>
     /* Tree page only — everything else comes from styles.css tokens.
        The tree is REAL PAGE CONTENT now: no camera, no pan, no zoom. Expanding
@@ -324,7 +324,7 @@
         <h1 class="hero-id__name">Rensley R. <span class="hero-id__avail">· open to roles</span></h1>
         <p class="hero-id__role">Payments &amp; on-chain infrastructure engineer</p>
         <p class="hero-id__tagline">Reasoning-first · fullstack, backend-leaning — where fintech lies.</p>
-        <p class="hero-id__proof mono">1,746 tests · <a href="https://sepolia.basescan.org/tx/0x634eb3d492797532e98983b56f4fc5d97f0f7682dbb94d0f59ce7add28dd9979" target="_blank" rel="noopener">$1 payment settled on-chain →</a> · testnet only, no real money</p>
+        <p class="hero-id__proof mono"><span data-stat="tests">1,992</span> tests · <a href="https://sepolia.basescan.org/tx/0x634eb3d492797532e98983b56f4fc5d97f0f7682dbb94d0f59ce7add28dd9979" target="_blank" rel="noopener">$1 payment settled on-chain →</a> · testnet only, no real money</p>
         <p class="hero-id__links">
           <a href="https://github.com/doble196" target="_blank" rel="noopener">GitHub</a>
           <a href="https://linkedin.com/in/rensley-2-nfty" target="_blank" rel="noopener">LinkedIn</a>
@@ -356,7 +356,11 @@
     </footer>
   </main>
 
-  <script src="assets/js/tree-data.js?v=6"></script>
-  <script src="assets/js/muscle-tree.js?v=6"></script>
+  <!-- live-stats.js FIRST: tree-data.js reads window.LIVE_STATS.tests as it builds. -->
+  <script src="assets/js/live-stats.js?v=7"></script>
+  <script src="assets/js/tree-data.js?v=7"></script>
+  <script src="assets/js/muscle-tree.js?v=7"></script>
+  <!-- stats-render.js LAST: fills every [data-stat] span from window.LIVE_STATS. -->
+  <script src="assets/js/stats-render.js?v=7"></script>
 </body>
 </html>
