@@ -14,11 +14,11 @@
  * data-stat spans + stats-render.js, so the two pages can never disagree again.
  */
 window.LIVE_STATS = {
-  tests: 1992, // passing tests (forge test --list on Access0x1 @ main)
+  tests: 2016, // passing tests (forge test --list on Access0x1 @ main)
   testnets: 9, // CREATE3 mirror 0xe92244e3… live on 9 public testnets
   verified: 9, // source-verified of those 9
   chainsTotal: 12, // incl. 3 pre-mirror per-chain deploys (Hoodi, Galileo, Tempo)
   routerCoveragePct: 100,
   invariants: 13,
-  checkedAt: "2026-07-23", // "as of" — rendered as "checked daily", not "live"
+  checkedAt: "2026-07-24", // "as of" — rendered as "checked daily", not "live"
 };
