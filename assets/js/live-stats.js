@@ -20,5 +20,5 @@ window.LIVE_STATS = {
   chainsTotal: 12, // incl. 3 pre-mirror per-chain deploys (Hoodi, Galileo, Tempo)
   routerCoveragePct: 100,
   invariants: 13,
-  checkedAt: "2026-07-29", // "as of" — rendered as "checked daily", not "live"
+  checkedAt: "2026-07-30", // "as of" — rendered as "checked daily", not "live"
 };
