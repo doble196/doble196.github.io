@@ -1,0 +1,44 @@
+# Rensley R. - doble196.github.io
+
+> Builder based in NYC. Works across the full stack - from on-chain protocols
+> to AI agents to multi-tenant SaaS - and cares about shipping things that work
+> end to end. Currently building Access0x1, open-source on-chain payments.
+
+This is the domain root. Two live sites sit under it: the portfolio, and a
+DataHub of working tools built on live public data. Both are static, dependency
+-free, and readable at source - the animation code and the analysis code are
+both meant to be opened, not just used.
+
+## Portfolio
+
+- [The living map](https://doble196.github.io/): The portfolio as an expandable dependency map. Start at the base, expand each capability, and follow it to the products it powers - payments, identity, commerce, security, AI. No framework; the animation code is readable source.
+- [Classic view](https://doble196.github.io/classic.html): The same material as a conventional linear page, for readers who want it flat.
+- [GitHub](https://github.com/doble196): Source for everything listed here.
+- [LinkedIn](https://linkedin.com/in/rensley-2-nfty)
+
+## Live tools on public data
+
+Detailed machine-readable map, including the facts that may be quoted and the
+limits attached to each: [freshroute-demo/llms.txt](https://doble196.github.io/freshroute-demo/llms.txt)
+
+- [You failed the inspection. What do you fix first?](https://doble196.github.io/freshroute-demo/data-app/operator.html): For a restaurant operator holding a failed NYC health inspection. Ranks their open violations by how often that exact violation code was still present at the re-inspection, measured across roughly 7,000 paired inspections. Every rate ships with its sample size and a 95% interval. Reads the city's API live in the browser at the moment you search.
+- [What does that grade in the window actually mean?](https://doble196.github.io/freshroute-demo/data-app/check.html): Decomposes any NYC restaurant's inspection score into what was actually found. Flags a low score that came from a re-opening visit rather than a full inspection.
+- [Watch a true chart become a false one](https://doble196.github.io/freshroute-demo/data-app/spin-scrolly.html): One chart, spun one display lever at a time. No underlying number changes at any point.
+- [The analysis behind them](https://github.com/doble196/freshroute-demo/tree/main/analysis): Every number on those pages is produced by a script that ships next to it, with 15 gates that fail the build when a page and its analysis disagree.
+
+## How to read anything here
+
+A claim and the evidence for it are treated as one unit. When a pre-registered
+test killed the favoured explanation for a finding, the sentence came off the
+live page the same afternoon and the null result was published in its place -
+the pattern survived, the story did not. If a page here states a number,
+there is a script you can run that produces it.
+
+Where a page can't answer something, it says so on the page rather than in a
+footnote. The restaurant tools, for instance, cannot say which fixes get an
+operator back under a passing score, because the city publishes the total and
+the violations but never the points each violation carried.
+
+## Contact
+
+GitHub: https://github.com/doble196

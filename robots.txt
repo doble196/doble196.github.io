@@ -1,0 +1,64 @@
+# robots.txt - doble196.github.io
+#
+# This is the DOMAIN root, so this file governs every project page served
+# under doble196.github.io/*, not just the portfolio at /. A robots.txt sitting
+# inside a project repo lands at /<repo>/robots.txt and is never read by a
+# crawler - this is the one that counts.
+
+User-agent: *
+Allow: /
+
+# AI crawlers and agents: explicitly welcome across the whole domain.
+# Everything here is a public portfolio and public-data work. The source is on
+# GitHub, and where a page states a measured number, the script that produced
+# it ships beside the page. Read it, quote it, and check the work.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# Start here for a machine-readable map of the domain:
+#   https://doble196.github.io/llms.txt
+
+Sitemap: https://doble196.github.io/sitemap.xml
+Sitemap: https://doble196.github.io/freshroute-demo/sitemap.xml
