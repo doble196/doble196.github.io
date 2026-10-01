@@ -168,16 +168,35 @@
       </section>
 
       <!-- ========== ETHGLOBAL CREDENTIAL ========== -->
-      <section class="section drawer" id="credential">
+      <section class="section drawer drawer--open" id="credential">
         <div class="container reveal">
           <h2 class="section__title drawer__heading">
-            <button type="button" class="drawer__toggle" aria-expanded="false" aria-controls="credential-body">
-              <span>Verified ETHGlobal Hacker Pack holder</span>
+            <button type="button" class="drawer__toggle" aria-expanded="true" aria-controls="credential-body">
+              <span>ETHGlobal certificates</span>
               <span class="drawer__chevron" aria-hidden="true">▾</span>
             </button>
           </h2>
           <div class="drawer__body" id="credential-body">
             <div class="drawer__inner">
+          <div class="org-card org-card--purple">
+            <ul>
+              <li>
+                <a href="assets/certificates/ethglobal-newyork-2026.pdf" target="_blank" rel="noopener"><strong>ETHGlobal New York 2026</strong> — certificate</a>
+                · Access0x1 · prize: Integrate ENS ·
+                <a href="https://ethglobal.com/showcase/access0x1-kwa4b" target="_blank" rel="noopener">showcase</a>
+              </li>
+              <li>
+                <a href="assets/certificates/ethglobal-lisbon-2026.pdf" target="_blank" rel="noopener"><strong>ETHGlobal Lisbon 2026</strong> — certificate</a>
+                · Access0x1 ·
+                <a href="https://ethglobal.com/showcase/access0x1-awra1" target="_blank" rel="noopener">showcase</a>
+              </li>
+              <li>
+                <a href="assets/certificates/ethonline-2026.pdf" target="_blank" rel="noopener"><strong>ETHOnline 2026</strong> — certificate</a>
+                · UNICA ·
+                <a href="https://ethglobal.com/showcase/unica-b3obn" target="_blank" rel="noopener">showcase</a>
+              </li>
+            </ul>
+          </div>
           <div class="org-card org-card--purple">
             <p class="org-card__desc">
               An on-chain credential — the EG-HACKER token held on Optimism
@@ -198,37 +217,6 @@ const abi    = ['function balanceOf(address owner) view returns (uint256)'];
   const held = await new ethers.Contract(pack, abi, provider).balanceOf(wallet);
   console.log(`${wallet} ${held &gt; 0n ? 'is' : 'is not'} a pack holder`); // → is  (balance: 1)
 })();</code></pre>
-          </div>
-          <div class="org-card org-card--purple">
-            <p class="org-card__desc">
-              Certificates of participation from three ETHGlobal events in 2026,
-              each issued by ETHGlobal for a submitted project.
-            </p>
-            <ul>
-              <li>
-                <strong>ETHGlobal New York 2026</strong> (June 12–14) — project
-                Access0x1. Prize won: Integrate ENS (ENS).
-                <a href="assets/certificates/ethglobal-newyork-2026.pdf" target="_blank" rel="noopener">Certificate (PDF)</a>
-                ·
-                <a href="https://ethglobal.com/showcase/access0x1-kwa4b" target="_blank" rel="noopener">Showcase</a>
-              </li>
-              <li>
-                <strong>ETHGlobal Lisbon 2026</strong> (July 24–26) — project
-                Access0x1.
-                <a href="assets/certificates/ethglobal-lisbon-2026.pdf" target="_blank" rel="noopener">Certificate (PDF)</a>
-                ·
-                <a href="https://ethglobal.com/showcase/access0x1-awra1" target="_blank" rel="noopener">Showcase</a>
-              </li>
-              <li>
-                <strong>ETHOnline 2026</strong> (September 4–16) — project
-                UNICA.
-                <a href="assets/certificates/ethonline-2026.pdf" target="_blank" rel="noopener">Certificate (PDF)</a>
-                ·
-                <a href="https://ethglobal.com/showcase/unica-b3obn" target="_blank" rel="noopener">Showcase</a>
-              </li>
-            </ul>
-          </div>
-            </div>
           </div>
         </div>
       </section>
