@@ -1551,3 +1551,11 @@ a:hover {
   border-radius: 50%;
 }
 .cert figcaption::after { content: ""; display: block; clear: both; }
+.cert-extra {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.25rem 0 0;
+  font-size: 0.9rem;
+}
+.cert-extra img { display: block; width: 106px; height: auto; border-radius: 6px; }
