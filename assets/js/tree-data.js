@@ -151,17 +151,17 @@ window.MUSCLE_TREE = {
         {
           label: "ETHGlobal New York 2026",
           sub: "Access0x1 · prize: Integrate ENS · certificate",
-          href: "assets/certificates/ethglobal-newyork-2026.pdf",
+          href: "certificates/ethglobal-newyork-2026.html",
         },
         {
           label: "ETHGlobal Lisbon 2026",
           sub: "Access0x1 · certificate",
-          href: "assets/certificates/ethglobal-lisbon-2026.pdf",
+          href: "certificates/ethglobal-lisbon-2026.html",
         },
         {
           label: "ETHOnline 2026",
           sub: "UNICA · certificate",
-          href: "assets/certificates/ethonline-2026.pdf",
+          href: "certificates/ethonline-2026.html",
         },
       ],
     },
