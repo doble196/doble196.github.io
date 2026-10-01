@@ -140,6 +140,32 @@ window.MUSCLE_TREE = {
       ],
     },
     {
+      label: "Programmes & hackathons",
+      sub: "Uniswap Hook Incubator · three ETHGlobal events in 2026",
+      children: [
+        {
+          label: "Uniswap Hook Incubator, cohort 11",
+          sub: "in progress · Uniswap v4 hooks in Solidity + Foundry",
+          href: "https://atrium.academy/uniswap",
+        },
+        {
+          label: "ETHGlobal New York 2026",
+          sub: "Access0x1 · prize: Integrate ENS · certificate",
+          href: "assets/certificates/ethglobal-newyork-2026.pdf",
+        },
+        {
+          label: "ETHGlobal Lisbon 2026",
+          sub: "Access0x1 · certificate",
+          href: "assets/certificates/ethglobal-lisbon-2026.pdf",
+        },
+        {
+          label: "ETHOnline 2026",
+          sub: "UNICA · certificate",
+          href: "assets/certificates/ethonline-2026.pdf",
+        },
+      ],
+    },
+    {
       label: "Teaching",
       sub: "make the idea tangible, no jargon",
       sectors: ["teaching"],
