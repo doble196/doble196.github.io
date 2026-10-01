@@ -1525,3 +1525,19 @@ a:hover {
   .bg3d i { animation: none; }
   .drawer__body, .drawer__inner, .drawer__chevron, .view-toggle__opt { transition: none; }
 }
+
+/* Certificates: the image is the artwork; it opens the PDF. */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.cert { margin: 0; }
+.cert img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(127, 127, 127, 0.3);
+}
+.cert figcaption { margin-top: 0.5rem; font-size: 0.9rem; }
