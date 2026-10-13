@@ -56,7 +56,7 @@ def fetch_latest_commit(repo: str) -> dict | None:
 def render(key: str, d: dict) -> str:
     # Custom-formatted keys (linkified)
     if key == "email":
-        return f"[{d['email']}](mailto:{d['email']})"
+        return f"[{d['email']}](mailto:{d['email']})" if d.get("email") else ""
     if key == "x":
         return f"[@{d['x_handle']}](https://x.com/{d['x_handle']})"
     if key == "linkedin":
@@ -69,7 +69,7 @@ def render(key: str, d: dict) -> str:
         return f"[{d['website']}](https://{d['website']})"
     if key == "contact":
         lines = [
-            f"- **Email:** [{d['email']}](mailto:{d['email']})",
+            *([f"- **Email:** [{d['email']}](mailto:{d['email']})"] if d.get("email") else []),
             f"- **X:** [@{d['x_handle']}](https://x.com/{d['x_handle']})",
         ]
         if d.get("linkedin_path"):

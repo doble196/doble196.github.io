@@ -61,7 +61,6 @@ console.log(`${wallet} ${held > 0n ? 'is' : 'is not'} a pack holder`); // → is
 ## Contact
 
 <!-- IDENTITY:contact -->
-- **Email:** [rensley@nfteria.cc](mailto:rensley@nfteria.cc)
 - **X:** [@VyperPilledDev](https://x.com/VyperPilledDev)
 - **GitHub:** [@doble196](https://github.com/doble196)
 - **Location:** New York, NY
