@@ -4,7 +4,7 @@
 
 ## About
 
-> 🛠️ <!-- IDENTITY:status -->building Access0x1 — open-source onchain payments<!-- /IDENTITY:status -->
+> 🛠️ <!-- IDENTITY:status -->building ClickReserv, Colmado and the Access0x1 payments rail<!-- /IDENTITY:status -->
 
 Builder based in NYC. I work across the full stack — from on-chain protocols to AI agents to multi-tenant SaaS — and care about shipping things that work end-to-end. The Vyper-pilled dev.
 
@@ -20,8 +20,13 @@ Comfortable across several languages and ecosystems; usually picking up another.
 ## Building
 
 <!-- IDENTITY:fleet_links -->
-- **[Access0x1](https://github.com/Access0x1/Access0x1)** — Open-source onchain payments + identity rail
-- **[NFTeria](https://nfteria.click)** — Onchain commerce built on Access0x1
+- **[ClickReserv](https://clickreserv.com)** — Booking, payments and a customer list for small businesses
+- **[Colmado](https://colmado.click)** — Online store and delivery for neighbourhood shops
+- **[reserv.click](https://reserv.click)** — Free short links and QR codes, no tracking
+- **[SebasTN](https://sebastn.com)** — Payments for the apps (card and wallet)
+- **[Access0x1](https://access0x1.click)** — Onchain payments rail under the apps
+- **[ReverseV4Hook](https://github.com/Access0x1/uhi11v4hook)** — Uniswap v4 hook (Uniswap Hook Incubator)
+- **[NFTeria](https://nfteria.click)** — Onchain commerce
 <!-- /IDENTITY:fleet_links -->
 
 
