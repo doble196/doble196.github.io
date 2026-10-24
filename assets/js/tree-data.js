@@ -10,144 +10,112 @@
 // Keep it public-clean (no internal infrastructure) per AGENTS.md.
 window.MUSCLE_TREE = {
   label: "Rensley",
-  sub: "reasoning & logic first · fullstack, leaning backend — where fintech lies",
+  sub: "founder, SebasTN Inc. · payments for businesses and liquidity, on chain and off",
   children: [
     {
-      label: "Payments & Settlement",
-      sub: "USD-priced checkout, settled non-custodially",
-      featured: true, // the flagship — rendered with visual dominance so the
-                      // eye lands here first (weight, not just reading order)
+      label: "Access0x1 payments network",
+      sub: "live on Ethereum, Base, Unichain and Arc · one router, every business paid directly",
+      featured: true,
       sectors: ["payments"],
       children: [
         {
           label: "Access0x1",
-          sub: "open-source payments + identity rail · " +
+          sub: "non-custodial, USD-priced, exact split on every payment · " +
             (window.LIVE_STATS && window.LIVE_STATS.tests != null
               ? window.LIVE_STATS.tests.toLocaleString("en-US")
-              : "1,992") +
+              : "thousands of") +
             " passing tests",
-          href: "https://github.com/Access0x1/Access0x1",
+          href: "https://access0x1.com",
         },
         {
-          label: "NFTeria checkout",
-          sub: "one-link USD-priced checkout for any merchant",
-          href: "https://nfteria.click",
-        },
-        {
-          label: "Rebates module",
-          sub: "idea → fuzz-proven contract → live on two testnets, same day",
-          // the feat/rebates-module branch was merged into main and deleted;
-          // point at the repo root (the honest, live source) not a dead branch
-          href: "https://github.com/Access0x1/Access0x1",
+          label: "Live on mainnet, proven",
+          sub: "every deployment and settlement checkable on the explorers",
+          href: "https://access0x1.com/mainnet",
         },
       ],
     },
     {
-      label: "Identity & Auth",
-      sub: "one shared sign-in, sessions done once",
-      sectors: ["identity"],
+      label: "Uniswap v4 hooks",
+      sub: "hooks that earn from liquidity and take payments through pools",
+      sectors: ["payments"],
       children: [
         {
-          label: "GitHat",
-          sub: "hosted sign-in every app plugs into",
-          href: "https://githat.io",
+          label: "BoomerangHook",
+          sub: "5% of liquidity-provider fees to the treasury · Ethereum, Base, Unichain, Arc",
+          href: "https://access0x1.com/mainnet",
         },
         {
-          label: "Onchain identity",
-          sub: "wallet-linked identity on the Access0x1 rail",
-          href: "https://github.com/Access0x1/Access0x1",
+          label: "PayHook",
+          sub: "a store takes payment through a Uniswap pool swap · Base, Unichain, Arc",
+          href: "https://access0x1.com/mainnet",
+        },
+        {
+          label: "Uniswap Hook Incubator, cohort 11",
+          sub: "v4 hooks in Solidity + Foundry",
+          href: "https://atrium.academy/uniswap",
         },
       ],
     },
     {
-      label: "Booking",
-      sub: "calendar → deposit → confirmation",
+      label: "Businesses that run on it",
+      sub: "real customers, real payments",
       sectors: ["commerce"],
       children: [
         {
           label: "ClickReserv",
-          sub: "reservations with real deposits",
-          href: "https://reserv.click",
+          sub: "booking, payments and point of sale for 200+ business types, on your own brand and domain",
+          href: "https://clickreserv.com",
         },
-      ],
-    },
-    {
-      label: "Commerce & Inventory",
-      sub: "carts, stock, point of sale",
-      sectors: ["commerce"],
-      children: [
         {
           label: "Colmado",
-          sub: "inventory + POS",
+          sub: "online orders and payments for bodegas and corner stores",
           href: "https://colmado.click",
         },
         {
-          label: "SebasTN",
-          sub: "marketplace payments",
+          label: "reserv.click",
+          sub: "free short links and QR codes",
+          href: "https://reserv.click",
+        },
+        {
+          label: "HemiAI",
+          sub: "brand events and giveaways, results recorded on chain",
+          href: "https://hemiai.click",
+        },
+      ],
+    },
+    {
+      label: "SebasTN Inc.",
+      sub: "the company: card, prepaid and digital-asset payments for businesses",
+      sectors: ["payments"],
+      children: [
+        {
+          label: "sebastn.com",
+          sub: "plans, developers, security, company",
           href: "https://sebastn.com",
         },
+        {
+          label: "GitHat",
+          sub: "sign-in for developers' apps",
+          href: "https://githat.io",
+        },
       ],
     },
     {
-      label: "Provenance & Verification",
-      sub: "don't trust the page — check the chain",
+      label: "Security",
+      sub: "fuzzing, invariants, symbolic proofs, adversarial review",
       sectors: ["security"],
       children: [
         {
-          label: "NFTeria Super-Verify",
-          sub: "prove an item's history onchain",
-          href: "https://nfteria.click",
-        },
-        {
-          label: "ETHGlobal credential",
-          sub: "EG-HACKER token, verifiable on Optimism",
-          href: "classic.html#credential",
+          label: "How Access0x1 is reviewed",
+          sub: "Foundry fuzz + invariant suites, Halmos, Slither, Aderyn",
+          href: "https://access0x1.com/security",
         },
       ],
     },
     {
-      label: "AI & Autonomous Systems",
-      sub: "agents that are secure and useful",
-      sectors: ["ai"],
+      label: "Recognition",
+      sub: "three ETHGlobal events in 2026",
       children: [
-        {
-          label: "Quantl",
-          sub: "autonomous ML trading",
-          href: "https://quantl.click",
-        },
-        {
-          label: "Agent engineering",
-          sub: "LangChain · ElizaOS · RAG",
-          href: "classic.html#skills",
-        },
-      ],
-    },
-    {
-      label: "Security & Auditing",
-      sub: "fuzzing, invariants, adversarial review",
-      sectors: ["security"],
-      children: [
-        {
-          label: "Access0x1 test suite",
-          sub: "262k fuzz calls, zero handler reverts",
-          href: "https://github.com/Access0x1/Access0x1",
-        },
-        {
-          label: "Audit practice",
-          sub: "Foundry fuzzing + manual review",
-          href: "classic.html#security",
-        },
-      ],
-    },
-    {
-      label: "Programmes & hackathons",
-      sub: "Uniswap Hook Incubator · three ETHGlobal events in 2026",
-      children: [
-        {
-          label: "Uniswap Hook Incubator, cohort 11",
-          sub: "in progress · Uniswap v4 hooks in Solidity + Foundry",
-          href: "https://atrium.academy/uniswap",
-        },
         {
           label: "ETHGlobal New York 2026",
           sub: "Access0x1 · prize: Integrate ENS · certificate",
@@ -160,20 +128,8 @@ window.MUSCLE_TREE = {
         },
         {
           label: "ETHOnline 2026",
-          sub: "UNICA · certificate",
+          sub: "certificate",
           href: "certificates/ethonline-2026.html",
-        },
-      ],
-    },
-    {
-      label: "Teaching",
-      sub: "make the idea tangible, no jargon",
-      sectors: ["teaching"],
-      children: [
-        {
-          label: "The On-Chain Lesson",
-          sub: "see a blockchain work in 60 seconds — testnet, no real money",
-          href: "https://githat.io/lesson",
         },
       ],
     },
@@ -186,8 +142,6 @@ window.MUSCLE_TREE = {
 window.MUSCLE_SECTORS = [
   { key: null, label: "All work" },
   { key: "payments", label: "Payments" },
-  { key: "identity", label: "Identity" },
   { key: "commerce", label: "Commerce" },
   { key: "security", label: "Security" },
-  { key: "ai", label: "AI" },
 ];

@@ -2,72 +2,22 @@
 
 **Live:** [doble196.github.io](https://doble196.github.io)
 
-## About
+> <!-- IDENTITY:status -->founder of SebasTN Inc. · payments for every business and liquidity provider, card to digital assets<!-- /IDENTITY:status -->
 
-> 🛠️ <!-- IDENTITY:status -->building ClickReserv, Colmado and the Access0x1 payments rail<!-- /IDENTITY:status -->
+Founder, New York. I build payment systems that a business can trust with its money: every payment priced in dollars, split exactly, and paid straight to the business that earned it. The work starts from the customer and works backwards to the contract.
 
-Builder based in NYC. I work across the full stack — from on-chain protocols to AI agents to multi-tenant SaaS — and care about shipping things that work end-to-end. The Vyper-pilled dev.
-
-## What I work on
-
-- **On-chain** — smart-contract development and security review across EVM and a few non-EVM chains
-- **AI agents** — agentic workflows, retrieval, and orchestration around modern LLMs
-- **Fullstack web** — modern frontend stacks, typed APIs, AWS-native edge
-- **Data / forecasting** — time-series modeling and algorithmic trading research
-
-Comfortable across several languages and ecosystems; usually picking up another. Still learning every week.
-
-## Building
+## What we run today
 
 <!-- IDENTITY:fleet_links -->
-- **[ClickReserv](https://clickreserv.com)** — Booking, payments and a customer list for small businesses
-- **[Colmado](https://colmado.click)** — Online store and delivery for neighbourhood shops
-- **[reserv.click](https://reserv.click)** — Free short links and QR codes, no tracking
-- **[SebasTN](https://sebastn.com)** — Payments for the apps (card and wallet)
-- **[Access0x1](https://access0x1.click)** — Onchain payments rail under the apps
-- **[ReverseV4Hook](https://github.com/Access0x1/uhi11v4hook)** — Uniswap v4 hook (Uniswap Hook Incubator)
-- **[NFTeria](https://nfteria.click)** — Onchain commerce
 <!-- /IDENTITY:fleet_links -->
 
+## Proof, not promises
 
-## Access0x1 — live onchain
-
-Open-source, on-chain payments + commerce + identity layer. One shared, multi-tenant router — zero custody, USD-priced via Chainlink feeds read in-tx, exact fee-split — joined with one permissionless call. Source-verified on Base Sepolia, Ethereum + Optimism Sepolia, and Avalanche Fuji (Arc Testnet + Robinhood Chain deployed, verification pending); deployment and repo activity below refresh on each daily sync.
-
-<!-- IDENTITY:access0x1_card -->
-- **Router (Arc Testnet):** `0xA5982ea8842Eea97C6e313A5f75FD8CF72C69Aad` (verification pending)
-- **Router (Base Sepolia):** [`0xec89c9eE…6E8E57`](https://sepolia.basescan.org/address/0xec89c9eE28AF42Ae2b917BB0bAe245EAad6E8E57#code)
-- **Repo:** [Access0x1/Access0x1](https://github.com/Access0x1/Access0x1)
-<!-- /IDENTITY:access0x1_card -->
-
-### ETHGlobal Hacker Pack
-
-An on-chain credential — the EG-HACKER token held on Optimism (contract `0x32382a82d9faDc55f971f33DaEeE5841cfbADbE0`, wallet `0x53c61cfb8128ad59244e8c1d26109252ace23d14`, balance 1).
-
-```js
-// ETHGlobal Hacker Pack — onchain holder check (Optimism)
-const { ethers } = require('ethers'); // npm install ethers
-const provider = new ethers.JsonRpcProvider('https://mainnet.optimism.io');
-
-const pack   = '0x32382a82d9faDc55f971f33DaEeE5841cfbADbE0'; // ETHGlobal Hacker Pack (EG-HACKER)
-const wallet = '0x53c61cfb8128ad59244e8c1d26109252ace23d14';
-const abi    = ['function balanceOf(address owner) view returns (uint256)'];
-
-const held = await new ethers.Contract(pack, abi, provider).balanceOf(wallet);
-console.log(`${wallet} ${held > 0n ? 'is' : 'is not'} a pack holder`); // → is  (balance: 1)
-```
-
-## Background
-
-**Cyfrin Updraft (2024)** — Smart-contract security, auditing, DeFi protocol design, account abstraction, DAO governance, formal verification.
-
-**Columbia FinTech Executive Bootcamp (2022)** — Six-month intensive on blockchain + financial applications, algorithmic trading, forecasting.
+- Access0x1 is live on four mainnets: Ethereum, Base, Unichain and Arc, at one router address, owned by a 2-of-3 Safe. Every deployment and settlement can be checked at [access0x1.com/mainnet](https://access0x1.com/mainnet).
+- Reviewed with thousands of Foundry tests, fuzz and invariant suites, symbolic proofs and static analysis: [access0x1.com/security](https://access0x1.com/security).
+- ETHGlobal New York, Lisbon and ETHOnline 2026; Uniswap Hook Incubator, cohort 11.
 
 ## Contact
 
-<!-- IDENTITY:contact -->
-- **X:** [@VyperPilledDev](https://x.com/VyperPilledDev)
-- **GitHub:** [@doble196](https://github.com/doble196)
-- **Location:** New York, NY
-<!-- /IDENTITY:contact -->
-
+- Company: [sebastn.com](https://sebastn.com)
+- GitHub: [@doble196](https://github.com/doble196)
