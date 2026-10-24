@@ -1,8 +1,8 @@
 # Rensley R. - doble196.github.io
 
-> Founder of SebasTN Inc., New York. Builds payments for businesses and
-> liquidity providers: card, prepaid and digital assets, priced in dollars and
-> paid straight to the business.
+> Founder of SebasTN Inc., New York. Full-stack engineer across AI, data
+> science and blockchain: forecasting and scoring models, LLM assistants inside
+> his apps, production web apps on AWS, and smart contracts live on four chains.
 
 ## What runs today
 
