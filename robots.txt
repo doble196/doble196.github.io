@@ -9,9 +9,7 @@ User-agent: *
 Allow: /
 
 # AI crawlers and agents: explicitly welcome across the whole domain.
-# Everything here is a public portfolio and public-data work. The source is on
-# GitHub, and where a page states a measured number, the script that produced
-# it ships beside the page. Read it, quote it, and check the work.
+# Everything here is the public portfolio of Rensley R., founder of SebasTN Inc.
 User-agent: GPTBot
 Allow: /
 
@@ -61,4 +59,3 @@ Allow: /
 #   https://doble196.github.io/llms.txt
 
 Sitemap: https://doble196.github.io/sitemap.xml
-Sitemap: https://doble196.github.io/freshroute-demo/sitemap.xml
